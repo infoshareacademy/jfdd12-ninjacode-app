@@ -1,10 +1,9 @@
 import React from "react";
 import logo from "./logo.svg";
 import InfiniteCalendar from "react-infinite-calendar";
-//import { Button } from "semantic-ui-react";
+import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
 import "./App.css";
-import { Button, Card, Elevation } from "@blueprintjs/core";
 
 var today = new Date();
 var lastWeek = new Date(
@@ -12,7 +11,6 @@ var lastWeek = new Date(
   today.getMonth(),
   today.getDate() - 7
 );
-const ButtonExampleButton = () => <Button>Click Here</Button>;
 
 function App() {
   return (
@@ -39,14 +37,15 @@ function App() {
         minDate={lastWeek}
       /> */}
       <button class="ui button">Click Here</button>
-
-      <Card interactive={true} elevation={Elevation.TWO}>
-        <h5>
-          <a href="#">Card heading</a>
-        </h5>
-        <p>Card content</p>
-        <Button>Submit</Button>
-      </Card>
+      <Button as="div" labelPosition="right">
+        <Button icon>
+          <Icon name="heart" />
+          Like
+        </Button>
+        <Label as="a" basic pointing="left">
+          2,048
+        </Label>
+      </Button>
     </div>
   );
 }
