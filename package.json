@@ -9,6 +9,7 @@
     "react-dom": "^16.8.6",
     "react-infinite-calendar": "^2.3.1",
     "react-scripts": "3.0.1",
+    "react-table": "^6.10.0",
     "recharts": "^1.6.2",
     "semantic-ui-react": "^0.87.2"
   },
