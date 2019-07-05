@@ -1,6 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import InfiniteCalendar from "react-infinite-calendar";
+import { Button } from "semantic-ui-react";
+import "react-infinite-calendar/styles.css";
+import "./App.css";
+
+var today = new Date();
+var lastWeek = new Date(
+  today.getFullYear(),
+  today.getMonth(),
+  today.getDate() - 7
+);
+const ButtonExampleButton = () => <Button>Click Here</Button>;
 
 function App() {
   return (
@@ -19,6 +30,14 @@ function App() {
           Learn React
         </a>
       </header>
+      {/* <InfiniteCalendar
+        width={400}
+        height={600}
+        selected={today}
+        disabledDays={[0, 6]}
+        minDate={lastWeek}
+      /> */}
+      <button class="ui button">Click Here</button>
     </div>
   );
 }
