@@ -17,6 +17,7 @@ export class ChartDashboard extends PureComponent {
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" nameKey="name" data={data} fill="#8884d8" label />
+            <Legend verticalAlign="top" height={36}/>
           </PieChart>
         </ResponsiveContainer>
       </div>
