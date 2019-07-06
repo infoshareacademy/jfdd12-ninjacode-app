@@ -8,6 +8,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-infinite-calendar": "^2.3.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "recharts": "^1.6.2",
     "semantic-ui-react": "^0.87.2"
