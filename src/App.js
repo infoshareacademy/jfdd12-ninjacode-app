@@ -6,7 +6,7 @@ import { ChartDashboard } from './components/ChartDashboard'
 function App() {
   
   return (
-   <div>
+   <div>          
      <ChartDashboard/>
    </div>
   );
