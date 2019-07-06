@@ -4,8 +4,8 @@ import {
 } from 'recharts';
 
 const data = [
-  { name: 'Group A', value: 400, Legend: 'star' }, 
-  { name: 'Group C', value: 300, Legend: 'star' }
+  { name: 'Przychody', value: 300, Legend: 'star' }, 
+  { name: 'Wydatki', value: 800, Legend: 'star' }
 ];
 
 export class ChartDashboard extends PureComponent {
