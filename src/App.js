@@ -1,4 +1,4 @@
-import React from "react";
+import React , { useState } from "react";
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
@@ -12,6 +12,11 @@ var lastWeek = new Date(
 );
 
 function App() {
+  const[balance, useBalance]= useState({
+    saldo: 13000,
+    income: 12000,
+    expenses: 1000
+  })
   return (
     <div className='App'>
       <h1>cashBake - planer finansowy</h1>
@@ -32,6 +37,11 @@ function App() {
           2,048
         </Label>
       </Button>
+      <div>
+        <h1>SALDO:{balance.saldo}</h1>
+        <h2>Przychody:{balance.income}</h2>
+        <h2>Wydatki:{balance.expenses}</h2>
+      </div>
     </div>
   );
 }
