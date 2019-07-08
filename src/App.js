@@ -45,6 +45,8 @@ function App() {
         <h2>Wydatki:{balance.expenses}</h2>
       </div>
        <PieChartBalance balance={balance} />
+       <BarChartBalance />
+
     </div>
   );
 }
