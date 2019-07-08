@@ -2,7 +2,7 @@ import React from 'react'
 
 export function ViewFiler(props) {
 
-    const {}
+    const {income, expenses } = props
 
     return (
         <div>

@@ -1,7 +1,8 @@
 import React , { useState } from "react";
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
-import { ChartDashboard } from "./components/ChartDashboard";
+import { BarChartBalance } from "./components/BarChartBalance";
+import { PieChartBalance } from "./components/PieChartBalance";
 import "react-infinite-calendar/styles.css";
 import "./App.css";
 
@@ -43,7 +44,7 @@ function App() {
         <h2>Przychody:{balance.income}</h2>
         <h2>Wydatki:{balance.expenses}</h2>
       </div>
-      <ChartDashboard />
+       <PieChartBalance balance={balance} />
     </div>
   );
 }
