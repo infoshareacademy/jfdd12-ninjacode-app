@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import ReactTable from 'react-table';
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
-import 'react-table/react-table.css';
-import data from './mockData.json'
+import { HistoryTable } from './historyTable/HistoryTable'
 
 var today = new Date();
 var lastWeek = new Date(
@@ -31,7 +29,7 @@ function App() {
         disabledDays={[0, 6]}
         minDate={lastWeek}
       /> */}
-      <button class='ui button'>Click Here</button>
+      <button className='ui button'>Click Here</button>
       <Button as='div' labelPosition='right'>
         <Button icon>
           <Icon name='heart' />
@@ -46,34 +44,8 @@ function App() {
         <h2>Przychody:{balance.income}</h2>
         <h2>Wydatki:{balance.expenses}</h2>
       </div>
-
-      <ReactTable
-        data={data}
-        columns={[
-          {
-            Header: 'Nazwa',
-            accessor: 'name'
-          }, {
-            Header: 'Kategoria',
-            accessor: 'category',
-          }, {
-            Header: 'Data',
-            accessor: 'transactionDate'
-          },
-          {
-            id: 'typeID',
-            Header: 'Typ',
-            accessor: 'type'
-          },
-          {
-            id: 'amountID',
-            Header: 'Kwota',
-            accessor: 'amount'
-          }
-        ]}
-        defaultPageSize={10}
-        className="-striped -highlight"
-      /></div>
+      <HistoryTable />
+    </div>
   );
 }
 
