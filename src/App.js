@@ -5,7 +5,7 @@ import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
 import 'react-table/react-table.css';
-
+import { ExpensesForm, Inputs } from './Components/ExpensesForm'
 
 var today = new Date();
 var lastWeek = new Date(
@@ -89,7 +89,10 @@ function App() {
         <h2>Przychody:{balance.income}</h2>
         <h2>Wydatki:{balance.expenses}</h2>
       </div>
-
+      <div>
+        <ExpensesForm />
+        <Inputs />
+      </div>
       <ReactTable
         data={data}
         columns={[
