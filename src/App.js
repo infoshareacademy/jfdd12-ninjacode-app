@@ -5,7 +5,7 @@ import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
 import 'react-table/react-table.css';
-
+import data from './mockData.json'
 
 var today = new Date();
 var lastWeek = new Date(
@@ -14,49 +14,6 @@ var lastWeek = new Date(
   today.getDate() - 7
 );
 
-let data = [
-  {
-    name: "Zakup mebli",
-    category: "dom i ogród",
-    transactionDate: "23-03-2019",
-    type: "wydatki",
-    amount: 3499
-  },
-  {
-    name: "Spożywcze",
-    category: "żywność i chemia",
-    transactionDate: "25-03-2019",
-    type: "wydatki",
-    amount: 251
-  },
-  {
-    name: "opłata czynszu",
-    category: "opłaty i odsetki",
-    transactionDate: "01-04-2019",
-    type: "wydatki",
-    amount: 1500
-  },
-  {
-    name: "Aerobik-kwiecień",
-    category: "zajęcia dodatkowe",
-    transactionDate: "02-04-2019",
-    type: "wydatki",
-    amount: 210
-  },
-  {
-    name: "pensja",
-    category: "pensja",
-    transactionDate: "04-04-2019",
-    type: "wpływy",
-    amount: 6500
-  },
-  {
-    name: "odsetki od lokaty",
-    category: "inwestycje",
-    transactionDate: "06-04-2019",
-    type: "wpływy",
-    amount: 34.57
-  }]
 
 function App() {
   const [balance, useBalance] = useState({
