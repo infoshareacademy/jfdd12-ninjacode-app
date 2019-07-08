@@ -1,53 +1,82 @@
 import React from "react";
-import logo from "./logo.svg";
-import InfiniteCalendar from "react-infinite-calendar";
-//import { Button } from "semantic-ui-react";
-import "react-infinite-calendar/styles.css";
 import "./App.css";
-import { Button, Card, Elevation } from "@blueprintjs/core";
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
+// import { myData } from 'historyTable/sampleData.json'
 
-var today = new Date();
-var lastWeek = new Date(
-  today.getFullYear(),
-  today.getMonth(),
-  today.getDate() - 7
-);
-const ButtonExampleButton = () => <Button>Click Here</Button>;
+let data = [
+  {
+    name: "Zakup mebli",
+    category: "dom i ogród",
+    transactionDate: "23-03-2019",
+    type: "wydatki",
+    amount: 3499
+  },
+  {
+    name: "Spożywcze",
+    category: "żywność i chemia",
+    transactionDate: "25-03-2019",
+    type: "wydatki",
+    amount: 251
+  },
+  {
+    name: "opłata czynszu",
+    category: "opłaty i odsetki",
+    transactionDate: "01-04-2019",
+    type: "wydatki",
+    amount: 1500
+  },
+  {
+    name: "Aerobik-kwiecień",
+    category: "zajęcia dodatkowe",
+    transactionDate: "02-04-2019",
+    type: "wydatki",
+    amount: 210
+  },
+  {
+    name: "pensja",
+    category: "pensja",
+    transactionDate: "04-04-2019",
+    type: "wpływy",
+    amount: 6500
+  },
+  {
+    name: "odsetki od lokaty",
+    category: "inwestycje",
+    transactionDate: "06-04-2019",
+    type: "wpływy",
+    amount: 34.57
+  }]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      {/* <InfiniteCalendar
-        width={400}
-        height={600}
-        selected={today}
-        disabledDays={[0, 6]}
-        minDate={lastWeek}
-      /> */}
-      <button class="ui button">Click Here</button>
-
-      <Card interactive={true} elevation={Elevation.TWO}>
-        <h5>
-          <a href="#">Card heading</a>
-        </h5>
-        <p>Card content</p>
-        <Button>Submit</Button>
-      </Card>
-    </div>
+    <ReactTable
+      data={data}
+      columns={[
+        {
+          Header: 'Nazwa',
+          accessor: 'name'
+        }, {
+          Header: 'Kategoria',
+          accessor: 'category',
+        }, {
+          Header: 'Data',
+          accessor: 'transactionDate'
+        },
+        {
+          id: 'typeID',
+          Header: 'Typ',
+          accessor: 'type'
+        },
+        {
+          id: 'amountID',
+          Header: 'Kwota',
+          accessor: 'amount'
+        }
+      ]}
+      defaultPageSize={10}
+      className="-striped -highlight"
+    />
   );
 }
 
