@@ -118,7 +118,10 @@ function App() {
         ]}
         defaultPageSize={10}
         className="-striped -highlight"
-      /></div>
+      />
+      <BarChartBalance/>
+      <PieChartBalance balance={balance}/>
+      </div>
   );
 }
 
