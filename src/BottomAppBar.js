@@ -67,18 +67,7 @@ export default function BottomAppBar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Paper
-        style={{ backgroundColor: "white", height: "100vh" }}
-        square
-        className={classes.paper}
-      >
-        <Typography className={classes.text} variant="h3" gutterBottom>
-          Dashboard
-        </Typography>
-        <i className="material-icons">face</i>
-        <i className="material-icons">assessment</i>
-        <i className="material-icons">list_alt</i>
-      </Paper>
+
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
           <NavLink exact to="/">

@@ -5,6 +5,7 @@ import "./index.css";
 // import App from './App';
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
+import { HistoryTable } from "./historyTable/HistoryTable";
 
 const Dashboard = () => <h1>Dashboard</h1>;
 const History = () => <h1>Historia</h1>;
@@ -16,7 +17,7 @@ const Root = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Dashboard} />
-        <Route path="/history" component={History} />
+        <Route path="/history" component={HistoryTable} />
         <Route path="/wykresy" component={Wykresy} />
         <Route component={NoMatch} />
       </Switch>
