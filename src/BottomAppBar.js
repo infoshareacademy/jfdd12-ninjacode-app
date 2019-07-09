@@ -87,7 +87,14 @@ export default function BottomAppBar() {
               {/* <Typography variant="button">Historia</Typography> */}
             </IconButton>
           </NavLink>
-          <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
+          <Fab
+            color="secondary"
+            aria-label="Add"
+            className={classes.fabButton}
+            onClick={() => {
+              alert("Hello!");
+            }}
+          >
             <AddIcon />
           </Fab>
           <div className={classes.grow} />

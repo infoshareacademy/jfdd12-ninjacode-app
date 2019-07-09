@@ -19,7 +19,6 @@ export function Dashboard() {
       <PieChartBalance balance={balance} />
       <div>
         <ExpensesForm />
-        <Inputs />
       </div>
     </Paper>
   );

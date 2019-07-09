@@ -22,6 +22,8 @@ const useStyles = makeStyles(theme => ({
 
 export function ExpensesForm() {
   const [expense, setExpense] = useState("");
+
+  const classes = useStyles();
   return (
     <div>
       <h2>Wydatki</h2>
@@ -45,34 +47,27 @@ export function ExpensesForm() {
           <option value={"Inne"}>Inne</option>
         </Select>
       </FormControl>
-    </div>
-  );
-}
-
-export function Inputs() {
-  const classes = useStyles();
-
-  return (
-    <div>
-      <div className={classes.container}>
-        <Input
-          defaultValue="Wpisz nazwę"
-          className={classes.input}
-          inputProps={{
-            "aria-label": "Description"
-          }}
-        />
+      <div>
+        <div className={classes.container}>
+          <Input
+            defaultValue="Wpisz nazwę"
+            className={classes.input}
+            inputProps={{
+              "aria-label": "Description"
+            }}
+          />
+        </div>
+        <div className={classes.container}>
+          <Input
+            defaultValue="Wpisz kwotę"
+            className={classes.input}
+            inputProps={{
+              "aria-label": "Description"
+            }}
+          />
+        </div>
+        <MaterialUIPickers />
       </div>
-      <div className={classes.container}>
-        <Input
-          defaultValue="Wpisz kwotę"
-          className={classes.input}
-          inputProps={{
-            "aria-label": "Description"
-          }}
-        />
-      </div>
-      <MaterialUIPickers />
     </div>
   );
 }
