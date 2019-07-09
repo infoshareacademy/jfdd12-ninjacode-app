@@ -3,7 +3,7 @@ import "./App.css";
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
 import "react-infinite-calendar/styles.css";
-import { HistoryTable } from './historyTable/HistoryTable'
+import { HistoryTable, filterHistoryTable } from './historyTable/HistoryTable'
 
 var today = new Date();
 var lastWeek = new Date(
