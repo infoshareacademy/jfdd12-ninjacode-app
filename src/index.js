@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
@@ -6,10 +6,11 @@ import "./index.css";
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
 import { HistoryTable } from "./historyTable/HistoryTable";
+import { Dashboard } from "./components/Dashboard";
+import { Wykresy } from "./components/Wykresy";
 
-const Dashboard = () => <h1>Dashboard</h1>;
 const History = () => <h1>Historia</h1>;
-const Wykresy = () => <h1>Wykresy</h1>;
+// const Wykresy = () => <h1>Wykresy</h1>;
 const NoMatch = () => <p>404</p>;
 
 const Root = () => {
@@ -21,7 +22,8 @@ const Root = () => {
         <Route path="/wykresy" component={Wykresy} />
         <Route component={NoMatch} />
       </Switch>
-
+      <h1 />
+      <h1 />
       <BottomAppBar />
     </BrowserRouter>
   );
