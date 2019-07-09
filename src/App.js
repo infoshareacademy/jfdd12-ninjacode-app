@@ -3,6 +3,8 @@ import "./App.css";
 import ReactTable from 'react-table';
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
+import { BarChartBalance } from "./components/BarChartBalance";
+import { PieChartBalance } from "./components/PieChartBalance";
 import "react-infinite-calendar/styles.css";
 import 'react-table/react-table.css';
 import { ExpensesForm, Inputs } from './Components/ExpensesForm'
@@ -119,7 +121,10 @@ function App() {
         ]}
         defaultPageSize={10}
         className="-striped -highlight"
-      /></div>
+      />
+      <BarChartBalance/>
+      <PieChartBalance balance={balance}/>
+      </div>
   );
 }
 
