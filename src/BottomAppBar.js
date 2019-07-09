@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -80,19 +81,23 @@ export default function BottomAppBar() {
       </Paper>
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="Wykresy">
-            <Icon fontSize="large">dashboard</Icon>
-            {/* <Typography variant="button">Dashboard</Typography> */}
-          </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            label="History"
-            aria-label="History"
-          >
-            <Icon fontSize="large">list_alt</Icon>
-            {/* <Typography variant="button">Historia</Typography> */}
-          </IconButton>
+          <NavLink exact to="/">
+            <IconButton edge="start" color="inherit" aria-label="Wykresy">
+              <Icon fontSize="large">dashboard</Icon>
+              {/* <Typography variant="button">Dashboard</Typography> */}
+            </IconButton>
+          </NavLink>
+          <NavLink to="/history">
+            <IconButton
+              edge="start"
+              color="inherit"
+              label="History"
+              aria-label="History"
+            >
+              <Icon fontSize="large">list_alt</Icon>
+              {/* <Typography variant="button">Historia</Typography> */}
+            </IconButton>
+          </NavLink>
           <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Fab>
