@@ -1,0 +1,27 @@
+.filterSection{
+    width:100%;
+    border:1px solid gray;
+    margin:10px;
+    display:flex;
+    justify-content: center;
+}
+
+.filterSection button{
+    width:120px;
+    height:50px;
+    margin:10px;
+    background-color:light-gray;
+}
+
+.filterSection input{
+    height:50px;
+    margin:10px;
+    font-size:2em;
+    padding-left:10px;
+}
+
+.textBox{
+width:120px;
+height:50px;
+background-color:light-gray;
+}
