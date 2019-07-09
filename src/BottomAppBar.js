@@ -91,11 +91,12 @@ export default function BottomAppBar() {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
-
-          <IconButton color="inherit" aria-label="Wykresy">
-            <Icon fontSize="large">assessment</Icon>
-            {/* <Typography variant="button">Wykresy</Typography> */}
-          </IconButton>
+          <NavLink to="/wykresy">
+            <IconButton color="inherit" aria-label="Wykresy">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
         </Toolbar>
       </AppBar>
     </React.Fragment>
