@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import "./App.css";
 import InfiniteCalendar from "react-infinite-calendar";
 import { Button, Icon, Label } from "semantic-ui-react";
+import { BarChartBalance } from "./components/BarChartBalance";
+import { PieChartBalance } from "./components/PieChartBalance";
 import "react-infinite-calendar/styles.css";
-import { HistoryTable, filterHistoryTable } from './historyTable/HistoryTable'
+import { HistoryTable, filterHistoryTable } from "./historyTable/HistoryTable";
+import "react-table/react-table.css";
+import { ExpensesForm, Inputs } from "./components/ExpensesForm";
 
 var today = new Date();
 var lastWeek = new Date(
@@ -12,15 +16,14 @@ var lastWeek = new Date(
   today.getDate() - 7
 );
 
-
 function App() {
   const [balance, useBalance] = useState({
     saldo: 13000,
     income: 12000,
     expenses: 1000
-  })
+  });
   return (
-    <div className='App'>
+    <div className="App">
       <h1>cashBake - planer finansowy</h1>
       {/* <InfiniteCalendar
         width={400}
@@ -29,13 +32,13 @@ function App() {
         disabledDays={[0, 6]}
         minDate={lastWeek}
       /> */}
-      <button className='ui button'>Click Here</button>
-      <Button as='div' labelPosition='right'>
+      <button className="ui button">Click Here</button>
+      <Button as="div" labelPosition="right">
         <Button icon>
-          <Icon name='heart' />
+          <Icon name="heart" />
           Like
         </Button>
-        <Label as='a' basic pointing='left'>
+        <Label as="a" basic pointing="left">
           2,048
         </Label>
       </Button>
@@ -44,7 +47,13 @@ function App() {
         <h2>Przychody:{balance.income}</h2>
         <h2>Wydatki:{balance.expenses}</h2>
       </div>
-      <HistoryTable />
+      <div>
+        <ExpensesForm />
+        <Inputs />
+      </div>
+
+      <BarChartBalance />
+      <PieChartBalance balance={balance} />
     </div>
   );
 }
