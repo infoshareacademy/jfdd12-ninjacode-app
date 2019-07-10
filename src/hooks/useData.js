@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function useData() {
   const [data, setData] = useState(mockData);
-
+  console.log(data);
   function expensesValue() {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     return data
@@ -27,8 +27,9 @@ export default function useData() {
     saldo: (incomesValue() - expensesValue()).toFixed(2),
     incomes: incomesValue(),
     expenses: expensesValue(),
-    addExpense: () => {
-      // setData
+    addExpense: props => {
+      console.log(props);
+      setData([...data, props]);
     }
   };
 }

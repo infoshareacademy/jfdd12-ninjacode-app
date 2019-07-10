@@ -29,7 +29,14 @@ export function ExpensesForm() {
   const { addExpense } = useData();
 
   function onExpensesAddItem() {
-    addExpense();
+    const itemExpense = {
+      name: "odseteeeki od lokaty",
+      category: "inwestycje",
+      transactionDate: "06-04-2019",
+      type: "wydatki",
+      amount: 3304.57
+    };
+    addExpense(itemExpense);
   }
   return (
     <div className={classes.root}>
