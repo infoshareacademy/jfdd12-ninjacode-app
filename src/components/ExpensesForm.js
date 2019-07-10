@@ -5,6 +5,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -68,6 +69,14 @@ export function ExpensesForm() {
         </div>
         <MaterialUIPickers />
       </div>
+      <Button
+        onClick={() => {
+          alert("dodajemy wydatki!");
+        }}
+      >
+        {" "}
+        dodaj
+      </Button>
     </div>
   );
 }

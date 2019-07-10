@@ -17,9 +17,6 @@ export function Dashboard() {
       <h2>Przychody:{balance.income}</h2>
       <h2>Wydatki:{balance.expenses}</h2>
       <PieChartBalance balance={balance} />
-      <div>
-        <ExpensesForm />
-      </div>
     </Paper>
   );
 }

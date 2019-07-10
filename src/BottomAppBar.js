@@ -19,17 +19,8 @@ import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Icon from "@material-ui/core/Icon";
-import { Button } from "@material-ui/core";
-
-const messages = [
-  {
-    id: 1,
-    primary: "Brunch this week?",
-    secondary:
-      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: ""
-  }
-];
+import { Button, Modal } from "@material-ui/core";
+import { ExpensesForm } from "./components/ExpensesForm";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -58,14 +49,66 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     right: 0,
     margin: "0 auto"
+  },
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 4),
+    outline: "none"
   }
 }));
+function SimpleModal() {
+  const classes = useStyles();
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  // const [modalStyle] = React.useState();
+
+  return null;
+}
 
 export default function BottomAppBar() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  function modalForm() {
+    return (
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={open}
+        onClose={handleClose}
+      >
+        <div className={classes.paper}>
+          <h2 id="modal-title">Text in a modal</h2>
+          <p id="simple-modal-description">
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+        </div>
+      </Modal>
+    );
+  }
 
   return (
     <React.Fragment>
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={open}
+        onClose={handleClose}
+      >
+        <div className={classes.paper}>
+          <ExpensesForm />
+        </div>
+      </Modal>
       <CssBaseline />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -91,9 +134,7 @@ export default function BottomAppBar() {
             color="secondary"
             aria-label="Add"
             className={classes.fabButton}
-            onClick={() => {
-              alert("Hello!");
-            }}
+            onClick={handleOpen}
           >
             <AddIcon />
           </Fab>
