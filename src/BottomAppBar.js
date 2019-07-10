@@ -21,6 +21,7 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import Icon from "@material-ui/core/Icon";
 import { Button, Modal } from "@material-ui/core";
 import { ExpensesForm } from "./components/ExpensesForm";
+import { IncomesForm } from "./components/IncomesForm";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -60,17 +61,12 @@ const useStyles = makeStyles(theme => ({
     outline: "none"
   }
 }));
-function SimpleModal() {
-  const classes = useStyles();
-  // getModalStyle is not a pure function, we roll the style only on the first render
-  // const [modalStyle] = React.useState();
-
-  return null;
-}
 
 export default function BottomAppBar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [openExpenses, setOpenExpenses] = React.useState(false);
+  const [openIncomes, setOpenIncomes] = React.useState(false);
 
   const handleOpen = () => {
     setOpen(true);
@@ -79,36 +75,25 @@ export default function BottomAppBar() {
   const handleClose = () => {
     setOpen(false);
   };
-  function modalForm() {
-    return (
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div className={classes.paper}>
-          <h2 id="modal-title">Text in a modal</h2>
-          <p id="simple-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
-        </div>
-      </Modal>
-    );
-  }
+  const handleOpenExpenses = () => {
+    setOpenExpenses(true);
+  };
+
+  const handleCloseExpenses = () => {
+    setOpenExpenses(false);
+  };
+  const handleOpenIncomes = () => {
+    setOpenIncomes(true);
+  };
+
+  const handleCloseIncomes = () => {
+    setOpenIncomes(false);
+  };
 
   return (
     <React.Fragment>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div className={classes.paper}>
-          <ExpensesForm />
-        </div>
-      </Modal>
+      <SimpleModal />
+
       <CssBaseline />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -149,4 +134,47 @@ export default function BottomAppBar() {
       </AppBar>
     </React.Fragment>
   );
+
+  function SimpleModal() {
+    return (
+      <React.Fragment>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={open}
+          onClose={handleClose}
+        >
+          <div className={classes.paper}>
+            <Button color="red" onClick={handleOpenExpenses}>
+              Dodaj wydatki
+            </Button>
+            <Button color="secondary" onClick={handleOpenIncomes}>
+              Dodaj przychody
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openExpenses}
+          onClose={handleCloseExpenses}
+        >
+          <div className={classes.paper}>
+            <ExpensesForm />
+          </div>
+        </Modal>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openIncomes}
+          onClose={handleCloseIncomes}
+        >
+          <div className={classes.paper}>
+            <IncomesForm />
+          </div>
+        </Modal>
+      </React.Fragment>
+    );
+  }
 }
