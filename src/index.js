@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
-// import App from './App';
+import App from './App';
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
 import { HistoryTable } from "./historyTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Wykresy } from "./components/Wykresy";
+import { ExpensesForm } from "./components/ExpensesForm";
+import { IncomesForm } from "./components/IncomesForm";
 
 const History = () => <h1>Historia</h1>;
 // const Wykresy = () => <h1>Wykresy</h1>;

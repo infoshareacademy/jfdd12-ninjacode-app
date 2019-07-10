@@ -7,8 +7,8 @@ import { PieChartBalance } from "./components/PieChartBalance";
 import "react-infinite-calendar/styles.css";
 import { HistoryTable, filterHistoryTable } from "./historyTable/HistoryTable";
 import "react-table/react-table.css";
-import { ExpensesForm, Inputs } from "./components/ExpensesForm";
-
+import { ExpensesForm } from "./components/ExpensesForm";
+import { IncomesForm } from './components/IncomesForm'
 var today = new Date();
 var lastWeek = new Date(
   today.getFullYear(),
@@ -49,7 +49,8 @@ function App() {
       </div>
       <div>
         <ExpensesForm />
-        <Inputs />
+        <IncomesForm />
+
       </div>
 
       <BarChartBalance />
