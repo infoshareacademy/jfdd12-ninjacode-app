@@ -21,38 +21,38 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function ExpensesForm() {
-  const [expense, setExpense] = useState("");
+export function IncomesForm() {
+  const [income, setIncome] = useState("");
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <ul>
-      <h2>Wydatki</h2>
+        <ul>
+      <h2>Przychody</h2>
       <FormControl>
-        <InputLabel htmlFor="expense-native-simple">Kategoria</InputLabel>
+        <InputLabel htmlFor="income-native-simple">Kategoria</InputLabel>
         <Select
           native
-          value={expense}
+          value={income}
           onChange={event => {
-            setExpense(event.target.value);
+            setIncome(event.target.value);
           }}
           inputProps={{
-            name: "expense",
-            id: "expense-native-simple"
+            name: "income",
+            id: "income-native-simple"
           }}
         >
           <option value="" />
-          <option value={"Koszty stałe"}>Koszty stałe</option>
-          <option value={"Jedzenie"}>Jedzenie</option>
-          <option value={"Rozrywka"}>Rozrywka</option>
+          <option value={"Faktura"}>Faktura</option>
+          <option value={"Przelew"}>Przelew</option>
+          <option value={"Lokata"}>Lokata</option>
           <option value={"Inne"}>Inne</option>
         </Select>
       </FormControl>
       <div>
         <div className={classes.container}>
           <Input
-            defaultValue="Wpisz nazwę"
+            defaultValue="Wpisz nazwę przychodu"
             className={classes.input}
             inputProps={{
               "aria-label": "Description"
@@ -68,7 +68,9 @@ export function ExpensesForm() {
             }}
           />
         </div>
+        <div>
         <MaterialUIPickers />
+        </div>
       </div>
       </ul>
     </div>
