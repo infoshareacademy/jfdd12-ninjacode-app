@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -66,42 +67,43 @@ export default function BottomAppBar() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Paper
-        style={{ backgroundColor: "white", height: "100vh" }}
-        square
-        className={classes.paper}
-      >
-        <Typography className={classes.text} variant="h3" gutterBottom>
-          Dashboard
-        </Typography>
-        <i className="material-icons">face</i>
-        <i className="material-icons">assessment</i>
-        <i className="material-icons">list_alt</i>
-      </Paper>
+
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="Wykresy">
-            <Icon fontSize="large">dashboard</Icon>
-            {/* <Typography variant="button">Dashboard</Typography> */}
-          </IconButton>
-          <IconButton
-            edge="start"
-            color="inherit"
-            label="History"
-            aria-label="History"
+          <NavLink exact to="/">
+            <IconButton edge="start" color="inherit" aria-label="Wykresy">
+              <Icon fontSize="large">dashboard</Icon>
+              {/* <Typography variant="button">Dashboard</Typography> */}
+            </IconButton>
+          </NavLink>
+          <NavLink to="/history">
+            <IconButton
+              edge="start"
+              color="inherit"
+              label="History"
+              aria-label="History"
+            >
+              <Icon fontSize="large">list_alt</Icon>
+              {/* <Typography variant="button">Historia</Typography> */}
+            </IconButton>
+          </NavLink>
+          <Fab
+            color="secondary"
+            aria-label="Add"
+            className={classes.fabButton}
+            onClick={() => {
+              alert("Hello!");
+            }}
           >
-            <Icon fontSize="large">list_alt</Icon>
-            {/* <Typography variant="button">Historia</Typography> */}
-          </IconButton>
-          <Fab color="secondary" aria-label="Add" className={classes.fabButton}>
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
-
-          <IconButton color="inherit" aria-label="Wykresy">
-            <Icon fontSize="large">assessment</Icon>
-            {/* <Typography variant="button">Wykresy</Typography> */}
-          </IconButton>
+          <NavLink to="/wykresy">
+            <IconButton color="inherit" aria-label="Wykresy">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
         </Toolbar>
       </AppBar>
     </React.Fragment>
