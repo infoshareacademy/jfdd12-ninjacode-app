@@ -62,8 +62,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function BottomAppBar() {
+export default function BottomAppBar(props) {
+  const { onFormInput } = props;
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
   const [openExpenses, setOpenExpenses] = React.useState(false);
   const [openIncomes, setOpenIncomes] = React.useState(false);
@@ -161,7 +163,7 @@ export default function BottomAppBar() {
           onClose={handleCloseExpenses}
         >
           <div className={classes.paper}>
-            <ExpensesForm />
+            <ExpensesForm onFormInput={onFormInput} />
           </div>
         </Modal>
         <Modal

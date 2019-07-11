@@ -23,10 +23,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function ExpensesForm() {
+export function ExpensesForm(props) {
   const [expense, setExpense] = useState("");
   const classes = useStyles();
-  const { addExpense } = useData();
+  // const { addExpense } = useData();
+  const { onFormInput } = props;
 
   function onExpensesAddItem() {
     const itemExpense = {
@@ -36,7 +37,7 @@ export function ExpensesForm() {
       type: "wydatki",
       amount: 3304.57
     };
-    addExpense(itemExpense);
+    onFormInput(itemExpense);
   }
   return (
     <div className={classes.root}>
@@ -65,7 +66,8 @@ export function ExpensesForm() {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Wpisz nazwę"
+              defaultValue="Domyslna Nazwa"
+              placeholder="Wpisz nazwę"
               className={classes.input}
               inputProps={{
                 "aria-label": "Description"
@@ -74,7 +76,8 @@ export function ExpensesForm() {
           </div>
           <div className={classes.container}>
             <Input
-              defaultValue="Wpisz kwotę"
+              defaultValue="1000"
+              placeholder="Wpisz kwotę"
               className={classes.input}
               inputProps={{
                 "aria-label": "Description"
