@@ -1,58 +1,88 @@
 import React from "react";
-import "react-table/react-table.css";
 import data from "./mockData.json";
-import ReactTable from "react-table";
+import { Paper } from "@material-ui/core";
+import "react-table/react-table.css";
+
 import { FilterButton } from "./HistoryFilter";
 import styles from "./HistoryTable.module.css";
-import { Paper } from "@material-ui/core";
+import ReactTable from "react-table";
 
-export function HistoryTable(props) {
-  let { className } = props;
+
+
+console.log('---data in historyTable----')
+console.log(data)
+
+
+function filteredTableSum() {
+  let tableSum = 0
+  for (let i = 0; i <= data.length - 1; i++) {
+    // console.log(data[i].amount)
+    if (data[i].type === 'wydatki') {
+      tableSum -= data[i].amount
+    }
+    else if (data[i].type === 'wpływy') {
+      tableSum += data[i].amount
+    }
+  }
+  console.log('tableSum = ', tableSum)
+  return tableSum
+}
+
+export function HistoryTable() {
+  // let { className } = props;
+
+
+
 
   return (
-    <Paper>
+    < Paper >
       <div>
         <div className={styles.filterSection}>
-          {/* <div className={styles.textBox}>Wyszukaj</div> */}
           <input />
-          <FilterButton>Filtruj po nazwie lub kwocie</FilterButton>
           <FilterButton>Filtruj po kategorii</FilterButton>
           <FilterButton>Filtruj po dacie</FilterButton>
         </div>
         <ReactTable
-          filterable
+
           showPagination={false}
           showPageSizeOptions={false}
           minRows={3}
           data={data}
+          className="-striped -highlight"
           columns={[
             {
               Header: "Nazwa",
-              accessor: "name"
+              accessor: "name",
+              style: { textAlign: 'center' }
             },
             {
               Header: "Kategoria",
-              accessor: "category"
+              accessor: "category",
+              style: { textAlign: 'center' }
             },
             {
               Header: "Data",
-              accessor: "transactionDate"
+              accessor: "transactionDate",
+              style: { textAlign: 'center' }
             },
             {
               id: "typeID",
               Header: "Typ",
-              accessor: "type"
+              accessor: "type",
+              style: { textAlign: 'center' }
             },
             {
               id: "amountID",
               Header: "Kwota",
-              accessor: "amount"
+              accessor: "amount",
+              style: { textAlign: 'center' },
+              Footer: <strong>{filteredTableSum()}</strong>
             }
           ]}
           defaultPageSize={10}
-          //   className="-striped -highlight"
+        //   className="-striped -highlight"
         />
       </div>
-    </Paper>
+    </Paper >
   );
 }
