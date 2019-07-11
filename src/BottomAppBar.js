@@ -19,17 +19,9 @@ import AddIcon from "@material-ui/icons/Add";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Icon from "@material-ui/core/Icon";
-import { Button } from "@material-ui/core";
-
-const messages = [
-  {
-    id: 1,
-    primary: "Brunch this week?",
-    secondary:
-      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
-    person: ""
-  }
-];
+import { Button, Modal } from "@material-ui/core";
+import { ExpensesForm } from "./components/ExpensesForm";
+import { IncomesForm } from "./components/IncomesForm";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -58,14 +50,52 @@ const useStyles = makeStyles(theme => ({
     left: 0,
     right: 0,
     margin: "0 auto"
+  },
+  paper: {
+    position: "absolute",
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 4),
+    outline: "none"
   }
 }));
 
-export default function BottomAppBar() {
+export default function BottomAppBar(props) {
+  const { onFormInput } = props;
   const classes = useStyles();
+
+  const [open, setOpen] = React.useState(false);
+  const [openExpenses, setOpenExpenses] = React.useState(false);
+  const [openIncomes, setOpenIncomes] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpenExpenses = () => {
+    setOpenExpenses(true);
+  };
+
+  const handleCloseExpenses = () => {
+    setOpenExpenses(false);
+  };
+  const handleOpenIncomes = () => {
+    setOpenIncomes(true);
+  };
+
+  const handleCloseIncomes = () => {
+    setOpenIncomes(false);
+  };
 
   return (
     <React.Fragment>
+      <SimpleModal />
+
       <CssBaseline />
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
@@ -91,9 +121,7 @@ export default function BottomAppBar() {
             color="secondary"
             aria-label="Add"
             className={classes.fabButton}
-            onClick={() => {
-              alert("Hello!");
-            }}
+            onClick={handleOpen}
           >
             <AddIcon />
           </Fab>
@@ -108,4 +136,47 @@ export default function BottomAppBar() {
       </AppBar>
     </React.Fragment>
   );
+
+  function SimpleModal() {
+    return (
+      <React.Fragment>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={open}
+          onClose={handleClose}
+        >
+          <div className={classes.paper}>
+            <Button color="red" onClick={handleOpenExpenses}>
+              Dodaj wydatki
+            </Button>
+            <Button color="secondary" onClick={handleOpenIncomes}>
+              Dodaj przychody
+            </Button>
+          </div>
+        </Modal>
+
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openExpenses}
+          onClose={handleCloseExpenses}
+        >
+          <div className={classes.paper}>
+            <ExpensesForm onFormInput={onFormInput} />
+          </div>
+        </Modal>
+        <Modal
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openIncomes}
+          onClose={handleCloseIncomes}
+        >
+          <div className={classes.paper}>
+            <IncomesForm />
+          </div>
+        </Modal>
+      </React.Fragment>
+    );
+  }
 }
