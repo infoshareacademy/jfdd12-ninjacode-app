@@ -4,7 +4,7 @@ import { Paper } from "@material-ui/core";
 import "react-table/react-table.css";
 
 import { FilterButton } from "./HistoryFilter";
-import styles from "./HistoryTable.module.css";
+import "./HistoryTable.module.css";
 import ReactTable from "react-table";
 
 console.log('---data in historyTable----')
@@ -63,9 +63,8 @@ export class HistoryTable extends React.Component {
   constructor() {
     super()
     this.state = {
-      data: makeData(),
+      data: data,
       search: ''
-
     }
   }
   render() {
@@ -77,7 +76,7 @@ export class HistoryTable extends React.Component {
     }
     return (
       <div>
-        <h1>React-Table - Basic Example</h1>
+        <h1>Historia transakcji</h1>
         Wyszukaj: <input
           value={this.state.search}
           onChange={e => this.setState({ search: e.target.value })}
@@ -85,59 +84,11 @@ export class HistoryTable extends React.Component {
         <ReactTable
           data={data}
           columns={columns}
+          showPagination={false}
+          minRows={1}
         />
-        <br />
-        <br />
-        <h1>For more examples, <a href="https://react-table.js.org" target="_blank">see our react storybook</a></h1>
       </div>
     )
   }
-}
-
-function makeData() {
-  return [
-    {
-      "name": "Zakup mebli",
-      "category": "dom i ogród",
-      "transactionDate": "23-03-2019",
-      "type": "wydatki",
-      "amount": 3499
-    },
-    {
-      "name": "Spożywcze",
-      "category": "żywność i chemia",
-      "transactionDate": "25-03-2019",
-      "type": "wydatki",
-      "amount": 251
-    },
-    {
-      "name": "opłata czynszu",
-      "category": "opłaty i odsetki",
-      "transactionDate": "01-04-2019",
-      "type": "wydatki",
-      "amount": 1500
-    },
-    {
-      "name": "Aerobik-kwiecień",
-      "category": "zajęcia dodatkowe",
-      "transactionDate": "02-04-2019",
-      "type": "wydatki",
-      "amount": 210
-    },
-    {
-      "name": "pensja",
-      "category": "pensja",
-      "transactionDate": "04-04-2019",
-      "type": "wpływy",
-      "amount": 6500
-    },
-    {
-      "name": "odsetki od lokaty",
-      "category": "inwestycje",
-      "transactionDate": "06-04-2019",
-      "type": "wpływy",
-      "amount": 34.57
-    }
-  ]
 }
 
