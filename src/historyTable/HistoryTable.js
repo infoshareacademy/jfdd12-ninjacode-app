@@ -7,8 +7,6 @@ import { FilterButton } from "./HistoryFilter";
 import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 
-
-
 console.log('---data in historyTable----')
 console.log(data)
 
@@ -28,66 +26,118 @@ function filteredTableSum() {
   return tableSum
 }
 
-function filterRows(data) {
-  return data.map(row => row.amount > 3000)
-}
+// const ReactTable = window.ReactTable.default
 
-export function HistoryTable() {
-  const [ding, setDing] = useState(null)
+const columns = [
+  {
+    Header: "Nazwa",
+    accessor: "name",
+    style: { textAlign: 'center' }
+  },
+  {
+    Header: "Kategoria",
+    accessor: "category",
+    style: { textAlign: 'center' },
+  },
+  {
+    Header: "Data",
+    accessor: "transactionDate",
+    style: { textAlign: 'center' },
+  },
+  {
+    id: "typeID",
+    Header: "Typ",
+    accessor: "type",
+    style: { textAlign: 'center' },
+    Footer: <strong>SUMA:</strong>
+  },
+  {
+    id: "amountID",
+    Header: "Kwota",
+    accessor: "amount",
+    style: { textAlign: 'center' },
+    Footer: <strong>{filteredTableSum()}</strong>
+  }
+]
+export class HistoryTable extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      data: makeData(),
+      search: ''
 
-
-  return (
-    < Paper >
+    }
+  }
+  render() {
+    let data = this.state.data
+    if (this.state.search) {
+      data = data.filter(row => {
+        return row.name.toLowerCase().includes((this.state.search).toLowerCase()) || row.category.toLowerCase().includes(this.state.search.toLowerCase()) || String(row.amount).includes(this.state.search)
+      })
+    }
+    return (
       <div>
-        <div className={styles.filterSection}>
-          Wyszukaj<input />
-          <FilterButton>Filtruj po kategorii</FilterButton>
-          <FilterButton>Filtruj po dacie</FilterButton>
-
-          <ReactTable
-            // ref={(r) => this.reactTable = r}
-            showPagination={false}
-            showPageSizeOptions={false}
-            minRows={1}
-            data={data}
-            className="-striped -highlight"
-
-            columns={[
-              {
-                Header: "Nazwa",
-                accessor: "name",
-                style: { textAlign: 'center' }
-              },
-              {
-                Header: "Kategoria",
-                accessor: "category",
-                style: { textAlign: 'center' },
-              },
-              {
-                Header: "Data",
-                accessor: "transactionDate",
-                style: { textAlign: 'center' },
-              },
-              {
-                id: "typeID",
-                Header: "Typ",
-                accessor: "type",
-                style: { textAlign: 'center' },
-                Footer: <strong>SUMA:</strong>
-              },
-              {
-                id: "amountID",
-                Header: "Kwota",
-                accessor: "amount",
-                style: { textAlign: 'center' },
-                Footer: <strong>{filteredTableSum()}</strong>
-              }
-            ]}
-            defaultPageSize={10}
-          //   className="-striped -highlight"
-          />
-        </div>
+        <h1>React-Table - Basic Example</h1>
+        Wyszukaj: <input
+          value={this.state.search}
+          onChange={e => this.setState({ search: e.target.value })}
+        />
+        <ReactTable
+          data={data}
+          columns={columns}
+        />
+        <br />
+        <br />
+        <h1>For more examples, <a href="https://react-table.js.org" target="_blank">see our react storybook</a></h1>
       </div>
-    </Paper >
-  );
+    )
+  }
 }
+
+function makeData() {
+  return [
+    {
+      "name": "Zakup mebli",
+      "category": "dom i ogród",
+      "transactionDate": "23-03-2019",
+      "type": "wydatki",
+      "amount": 3499
+    },
+    {
+      "name": "Spożywcze",
+      "category": "żywność i chemia",
+      "transactionDate": "25-03-2019",
+      "type": "wydatki",
+      "amount": 251
+    },
+    {
+      "name": "opłata czynszu",
+      "category": "opłaty i odsetki",
+      "transactionDate": "01-04-2019",
+      "type": "wydatki",
+      "amount": 1500
+    },
+    {
+      "name": "Aerobik-kwiecień",
+      "category": "zajęcia dodatkowe",
+      "transactionDate": "02-04-2019",
+      "type": "wydatki",
+      "amount": 210
+    },
+    {
+      "name": "pensja",
+      "category": "pensja",
+      "transactionDate": "04-04-2019",
+      "type": "wpływy",
+      "amount": 6500
+    },
+    {
+      "name": "odsetki od lokaty",
+      "category": "inwestycje",
+      "transactionDate": "06-04-2019",
+      "type": "wpływy",
+      "amount": 34.57
+    }
+  ]
+}
+
