@@ -18,60 +18,72 @@ class Root extends React.Component {
     this.state = {
       data: mockData,
       balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
+        saldo: 0,
+        incomes: 0,
+        expenses: 0
       }
     };
   }
 
   componentDidMount() {
-    this.setState({
-      balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
-      }
-    });
+    this.loadData();
+    console.log("loadData didMount");
+  }
+
+  loadData() {
+    const incomes = this.incomesValue();
+    const expenses = this.expensesValue();
+    // this.setState((prevState) => {balance: {...prevState,}})
+    const balance = {
+      saldo: incomes - expenses,
+      incomes,
+      expenses
+    };
+    console.log("loadData completed,\n balanceObj: ");
+    console.log(balance);
+    this.setState(prevState => ({ data: prevState.data, balance }));
+
+    // console.log(prevState);
   }
 
   expensesValue() {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const expenses = mockData
+    const expenses = this.state.data
       .filter(row => row.type === "wydatki")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
       }, 0);
-
+    console.log(`suma wpływów: ${expenses}`);
     return expenses;
   }
 
   incomesValue() {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const incomes = mockData
+    const incomes = this.state.data
       .filter(row => row.type === "wpływy")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
       }, 0);
-    console.log(incomes);
+    console.log(`suma wpływów: ${incomes}`);
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState({ data: ItemExpense });
+    this.setState(prevState => ({ data: prevState.data }));
     // metoda do rekalkulacji;
   }
   render() {
+    this.onFormInput = this.onFormInput.bind(this);
     console.log(this.state);
     return (
       <BrowserRouter>
         <Switch>
           <Route
             exact
-            path="/"
+            path='/'
             render={() => <Dashboard balance={this.state.balance} />}
           />
-          <Route path="/history" component={HistoryTable} />
-          <Route path="/wykresy" component={Wykresy} />
+          <Route path='/history' component={HistoryTable} />
+          <Route path='/wykresy' component={Wykresy} />
           <Route component={NoMatch} />
         </Switch>
         <h1 />
