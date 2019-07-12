@@ -94,7 +94,7 @@ export class HistoryTable extends React.Component {
         <h1>Historia transakcji</h1>
         Wyszukaj: <input
           value={this.state.search} onChange={this.onSearch}
-        /><button style={{ width: 100, height: 20 }} >Filtruj po dacie</button>
+        />
 
 
         <ReactTable
