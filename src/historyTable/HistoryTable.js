@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import data from "./mockData.json";
-import { Paper } from "@material-ui/core";
 import "react-table/react-table.css";
+import { makeStyles } from '@material-ui/core/styles';
 
-import { FilterButton } from "./HistoryFilter";
 import "./HistoryTable.module.css";
 import ReactTable from "react-table";
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import Grid from '@material-ui/core/Grid';
 
-console.log('---data in historyTable----')
-console.log(data)
 
-
-function filteredTableSum() {
+function filteredTableSum(data) {
   let tableSum = 0
   for (let i = 0; i <= data.length - 1; i++) {
     // console.log(data[i].amount)
@@ -26,69 +29,82 @@ function filteredTableSum() {
   return tableSum
 }
 
-// const ReactTable = window.ReactTable.default
+const getColumns = data => {
+  return [
+    {
+      Header: "Nazwa",
+      accessor: "name",
+      style: { textAlign: 'center' }
+    },
+    {
+      Header: "Kategoria",
+      accessor: "category",
+      style: { textAlign: 'center' },
+    },
+    {
+      Header: "Data",
+      accessor: "transactionDate",
+      style: { textAlign: 'center' },
+    },
+    {
+      id: "typeID",
+      Header: "Typ",
+      accessor: "type",
+      style: { textAlign: 'center' },
+      Footer: <strong>SUMA:</strong>
+    },
+    {
+      id: "amountID",
+      Header: "Kwota",
+      accessor: "amount",
+      style: { textAlign: 'center' },
+      Footer: <strong>{filteredTableSum(data)}</strong>
+    }
+  ]
+}
 
-const columns = [
-  {
-    Header: "Nazwa",
-    accessor: "name",
-    style: { textAlign: 'center' }
-  },
-  {
-    Header: "Kategoria",
-    accessor: "category",
-    style: { textAlign: 'center' },
-  },
-  {
-    Header: "Data",
-    accessor: "transactionDate",
-    style: { textAlign: 'center' },
-  },
-  {
-    id: "typeID",
-    Header: "Typ",
-    accessor: "type",
-    style: { textAlign: 'center' },
-    Footer: <strong>SUMA:</strong>
-  },
-  {
-    id: "amountID",
-    Header: "Kwota",
-    accessor: "amount",
-    style: { textAlign: 'center' },
-    Footer: <strong>{filteredTableSum()}</strong>
-  }
-]
 export class HistoryTable extends React.Component {
   constructor() {
     super()
     this.state = {
       data: data,
+      filteredData: data,
       search: ''
     }
   }
-  render() {
-    let data = this.state.data
+
+  onSearch = (e) => {
+    this.setState({ search: e.target.value });
+    console.log(this.state.search)
     if (this.state.search) {
-      data = data.filter(row => {
-        return row.name.toLowerCase().includes((this.state.search).toLowerCase()) || row.category.toLowerCase().includes(this.state.search.toLowerCase()) || String(row.amount).includes(this.state.search)
+      this.setState((prevState, nextState) => {
+        return {
+          filteredData: prevState.data.filter(row => {
+            return row.name.toLowerCase().includes((prevState.search).toLowerCase()) || row.category.toLowerCase().includes(prevState.search.toLowerCase()) || String(row.amount).includes(prevState.search)
+          }),
+        }
       })
     }
+  }
+
+  render() {
+
     return (
       <div>
         <h1>Historia transakcji</h1>
         Wyszukaj: <input
-          value={this.state.search}
-          onChange={e => this.setState({ search: e.target.value })}
-        />
+          value={this.state.search} onChange={this.onSearch}
+        /><button style={{ width: 100, height: 20 }} >Filtruj po dacie</button>
+
+
         <ReactTable
-          data={data}
-          columns={columns}
+          data={this.state.filteredData}
+          columns={getColumns(this.state.filteredData)}
           showPagination={false}
           minRows={1}
+          noDataText={'Nie znaleziono transakcji'}
         />
       </div>
     )
   }
 }
-
