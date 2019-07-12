@@ -2,14 +2,12 @@ import React, { useState } from "react";
 
 import { PieChartBalance } from "./PieChartBalance";
 import { Paper } from "@material-ui/core";
-import { ExpensesForm, Inputs } from "./ExpensesForm";
-import mockData from "../mockData.json";
-import useData from "../hooks/useData";
 
-export function Dashboard() {
-  const balance = useData();
+export function Dashboard(props) {
+  const { balance } = props;
 
-  console.log(mockData);
+  console.log(props);
+
   return (
     <Paper style={{ height: "100vh" }}>
       <h1>cashBake - planer finansowy</h1>

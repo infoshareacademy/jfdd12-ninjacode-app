@@ -22,14 +22,15 @@ import Icon from "@material-ui/core/Icon";
 import { Button, Modal } from "@material-ui/core";
 import { ExpensesForm } from "./components/ExpensesForm";
 import { IncomesForm } from "./components/IncomesForm";
+import { positions } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   text: {
-    padding: theme.spacing(2, 2, 0)
+    padding: theme.spacing(2, 2, 0),
   },
-  paper: {
-    paddingBottom: 50
-  },
+  // paper: {
+  //   paddingBottom: 50
+  // },
   list: {
     marginBottom: theme.spacing(2)
   },
@@ -53,17 +54,27 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     position: "absolute",
-    width: 400,
+    height: "auto",
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
-    outline: "none"
-  }
+    outline: "none",
+    top: "50%",
+    left: 0,
+    right: 0,
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-around", 
+    zIndex: 1
+  },
+ 
 }));
 
-export default function BottomAppBar() {
+export default function BottomAppBar(props) {
+  const { onFormInput } = props;
   const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
   const [openExpenses, setOpenExpenses] = React.useState(false);
   const [openIncomes, setOpenIncomes] = React.useState(false);
@@ -145,10 +156,10 @@ export default function BottomAppBar() {
           onClose={handleClose}
         >
           <div className={classes.paper}>
-            <Button color="red" onClick={handleOpenExpenses}>
+            <Button style={{fontSize:20, marginLeft:10}}color="secondary" variant="contained" onClick={handleOpenExpenses}>
               Dodaj wydatki
             </Button>
-            <Button color="secondary" onClick={handleOpenIncomes}>
+            <Button style={{fontSize:20, marginLeft:10}}color="primary" variant="contained" onClick={handleOpenIncomes}>
               Dodaj przychody
             </Button>
           </div>
@@ -161,7 +172,7 @@ export default function BottomAppBar() {
           onClose={handleCloseExpenses}
         >
           <div className={classes.paper}>
-            <ExpensesForm />
+            <ExpensesForm onFormInput={onFormInput} />
           </div>
         </Modal>
         <Modal
