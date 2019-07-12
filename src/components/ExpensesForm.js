@@ -7,6 +7,7 @@ import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
 import useData from "../hooks/useData";
+import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,20 +66,27 @@ export function ExpensesForm() {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Wpisz nazwę"
+              placeholder="Wpisz nazwę"
               className={classes.input}
               inputProps={{
-                "aria-label": "Description"
+                'aria-label': 'Description',
               }}
             />
           </div>
           <div className={classes.container}>
-            <Input
-              defaultValue="Wpisz kwotę"
-              className={classes.input}
-              inputProps={{
-                "aria-label": "Description"
+              <TextField
+              id="standard-number"
+              label="Number"
+              value={expense}
+              onChange={event => {
+                setExpense(event.target.value);
               }}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
             />
           </div>
           <MaterialUIPickers />
