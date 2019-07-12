@@ -35,8 +35,9 @@ export function ExpensesForm(props) {
       category: "inwestycje",
       transactionDate: "06-04-2019",
       type: "wydatki",
-      amount: 3304.57
+      amount: 1000
     };
+
     onFormInput(itemExpense);
   }
   return (
@@ -44,7 +45,7 @@ export function ExpensesForm(props) {
       <ul>
         <h2>Wydatki</h2>
         <FormControl>
-          <InputLabel htmlFor="expense-native-simple">Kategoria</InputLabel>
+          <InputLabel htmlFor='expense-native-simple'>Kategoria</InputLabel>
           <Select
             native
             value={expense}
@@ -56,7 +57,7 @@ export function ExpensesForm(props) {
               id: "expense-native-simple"
             }}
           >
-            <option value="" />
+            <option value='' />
             <option value={"Koszty stałe"}>Koszty stałe</option>
             <option value={"Jedzenie"}>Jedzenie</option>
             <option value={"Rozrywka"}>Rozrywka</option>
@@ -66,8 +67,8 @@ export function ExpensesForm(props) {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Domyslna Nazwa"
-              placeholder="Wpisz nazwę"
+              defaultValue='Domyslna Nazwa'
+              placeholder='Wpisz nazwę'
               className={classes.input}
               inputProps={{
                 "aria-label": "Description"
@@ -76,8 +77,8 @@ export function ExpensesForm(props) {
           </div>
           <div className={classes.container}>
             <Input
-              defaultValue="1000"
-              placeholder="Wpisz kwotę"
+              defaultValue='1000'
+              placeholder='Wpisz kwotę'
               className={classes.input}
               inputProps={{
                 "aria-label": "Description"

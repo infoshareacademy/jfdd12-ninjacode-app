@@ -31,6 +31,12 @@ class Root extends React.Component {
   }
 
   loadData() {
+    const balance = this.reloadBalance();
+    console.log("add balance to state: ");
+    console.log(balance);
+    this.setState(prevState => ({ data: prevState.data, balance }));
+  }
+  reloadBalance() {
     const incomes = this.incomesValue();
     const expenses = this.expensesValue();
     // this.setState((prevState) => {balance: {...prevState,}})
@@ -41,9 +47,7 @@ class Root extends React.Component {
     };
     console.log("loadData completed,\n balanceObj: ");
     console.log(balance);
-    this.setState(prevState => ({ data: prevState.data, balance }));
-
-    // console.log(prevState);
+    return balance;
   }
 
   expensesValue() {
@@ -68,7 +72,12 @@ class Root extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState(prevState => ({ data: prevState.data }));
+    console.log("dodaje pozycje ");
+    console.log(ItemExpense);
+    this.setState(prevState => ({
+      data: [...prevState.data, ItemExpense],
+      balance: this.reloadBalance()
+    }));
     // metoda do rekalkulacji;
   }
   render() {
