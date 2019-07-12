@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import data from "./mockData.json";
 import { Paper } from "@material-ui/core";
 import "react-table/react-table.css";
@@ -28,60 +28,65 @@ function filteredTableSum() {
   return tableSum
 }
 
+function filterRows(data) {
+  return data.map(row => row.amount > 3000)
+}
+
 export function HistoryTable() {
-  // let { className } = props;
-
-
+  const [ding, setDing] = useState(null)
 
 
   return (
     < Paper >
       <div>
         <div className={styles.filterSection}>
-          <input />
+          Wyszukaj<input />
           <FilterButton>Filtruj po kategorii</FilterButton>
           <FilterButton>Filtruj po dacie</FilterButton>
-        </div>
-        <ReactTable
 
-          showPagination={false}
-          showPageSizeOptions={false}
-          minRows={3}
-          data={data}
-          className="-striped -highlight"
-          columns={[
-            {
-              Header: "Nazwa",
-              accessor: "name",
-              style: { textAlign: 'center' }
-            },
-            {
-              Header: "Kategoria",
-              accessor: "category",
-              style: { textAlign: 'center' }
-            },
-            {
-              Header: "Data",
-              accessor: "transactionDate",
-              style: { textAlign: 'center' }
-            },
-            {
-              id: "typeID",
-              Header: "Typ",
-              accessor: "type",
-              style: { textAlign: 'center' }
-            },
-            {
-              id: "amountID",
-              Header: "Kwota",
-              accessor: "amount",
-              style: { textAlign: 'center' },
-              Footer: <strong>{filteredTableSum()}</strong>
-            }
-          ]}
-          defaultPageSize={10}
-        //   className="-striped -highlight"
-        />
+          <ReactTable
+            // ref={(r) => this.reactTable = r}
+            showPagination={false}
+            showPageSizeOptions={false}
+            minRows={1}
+            data={data}
+            className="-striped -highlight"
+
+            columns={[
+              {
+                Header: "Nazwa",
+                accessor: "name",
+                style: { textAlign: 'center' }
+              },
+              {
+                Header: "Kategoria",
+                accessor: "category",
+                style: { textAlign: 'center' },
+              },
+              {
+                Header: "Data",
+                accessor: "transactionDate",
+                style: { textAlign: 'center' },
+              },
+              {
+                id: "typeID",
+                Header: "Typ",
+                accessor: "type",
+                style: { textAlign: 'center' },
+                Footer: <strong>SUMA:</strong>
+              },
+              {
+                id: "amountID",
+                Header: "Kwota",
+                accessor: "amount",
+                style: { textAlign: 'center' },
+                Footer: <strong>{filteredTableSum()}</strong>
+              }
+            ]}
+            defaultPageSize={10}
+          //   className="-striped -highlight"
+          />
+        </div>
       </div>
     </Paper >
   );
