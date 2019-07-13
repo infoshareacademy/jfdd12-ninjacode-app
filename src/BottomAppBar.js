@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
     outline: "none",
-    top: "50%",
+    top: "40%",
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -68,6 +68,22 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-around", 
     zIndex: 1
   },
+  paperButton: {
+    position: "absolute",
+    height: "auto",
+    backgroundColor: theme.palette.background.paper,
+    border: "2px solid #000",
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 4),
+    outline: "none",
+    top: "70%",
+    left: 0,
+    right: 0,
+    margin: "0 auto",
+    display: "flex",
+    justifyContent: "space-around", 
+    zIndex: 1
+  }
  
 }));
 
@@ -153,7 +169,7 @@ export default function BottomAppBar() {
           open={open}
           onClose={handleClose}
         >
-          <div className={classes.paper}>
+          <div className={classes.paperButton}>
             <Button style={{fontSize:20, marginLeft:10}}color="secondary" variant="contained" onClick={handleOpenExpenses}>
               Dodaj wydatki
             </Button>
