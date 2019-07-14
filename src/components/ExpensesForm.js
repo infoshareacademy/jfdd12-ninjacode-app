@@ -67,7 +67,7 @@ export function ExpensesForm(props) {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Domyslna Nazwa"
+              defaultValue="Wpisz nazwę"
               placeholder="Wpisz nazwę"
               className={classes.input}
               inputProps={{
@@ -78,7 +78,7 @@ export function ExpensesForm(props) {
           <div className={classes.container}>
               <TextField
               id="standard-number"
-              label="Number"
+              label="Wpisz kwotę"
               value={expense}
               onChange={event => {
                 setExpense(event.target.value);
