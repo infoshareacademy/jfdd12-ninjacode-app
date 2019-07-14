@@ -8,7 +8,6 @@ import { HistoryTable } from "./historyTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Wykresy } from "./components/Wykresy";
 import mockData from "./mockData.json";
-import { func } from "prop-types";
 
 const NoMatch = () => <p>404</p>;
 
@@ -38,7 +37,7 @@ class Root extends React.Component {
   expensesValue() {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const expenses = mockData
-      .filter(row => row.type === "wydatki")
+      .filter(row => row.type === "expenses")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
       }, 0);
@@ -49,11 +48,10 @@ class Root extends React.Component {
   incomesValue() {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const incomes = mockData
-      .filter(row => row.type === "wpływy")
+      .filter(row => row.type === "incomes")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
       }, 0);
-    console.log(incomes);
     return incomes;
   }
   onFormInput(ItemExpense) {

@@ -7,10 +7,7 @@ import {Header} from './Header'
 export function Dashboard(props) {
   const { balance } = props;
 
-  console.log(props);
   
- 
-
   return (
     <div>
       
