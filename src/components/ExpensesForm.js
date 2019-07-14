@@ -7,6 +7,7 @@ import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
 import useData from "../hooks/useData";
+import TextField from '@material-ui/core/TextField'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,10 +24,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function ExpensesForm() {
+export function ExpensesForm(props) {
   const [expense, setExpense] = useState("");
   const classes = useStyles();
-  const { addExpense } = useData();
+  // const { addExpense } = useData();
+  const { onFormInput } = props;
 
   function onExpensesAddItem() {
     const itemExpense = {
@@ -36,7 +38,7 @@ export function ExpensesForm() {
       type: "wydatki",
       amount: 3304.57
     };
-    addExpense(itemExpense);
+    onFormInput(itemExpense);
   }
   return (
     <div className={classes.root}>
@@ -65,20 +67,28 @@ export function ExpensesForm() {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Wpisz nazwę"
+              defaultValue="Domyslna Nazwa"
+              placeholder="Wpisz nazwę"
               className={classes.input}
               inputProps={{
-                "aria-label": "Description"
+                'aria-label': 'Description',
               }}
             />
           </div>
           <div className={classes.container}>
-            <Input
-              defaultValue="Wpisz kwotę"
-              className={classes.input}
-              inputProps={{
-                "aria-label": "Description"
+              <TextField
+              id="standard-number"
+              label="Number"
+              value={expense}
+              onChange={event => {
+                setExpense(event.target.value);
               }}
+              type="number"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              margin="normal"
             />
           </div>
           <MaterialUIPickers />

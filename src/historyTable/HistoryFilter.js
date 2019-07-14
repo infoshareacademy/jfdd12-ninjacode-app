@@ -9,3 +9,4 @@ export function FilterHistoryTable() {
 export function FilterButton(props) {
     return <button>{props.children} </button>
 }
+
