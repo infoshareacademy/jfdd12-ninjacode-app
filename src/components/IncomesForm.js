@@ -6,6 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,7 +66,8 @@ export function IncomesForm() {
       <div>
         <div className={classes.container}>
           <Input
-            defaultValue="Wpisz nazwę przychodu"
+            defaultValue="Wpisz nazwę"
+            placeholder="Wpisz nazwę"
             className={classes.input}
             inputProps={{
               "aria-label": "Description"
@@ -72,12 +75,19 @@ export function IncomesForm() {
           />
         </div>
         <div className={classes.container}>
-          <Input
-            defaultValue="Wpisz kwotę"
-            className={classes.input}
-            inputProps={{
-              "aria-label": "Description"
+          <TextField
+          id="standard-number"
+          label="Wpisz kwotę"
+            value={income}
+            onChange={event => {
+              setIncome(event.target.value);
             }}
+            type="number"
+            className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            margin="normal"
           />
         </div>
         <div>
