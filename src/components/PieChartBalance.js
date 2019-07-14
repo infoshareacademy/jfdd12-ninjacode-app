@@ -16,7 +16,7 @@ export class PieChartBalance extends PureComponent {
     ];
 
     return (
-      <div style={{ width: "100%", height: 400 }}>
+      <div style={{ width: "100%", height: 350 }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} label>
@@ -24,7 +24,7 @@ export class PieChartBalance extends PureComponent {
                 <Cell key={`cell-${index}`} fill={colors[index]} />
               ))}
             </Pie>
-            <Legend verticalAlign="top" height={10} />
+            <Legend verticalAlign="top" height={50}/>
           </PieChart>
         </ResponsiveContainer>
       </div>
