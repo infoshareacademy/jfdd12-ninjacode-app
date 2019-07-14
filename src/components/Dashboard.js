@@ -2,22 +2,14 @@ import React, { useState } from "react";
 import { PieChartBalance } from "./PieChartBalance";
 import { Paper } from "@material-ui/core";
 import logo from '../icons/logo.svg'
-
+import {Header} from './Header'
 
 export function Dashboard(props) {
   const { balance } = props;
 
   console.log(props);
   
-  function Header() {
-    return (
-    <div style={{display: "flex", marginTop: 20}}>
-   
-    <img style={{marginLeft: 20}} src={logo} alt="Logo" /> 
-    <h2 style={{margin: "0 auto", marginTop: 30}}> Planer finansowy</h2>
-    </div>
-    )
-  }
+ 
 
   return (
     <div>

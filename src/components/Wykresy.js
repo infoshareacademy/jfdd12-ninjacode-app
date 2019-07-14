@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { PieChartBalance } from "./PieChartBalance";
 import { BarChartBalance } from "./BarChartBalance";
-import { Paper } from "@material-ui/core";
+
+import { Header}  from './Header'
+
 
 export function Wykresy() {
   const [balance, useBalance] = useState({
@@ -10,9 +12,9 @@ export function Wykresy() {
     expenses: 1000
   });
   return (
-    <Paper>
-      <PieChartBalance balance={balance} />
+      <div>
+      <Header/>
       <BarChartBalance />
-    </Paper>
-  );
+      </div>
+  )
 }

@@ -56,7 +56,7 @@ export class BarChartBalance extends PureComponent {
   render() {
     return (
       
-        <div style={{ width: "100%", height: 400 }}>
+        <div style={{ width: "100%", height: 400, marginTop: 50}}>
           <ResponsiveContainer>
               <BarChart
                 width={500}
@@ -70,7 +70,7 @@ export class BarChartBalance extends PureComponent {
                   <XAxis dataKey="dateFormatted" tick={<CustomizedAxisTick/>} interval={0}/>
                   <YAxis />
                   <Tooltip formatter= { tooltipCurrencyFormatter }/>
-                  <Legend />
+                  <Legend/>
                   <ReferenceLine y={0} stroke="#000" />
                   <Bar name="wydatki" dataKey="expenditure" fill="#8884d8">
                     <LabelList dataKey="expenditure" position="top" formatter={currencyFormatter} />
