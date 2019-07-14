@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center"
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(2),
     minWidth: 200
   },
   selectEmpty: {
@@ -45,7 +45,7 @@ export function ExpensesForm(props) {
   return (
     <div className={classes.root}>
       <ul>
-        <h2>Wydatki</h2>
+        <h2 style={{marginLeft: 30}}>Wydatki</h2>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
           <Select

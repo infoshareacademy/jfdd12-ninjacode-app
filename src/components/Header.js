@@ -5,7 +5,7 @@ export function Header() {
   return (
     <div
       style={{
-        padding: 20,
+        padding: 10,
         display: "flex",
         flexDirection: "column",
         justifyConent: "center",
