@@ -93,7 +93,9 @@ export function ExpensesForm(props) {
           </div>
           <MaterialUIPickers />
         </div>
-        <Button onClick={onExpensesAddItem}>dodaj</Button>
+        <Button style={{fontSize:15, marginLeft:10}}color="secondary" variant="contained" onClick={onExpensesAddItem}>
+              Dodaj wydatki
+        </Button>
       </ul>
     </div>
   );

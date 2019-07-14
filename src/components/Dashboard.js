@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import { PieChartBalance } from "./PieChartBalance";
 import { Paper } from "@material-ui/core";
+
 
 export function Dashboard(props) {
   const { balance } = props;
@@ -10,6 +10,7 @@ export function Dashboard(props) {
 
   return (
     <Paper style={{ height: "100vh" }}>
+      <img src={"../icons/logo.svg"}  alt="logo"/>
       <h1>cashBake - planer finansowy</h1>
       <h1>SALDO:{balance.saldo}</h1>
       <h2>Przychody:{balance.incomes.toFixed(2)}</h2>

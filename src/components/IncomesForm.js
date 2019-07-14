@@ -5,6 +5,7 @@ import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
+import { Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,6 +24,17 @@ const useStyles = makeStyles(theme => ({
 
 export function IncomesForm() {
   const [income, setIncome] = useState("");
+  
+  function onIncomesAddItem() {
+    const itemExpense = {
+      name: "odseteeeki od lokaty",
+      category: "inwestycje",
+      transactionDate: "06-04-2019",
+      type: "przychody",
+      amount: 3304.57
+    };
+    
+  }
 
   const classes = useStyles();
   return (
@@ -72,6 +84,9 @@ export function IncomesForm() {
         <MaterialUIPickers />
         </div>
       </div>
+      <Button style={{fontSize:15, marginLeft:10}}color="primary" variant="contained" onClick={onIncomesAddItem}>
+              Dodaj przychody
+      </Button>
       </ul>
     </div>
   );
