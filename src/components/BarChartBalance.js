@@ -70,7 +70,7 @@ export class BarChartBalance extends PureComponent {
                   <XAxis dataKey="dateFormatted" tick={<CustomizedAxisTick/>} interval={0}/>
                   <YAxis />
                   <Tooltip formatter= { tooltipCurrencyFormatter }/>
-                  <Legend  height={50}/>
+                  <Legend/>
                   <ReferenceLine y={0} stroke="#000" />
                   <Bar name="wydatki" dataKey="expenditure" fill="#8884d8">
                     <LabelList dataKey="expenditure" position="top" formatter={currencyFormatter} />
