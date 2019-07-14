@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { PieChartBalance } from "./PieChartBalance";
-import { Paper } from "@material-ui/core";
-import logo from '../icons/logo.svg'
-import {Header} from './Header'
+import {Header} from './Header';
+import costs from '../icons/costs.svg';
+import revenues from '../icons/revenues.svg';
+import pig from '../icons/pig.svg';
 
 export function Dashboard(props) {
   const { balance } = props;
@@ -16,14 +17,23 @@ export function Dashboard(props) {
       
       <Header/>
 
-    <div style={{marginTop: 40,marginBottom: 40, display: "flex", flexDirection: "column", justifyConent: "center", textAlign: "center"}}>
-      <h2>SALDO : {balance.saldo} zł </h2>
-      <h3>Przychody : {balance.incomes.toFixed(2)} zł</h3>
-      <h3>Wydatki : {balance.expenses.toFixed(2)} zł</h3>
-    </div>
+      <div style={{padding: 15,display: "flex", flexDirection: "column",justifyConent: "center", textAlign: "center", borderBottom: "1px solid black"}}>
+     
       
+      <h2> <img src={pig} alt="pig" /> Saldo : {balance.saldo} zł </h2>
+      
+      
+      <h2> <img src={revenues} alt="revenues" /> Przychody : {balance.incomes.toFixed(2)} zł  </h2>
+      
+      
+      <h2> <img src={costs} alt="costs"/>   Wydatki : {balance.expenses.toFixed(2)} zł</h2>
+      
+      </div>
+      
+      <div style={{marginTop: 30}}>
       <PieChartBalance balance={balance} />
-      
+      </div>
+
    </div>
   );
 }
