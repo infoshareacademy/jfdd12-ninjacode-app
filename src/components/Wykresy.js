@@ -6,7 +6,7 @@ import { Header}  from './Header'
 
 
 export function Wykresy() {
-  const [balance, useBalance] = useState({
+  const [balance, setBalance] = useState({
     saldo: 11000,
     income: 12000,
     expenses: 1000

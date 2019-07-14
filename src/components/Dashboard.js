@@ -8,10 +8,7 @@ import pig from '../icons/pig.svg';
 export function Dashboard(props) {
   const { balance } = props;
 
-  console.log(props);
   
- 
-
   return (
     <div>
       

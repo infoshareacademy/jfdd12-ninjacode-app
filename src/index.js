@@ -8,7 +8,6 @@ import { HistoryTable } from "./historyTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Wykresy } from "./components/Wykresy";
 import mockData from "./mockData.json";
-import { func } from "prop-types";
 
 const NoMatch = () => <p>404</p>;
 
@@ -53,7 +52,6 @@ class Root extends React.Component {
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
       }, 0);
-    console.log(incomes);
     return incomes;
   }
   onFormInput(ItemExpense) {

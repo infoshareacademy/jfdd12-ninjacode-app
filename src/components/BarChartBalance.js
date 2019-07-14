@@ -38,7 +38,6 @@ export class BarChartBalance extends PureComponent {
 
     for (let i = 0; i < 4; i++) {      
       currentDate.add(1, "days");
-      console.log(currentDate);
       let day = {
         date: currentDate.toDate(),
         dateFormatted: currentDate.format("DD-MM-YYYY"),
