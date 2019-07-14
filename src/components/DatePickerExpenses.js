@@ -11,9 +11,8 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
-
 const localeMap = {
-  pl: plLocale,
+  pl: plLocale
 };
 
 const useStyles = makeStyles({
@@ -28,7 +27,6 @@ export function MaterialUIPickers() {
   const [selectedDate, setSelectedDate] = React.useState(
     new Date().toDateString()
   );
-  
 
   const classes = useStyles();
 
@@ -37,29 +35,19 @@ export function MaterialUIPickers() {
   }
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}  >
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}>
       <Grid container className={classes.grid} justify="space-around">
         <KeyboardDatePicker
-          margin = "normal"
-          id = "mui-pickers-date"
-
-          value = {
-            selectedDate
-          }
-          KeyboardButtonProps = {
-            {
-              "aria-label": "change date"
-            }
-          }
+          margin="normal"
+          id="mui-pickers-date"
+          value={selectedDate}
+          KeyboardButtonProps={{
+            "aria-label": "change date"
+          }}
           clearable
-          onChange = {
-            date => handleDateChange(date)
-          }
-          minDate = {
-            new Date()
-          }
-          format = "dd/MM/yyyy"
-          
+          onChange={date => handleDateChange(date)}
+          minDate={new Date()}
+          format="dd/MM/yyyy"
         />
       </Grid>
     </MuiPickersUtilsProvider>

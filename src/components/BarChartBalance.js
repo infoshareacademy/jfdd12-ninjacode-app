@@ -78,16 +78,6 @@ export class BarChartBalance extends PureComponent {
                     <LabelList dataKey="income" position="top" formatter={currencyFormatter}/>
                   </Bar>
                 </BarChart>
-
-            {/* <PieChart>
-              <Pie dataKey="value" data={data} label>
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={colors[index]} />
-                ))}
-              </Pie>
-
-              <Legend verticalAlign="top" height={10} />
-            </PieChart> */}
           </ResponsiveContainer>
         </div>
       

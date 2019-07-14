@@ -24,7 +24,7 @@ export class PieChartBalance extends PureComponent {
                 <Cell key={`cell-${index}`} fill={colors[index]} />
               ))}
             </Pie>
-            <Legend verticalAlign="top" height={50}/>
+            <Legend verticalAlign="top" height={50} />
           </PieChart>
         </ResponsiveContainer>
       </div>

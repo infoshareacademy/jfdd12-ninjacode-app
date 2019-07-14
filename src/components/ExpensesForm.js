@@ -7,7 +7,7 @@ import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
 import useData from "../hooks/useData";
-import TextField from '@material-ui/core/TextField'
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +26,9 @@ const useStyles = makeStyles(theme => ({
 
 export function ExpensesForm(props) {
   const [expense, setExpense] = useState("");
+  const [category, setCategory] = useState("");
   const classes = useStyles();
+
   // const { addExpense } = useData();
   const { onFormInput } = props;
 
@@ -44,17 +46,17 @@ export function ExpensesForm(props) {
     <div className={classes.root}>
       <ul>
         <h2>Wydatki</h2>
-        <FormControl>
-          <InputLabel htmlFor="expense-native-simple">Kategoria</InputLabel>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
           <Select
             native
-            value={expense}
+            value={category}
             onChange={event => {
-              setExpense(event.target.value);
+              setCategory(event.target.value);
             }}
             inputProps={{
-              name: "expense",
-              id: "expense-native-simple"
+              name: "category",
+              id: "category-native-simple"
             }}
           >
             <option value="" />
@@ -67,34 +69,38 @@ export function ExpensesForm(props) {
         <div>
           <div className={classes.container}>
             <Input
-              defaultValue="Wpisz nazwę"
               placeholder="Wpisz nazwę"
-              className={classes.input}
+              className={classes.formControl}
               inputProps={{
-                'aria-label': 'Description',
+                "aria-label": "Description"
               }}
             />
           </div>
           <div className={classes.container}>
-              <TextField
+            <TextField
               id="standard-number"
-              label="Wpisz kwotę"
+              placeholder="Wpisz kwotę"
               value={expense}
               onChange={event => {
                 setExpense(event.target.value);
               }}
               type="number"
-              className={classes.textField}
+              className={classes.formControl}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               margin="normal"
             />
           </div>
           <MaterialUIPickers />
         </div>
-        <Button style={{fontSize:15, marginLeft:10}}color="secondary" variant="contained" onClick={onExpensesAddItem}>
-              Dodaj wydatki
+        <Button
+          style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}
+          color="secondary"
+          variant="contained"
+          onClick={onExpensesAddItem}
+        >
+          Dodaj wydatki
         </Button>
       </ul>
     </div>
