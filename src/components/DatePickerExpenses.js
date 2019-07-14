@@ -58,7 +58,7 @@ export function MaterialUIPickers() {
           minDate = {
             new Date()
           }
-          format = "MM/dd/yyyy"
+          format = "dd/MM/yyyy"
           
         />
       </Grid>
