@@ -1,4 +1,6 @@
+import plLocale from "date-fns/locale/pl";
 import "date-fns";
+
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,6 +11,11 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
+
+const localeMap = {
+  pl: plLocale,
+};
+
 const useStyles = makeStyles({
   grid: {
     width: "100%"
@@ -17,9 +24,11 @@ const useStyles = makeStyles({
 
 export function MaterialUIPickers() {
   // The first commit of Material-UI
+  const [locale, setLocale] = React.useState("pl");
   const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
+    new Date().toDateString()
   );
+  
 
   const classes = useStyles();
 
@@ -28,17 +37,29 @@ export function MaterialUIPickers() {
   }
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap[locale]}  >
       <Grid container className={classes.grid} justify="space-around">
         <KeyboardDatePicker
-          margin="normal"
-          id="mui-pickers-date"
-          label="Date picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            "aria-label": "change date"
-          }}
+          margin = "normal"
+          id = "mui-pickers-date"
+          label = "Kalendarz"
+          value = {
+            selectedDate
+          }
+          KeyboardButtonProps = {
+            {
+              "aria-label": "change date"
+            }
+          }
+          clearable
+          onChange = {
+            date => handleDateChange(date)
+          }
+          minDate = {
+            new Date()
+          }
+          format = "MM/dd/yyyy"
+          
         />
       </Grid>
     </MuiPickersUtilsProvider>
