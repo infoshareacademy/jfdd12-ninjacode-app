@@ -42,7 +42,7 @@ export function MaterialUIPickers() {
         <KeyboardDatePicker
           margin = "normal"
           id = "mui-pickers-date"
-          label = "Kalendarz"
+
           value = {
             selectedDate
           }

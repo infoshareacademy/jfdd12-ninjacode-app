@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
     margin: "0 auto",
     display: "flex",
     justifyContent: "space-around", 
-    zIndex: 1
+   
   },
   paperButton: {
     position: "absolute",
@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
     margin: "0 auto",
     display: "flex",
     justifyContent: "space-around", 
-    zIndex: 1
+    
   }
  
 }));
