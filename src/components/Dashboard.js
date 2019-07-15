@@ -1,22 +1,48 @@
 import React, { useState } from "react";
-
 import { PieChartBalance } from "./PieChartBalance";
-import { Paper } from "@material-ui/core";
-import { ExpensesForm, Inputs } from "./ExpensesForm";
-import mockData from "../mockData.json";
-import useData from "../hooks/useData";
+import { Header } from "./Header";
+import costs from "../icons/costs.svg";
+import revenues from "../icons/revenues.svg";
+import pig from "../icons/pig.svg";
 
-export function Dashboard() {
-  const balance = useData();
+export function Dashboard(props) {
+  const { balance } = props;
 
-  console.log(mockData);
   return (
-    <Paper style={{ height: "100vh" }}>
-      <h1>cashBake - planer finansowy</h1>
-      <h1>SALDO:{balance.saldo}</h1>
-      <h2>Przychody:{balance.incomes.toFixed(2)}</h2>
-      <h2>Wydatki:{balance.expenses.toFixed(2)}</h2>
-      <PieChartBalance balance={balance} />
-    </Paper>
+    <div>
+      <Header />
+
+      <div
+        style={{
+          padding: 15,
+          display: "flex",
+          flexDirection: "column",
+          justifyConent: "center",
+          textAlign: "center",
+          borderBottom: "1px solid black"
+        }}
+      >
+        <h2>
+          {" "}
+          <img src={pig} alt="pig" /> Saldo : {balance.saldo} zł{" "}
+        </h2>
+
+        <h2>
+          {" "}
+          <img src={revenues} alt="revenues" /> Przychody :{" "}
+          {balance.incomes.toFixed(2)} zł{" "}
+        </h2>
+
+        <h2>
+          {" "}
+          <img src={costs} alt="costs" /> Wydatki :{" "}
+          {balance.expenses.toFixed(2)} zł
+        </h2>
+      </div>
+
+      <div style={{ marginTop: 30 }}>
+        <PieChartBalance balance={balance} />
+      </div>
+    </div>
   );
 }
