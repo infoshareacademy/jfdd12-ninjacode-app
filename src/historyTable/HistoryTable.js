@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import data from "./mockData.json";
 import "react-table/react-table.css";
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import "./HistoryTable.module.css";
@@ -27,6 +27,18 @@ function filteredTableSum(data) {
   }
   console.log('tableSum = ', tableSum)
   return tableSum
+}
+
+function filterData(data, search) {
+  return data.filter(row => {
+    if (search) {
+      return row.name.toLowerCase().includes((search).toLowerCase()) ||
+        row.category.toLowerCase().includes(search.toLowerCase()) ||
+        String(row.amount).includes(search);
+    }
+    else
+      return true;
+  });
 }
 
 const getColumns = data => {
@@ -64,11 +76,11 @@ const getColumns = data => {
 }
 
 export class HistoryTable extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
-      data: data,
-      filteredData: data,
+      data: props.data,
+      filteredData: props.data,
       search: ''
     }
   }
@@ -79,15 +91,19 @@ export class HistoryTable extends React.Component {
     if (this.state.search) {
       this.setState((prevState, nextState) => {
         return {
-          filteredData: prevState.data.filter(row => {
-            return row.name.toLowerCase().includes((prevState.search).toLowerCase()) || row.category.toLowerCase().includes(prevState.search.toLowerCase()) || String(row.amount).includes(prevState.search)
-          }),
+          filteredData: filterData(prevState.data, prevState.search),
         }
       })
     }
   }
 
+  // Re-run the filter whenever the list array or filter text changes:
+  // filter = memoize(
+  //     (data, search) => filterData(data, search)
+  // );
+
   render() {
+    const transactions = filterData(this.props.data, this.state.search);
 
     return (
       <div>
@@ -98,8 +114,8 @@ export class HistoryTable extends React.Component {
 
 
         <ReactTable
-          data={this.state.filteredData}
-          columns={getColumns(this.state.filteredData)}
+          data={transactions}
+          columns={getColumns(transactions)}
           showPagination={false}
           minRows={1}
           noDataText={'Nie znaleziono transakcji'}

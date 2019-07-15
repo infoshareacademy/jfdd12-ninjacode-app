@@ -7,7 +7,6 @@ import { Header}  from './Header'
 
 export function Wykresy(props) {
     const { data } = props;
-
   return (
       <div>
       <Header/>

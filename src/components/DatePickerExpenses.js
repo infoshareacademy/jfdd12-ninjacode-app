@@ -25,7 +25,7 @@ export function MaterialUIPickers(props) {
   // The first commit of Material-UI
   const [locale, setLocale] = React.useState("pl");
   const [selectedDate, setSelectedDate] = React.useState(
-    props.date
+    new Date()
   );
 
   const classes = useStyles();
@@ -48,7 +48,6 @@ export function MaterialUIPickers(props) {
           }}
           clearable
           onChange={date => handleDateChange(date, props.onDateSelected)}
-          minDate={new Date()}
           format="dd/MM/yyyy"
         />
       </Grid>

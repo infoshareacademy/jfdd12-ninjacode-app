@@ -84,7 +84,7 @@ class Root extends React.Component {
           />
           <Route
             path="/history"
-            render={() => <HistoryTable />}
+            render={() => <HistoryTable data={this.state.data} />}
           />
           <Route
             path="/wykresy"

@@ -17,23 +17,6 @@ function tooltipCurrencyFormatter(value) {
 export class BarChartBalance extends PureComponent {
   constructor(props) {
     super(props);
-
-    const data = props.data;
-
-    let days = data.map(entry => {
-      console.log(entry);
-      const day = {
-        date: moment(entry.transactionDate),
-        dateFormatted: moment(entry.transactionDate).format("DD-MM-YYYY"),
-        expenditure: entry.type === "wydatki" ? entry.amount : 0,
-        income: entry.type === "wpływy" ? entry.amount : 0
-      };
-      return day;
-    });
-
-    this.state = {
-      days: days      
-    }
   }
 
   render() {
@@ -44,7 +27,17 @@ export class BarChartBalance extends PureComponent {
               <BarChart
                 width={500}
                 height={300}
-                data={this.state.days}
+                data={
+                  this.props.data.map(entry => {
+                    const day = {
+                      date: moment(entry.transactionDate, "DD-MM-YYYY"),
+                      dateFormatted: moment(entry.transactionDate, "DD-MM-YYYY").format("DD-MM-YYYY"),
+                      expenditure: entry.type === "wydatki" ? entry.amount : 0,
+                      income: entry.type === "wpływy" ? entry.amount : 0
+                    };
+                    return day;
+                  })
+                }
                 margin={{
                   top: 5, right: 30, left: 20, bottom: 5,
                 }}

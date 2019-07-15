@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
+import moment from "moment";
 import useData from "../hooks/useData";
 import TextField from "@material-ui/core/TextField";
 
@@ -28,7 +29,7 @@ export function ExpensesForm(props) {
   const [expense, setExpense] = useState("");
   const [category, setCategory] = useState("");
   const [expenseName, setExpenseName] = useState("");
-  const [expenseDate, setExpenseDate] = useState("");
+  const [expenseDate, setExpenseDate] = useState(moment(new Date()).format("DD-MM-YYYY"));
   const classes = useStyles();
 
   // const { addExpense } = useData();
@@ -38,7 +39,7 @@ export function ExpensesForm(props) {
     const itemExpense = {
       name: expenseName,
       category: category,
-      transactionDate: expenseDate ? new Date() : expenseDate,
+      transactionDate: moment(expenseDate ? new Date() : expenseDate).format("DD-MM-YYYY"),
       type: "wydatki",
       amount: parseFloat(expense)
     };
