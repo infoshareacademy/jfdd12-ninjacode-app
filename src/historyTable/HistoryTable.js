@@ -24,7 +24,7 @@ function filteredTableSum(data) {
     }
   }
   console.log("tableSum = ", tableSum);
-  return tableSum;
+  return tableSum.toFixed(2);
 }
 
 function filterData(data, search) {

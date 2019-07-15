@@ -96,6 +96,7 @@ export function ExpensesForm(props) {
                 setExpense(event.target.value);
               }}
               type="number"
+              required
               className={classes.formControl}
               InputLabelProps={{
                 shrink: true
