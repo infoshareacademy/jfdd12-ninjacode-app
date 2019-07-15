@@ -58,9 +58,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    // padding: theme.spacing(2, 4, 4),
+    padding: theme.spacing(2, 4, 4),
     outline: "none",
-    top: "10%",
+    top: "20%",
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
     outline: "none",
-    top: "70%",
+    top: "60%",
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -112,6 +112,13 @@ export default function BottomAppBar(props) {
 
   const handleCloseIncomes = () => {
     setOpenIncomes(false);
+  };
+
+  const onFormInputted = data => {
+    onFormInput(data);
+    setOpenExpenses(false);
+    setOpenIncomes(false);
+    setOpen(false);
   };
 
   return (
@@ -195,7 +202,7 @@ export default function BottomAppBar(props) {
           onClose={handleCloseExpenses}
         >
           <div className={classes.paper}>
-            <ExpensesForm onFormInput={onFormInput} />
+            <ExpensesForm onFormInput={onFormInputted} />
           </div>
         </Modal>
         <Modal
@@ -205,7 +212,7 @@ export default function BottomAppBar(props) {
           onClose={handleCloseIncomes}
         >
           <div className={classes.paper}>
-            <IncomesForm />
+            <IncomesForm onFormInput={onFormInputted} />
           </div>
         </Modal>
       </React.Fragment>

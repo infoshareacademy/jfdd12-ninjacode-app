@@ -17,26 +17,34 @@ class Root extends React.Component {
     this.state = {
       data: mockData,
       balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
+        saldo: (
+          this.incomesValue(mockData) - this.expensesValue(mockData)
+        ).toFixed(2),
+        incomes: this.incomesValue(mockData),
+        expenses: this.expensesValue(mockData)
       }
     };
+
+    this.onFormInput = this.onFormInput.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
-      }
+    this.setState(state => {
+      return {
+        balance: {
+          saldo: (
+            this.incomesValue(state.data) - this.expensesValue(state.data)
+          ).toFixed(2),
+          incomes: this.incomesValue(state.data),
+          expenses: this.expensesValue(state.data)
+        }
+      };
     });
   }
 
-  expensesValue() {
+  expensesValue(entries) {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const expenses = mockData
+    const expenses = entries
       .filter(row => row.type === "wydatki")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
@@ -45,9 +53,9 @@ class Root extends React.Component {
     return expenses;
   }
 
-  incomesValue() {
+  incomesValue(entries) {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const incomes = mockData
+    const incomes = entries
       .filter(row => row.type === "wpływy")
       .reduce((acc, curr) => {
         return (acc = acc + curr.amount);
@@ -55,8 +63,18 @@ class Root extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState({ data: ItemExpense });
-    // metoda do rekalkulacji;
+    this.setState(function(state, props) {
+      const data = state.data.concat(ItemExpense);
+      const balance = {
+        saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
+        incomes: this.incomesValue(data),
+        expenses: this.expensesValue(data)
+      };
+      return {
+        data,
+        balance
+      };
+    });
   }
   render() {
     console.log(this.state);
@@ -68,8 +86,14 @@ class Root extends React.Component {
             path="/"
             render={() => <Dashboard balance={this.state.balance} />}
           />
-          <Route path="/history" component={HistoryTable} />
-          <Route path="/wykresy" component={Wykresy} />
+          <Route
+            path="/history"
+            render={() => <HistoryTable data={this.state.data} />}
+          />
+          <Route
+            path="/wykresy"
+            render={() => <Wykresy data={this.state.data} />}
+          />
           <Route component={NoMatch} />
         </Switch>
         <h1 />

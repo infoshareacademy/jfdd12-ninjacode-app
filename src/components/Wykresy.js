@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import { PieChartBalance } from "./PieChartBalance";
 import { BarChartBalance } from "./BarChartBalance";
 
-import { Header}  from './Header'
+import { Header } from "./Header";
 
-
-export function Wykresy() {
-  const [balance, setBalance] = useState({
-    saldo: 11000,
-    income: 12000,
-    expenses: 1000
-  });
+export function Wykresy(props) {
+  const { data } = props;
   return (
-      <div>
-      <Header/>
-      <BarChartBalance />
-      </div>
-  )
+    <div>
+      <Header />
+      <BarChartBalance data={data} />
+    </div>
+  );
 }

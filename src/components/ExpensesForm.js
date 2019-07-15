@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
+import moment from "moment";
 import useData from "../hooks/useData";
 import TextField from "@material-ui/core/TextField";
 
@@ -27,6 +28,10 @@ const useStyles = makeStyles(theme => ({
 export function ExpensesForm(props) {
   const [expense, setExpense] = useState("");
   const [category, setCategory] = useState("");
+  const [expenseName, setExpenseName] = useState("");
+  const [expenseDate, setExpenseDate] = useState(
+    moment(new Date()).format("DD-MM-YYYY")
+  );
   const classes = useStyles();
 
   // const { addExpense } = useData();
@@ -34,18 +39,20 @@ export function ExpensesForm(props) {
 
   function onExpensesAddItem() {
     const itemExpense = {
-      name: "odseteeeki od lokaty",
-      category: "inwestycje",
-      transactionDate: "06-04-2019",
+      name: expenseName,
+      category: category,
+      transactionDate: moment(expenseDate ? new Date() : expenseDate).format(
+        "DD-MM-YYYY"
+      ),
       type: "wydatki",
-      amount: 3304.57
+      amount: parseFloat(expense)
     };
     onFormInput(itemExpense);
   }
   return (
     <div className={classes.root}>
       <ul>
-        <h2 style={{marginLeft: 30}}>Wydatki</h2>
+        <h2 style={{ marginLeft: 30 }}>Wydatki</h2>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
           <Select
@@ -74,6 +81,10 @@ export function ExpensesForm(props) {
               inputProps={{
                 "aria-label": "Description"
               }}
+              value={expenseName}
+              onChange={event => {
+                setExpenseName(event.target.value);
+              }}
             />
           </div>
           <div className={classes.container}>
@@ -92,7 +103,7 @@ export function ExpensesForm(props) {
               margin="normal"
             />
           </div>
-          <MaterialUIPickers />
+          <MaterialUIPickers onDateSelected={setExpenseDate} />
         </div>
         <Button
           style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}

@@ -8,7 +8,7 @@ import "react-infinite-calendar/styles.css";
 import { HistoryTable, filterHistoryTable } from "./historyTable/HistoryTable";
 import "react-table/react-table.css";
 import { ExpensesForm } from "./components/ExpensesForm";
-import { IncomesForm } from './components/IncomesForm';
+import { IncomesForm } from "./components/IncomesForm";
 
 var today = new Date();
 var lastWeek = new Date(
@@ -25,7 +25,6 @@ function App() {
   });
   return (
     <div className="App">
-      
       <h1>cashBake - planer finansowy</h1>
       {/* <InfiniteCalendar
         width={400}
@@ -52,7 +51,6 @@ function App() {
       <div>
         <ExpensesForm />
         <IncomesForm />
-
       </div>
 
       <BarChartBalance />
