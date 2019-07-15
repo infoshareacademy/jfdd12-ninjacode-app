@@ -6,8 +6,8 @@ import { Paper } from "@material-ui/core";
 export function Wykresy() {
   const [balance, useBalance] = useState({
     saldo: 11000,
-    income: 12000,
-    expenses: 1000
+    incomes: 12000,
+    expenses: 11000
   });
   return (
     <Paper>
