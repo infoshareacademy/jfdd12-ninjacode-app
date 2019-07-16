@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PieChartBalance } from "./PieChartBalance";
 import { Header } from "./Header";
 import costs from "../icons/costs.svg";
