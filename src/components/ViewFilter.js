@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 300,
+    minWidth: 300
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -34,24 +34,24 @@ export function NativeSelects() {
   return (
     <div className={classes.root}>
       <ul>
-      <h1> Filtry </h1>
-      <FormControl className={classes.formControl}  component="fieldset">
-        <InputLabel htmlFor="transaction-native-simple">Rodzaj transakcji</InputLabel>
-        <Select
-          native
-          value={state.transaction}
-          onChange={() => {}}
-          inputProps={{
-            name: 'age',
-            id: 'age-native-simple',
-          }}
-        >
-          <option value="" />
-          <option value="Przychód">Przychód</option>
-          <option value="Wydatej">Wydatek</option>
-        </Select>
-        
-      </FormControl>
+        <h1> Filtry </h1>
+        <FormControl className={classes.formControl} component="fieldset">
+          <InputLabel htmlFor="transaction-native-simple">Rodzaj transakcji</InputLabel>
+          <Select
+            native
+            value={state.transaction}
+            onChange={() => { }}
+            inputProps={{
+              name: 'age',
+              id: 'age-native-simple',
+            }}
+          >
+            <option value="" />
+            <option value="Przychód">Przychód</option>
+            <option value="Wydatej">Wydatek</option>
+          </Select>
+
+        </FormControl>
 
       </ul>
     </div>

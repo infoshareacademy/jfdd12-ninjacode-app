@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
-import { HistoryTable } from "./historyTable/HistoryTable";
+import { HistoryTable } from "./components/HistoryTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
-import { Wykresy } from "./components/Wykresy";
+import { Charts } from "./components/Charts";
 import mockData from "./mockData.json";
 
 const NoMatch = () => <p>404</p>;
@@ -63,7 +63,7 @@ class Root extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState(function(state, props) {
+    this.setState(function (state, props) {
       const data = state.data.concat(ItemExpense);
       const balance = {
         saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
@@ -87,12 +87,12 @@ class Root extends React.Component {
             render={() => <Dashboard balance={this.state.balance} />}
           />
           <Route
-            path="/history"
+            path="/History"
             render={() => <HistoryTable data={this.state.data} />}
           />
           <Route
-            path="/wykresy"
-            render={() => <Wykresy data={this.state.data} />}
+            path="/Charts"
+            render={() => <Charts data={this.state.data} />}
           />
           <Route component={NoMatch} />
         </Switch>

@@ -130,9 +130,8 @@ export default function BottomAppBar(props) {
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
           <NavLink exact to="/">
-            <IconButton edge="start" color="inherit" aria-label="Wykresy">
+            <IconButton edge="start" color="inherit" aria-label="Charts">
               <Icon fontSize="large">dashboard</Icon>
-              {/* <Typography variant="button">Dashboard</Typography> */}
             </IconButton>
           </NavLink>
           <NavLink to="/history">
@@ -143,7 +142,6 @@ export default function BottomAppBar(props) {
               aria-label="History"
             >
               <Icon fontSize="large">list_alt</Icon>
-              {/* <Typography variant="button">Historia</Typography> */}
             </IconButton>
           </NavLink>
           <Fab
@@ -155,10 +153,9 @@ export default function BottomAppBar(props) {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
-          <NavLink to="/wykresy">
-            <IconButton color="inherit" aria-label="Wykresy">
+          <NavLink to="/Charts">
+            <IconButton color="inherit" aria-label="Charts">
               <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
         </Toolbar>
