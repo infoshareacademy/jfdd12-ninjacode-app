@@ -148,6 +148,18 @@ export default function BottomAppBar(props) {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
+          <NavLink to="/login">
+            <IconButton color="inherit" aria-label="login">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
+          <NavLink to="/sign-up">
+            <IconButton color="inherit" aria-label="sign-up">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
           <NavLink to="/wykresy">
             <IconButton color="inherit" aria-label="Wykresy">
               <Icon fontSize="large">assessment</Icon>

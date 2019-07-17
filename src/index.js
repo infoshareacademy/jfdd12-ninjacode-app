@@ -7,6 +7,8 @@ import * as serviceWorker from "./serviceWorker";
 import { HistoryTable } from "./historyTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Wykresy } from "./components/Wykresy";
+import { Login } from './components/Login'
+import { SignUp } from './components/SignUp'
 import mockData from "./mockData.json";
 import firebaseApp from "./firebase";
 import firebase from "firebase";
@@ -79,17 +81,9 @@ class Root extends React.Component {
   }
   render() {
     console.log(this.state);
-    const userLoggedOutHeader = <button onClick={this.signIn}>Login</button>
-function  UserLoggedInHeader(props) {
-  // This happens only when <UserLoggedInHeader/> is actually called
-  return <>
-    <button onClick={this.signOut}>Logout</button>
-    <img src={props.user.photoURL} />
-  </>
-}
+    
     return (
       <BrowserRouter>
-       {this.state.user ? <UserLoggedInHeader user={this.state.user} /> : userLoggedOutHeader}
         <Switch>
           <Route
             exact
@@ -97,6 +91,8 @@ function  UserLoggedInHeader(props) {
             render={() => <Dashboard balance={this.state.balance} />}
           />
           <Route path="/history" component={HistoryTable} />
+          <Route path="/login" component={Login} />
+          <Route path="/sign-up" component={SignUp} />
           <Route path="/wykresy" component={Wykresy} />
           <Route component={NoMatch} />
         </Switch>
