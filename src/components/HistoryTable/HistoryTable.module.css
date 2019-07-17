@@ -1,27 +1,12 @@
-.filterSection {
-  /* width: 100%; */
-  border: 1px solid gray;
-  margin: 10px;
-  /* display: flex; */
-  justify-content: center;
+.historyContainer{
+  margin-top:20px;
+  display:block;
 }
 
-.filterSection button {
-  width: 120px;
-  height: 50px;
-  margin: 10px;
-  background-color: light-gray;
+.historyTitle{
+  text-align:center;
 }
-
-.filterSection input {
-  height: 50px;
-  margin: 10px;
-  font-size: 2em;
-  padding-left: 10px;
-}
-
-.textBox {
-  width: 120px;
-  height: 50px;
-  background-color: light-gray;
+.historyFind{
+  text-align:center;
+  padding-bottom:20px
 }

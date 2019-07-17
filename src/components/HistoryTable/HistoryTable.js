@@ -3,7 +3,7 @@ import "react-table/react-table.css";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import "./HistoryTable.module.css";
+import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -68,7 +68,6 @@ const getColumns = data => {
       Header: "Kwota",
       accessor: "amount",
       style: { textAlign: "center" },
-      Footer: <strong>{filteredTableSum(data)}</strong>
     }
   ];
 };
@@ -104,9 +103,10 @@ export class HistoryTable extends React.Component {
     const transactions = filterData(this.props.data, this.state.search);
 
     return (
-      <div>
-        <h1>Historia transakcji</h1>
-        Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
+      <div className={styles.historyContainer}>
+        <h1 className={styles.historyTitle}>Historia transakcji</h1>
+        <div className={styles.historyFind}>Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
+        </div>
         <ReactTable
           data={transactions}
           columns={getColumns(transactions)}
