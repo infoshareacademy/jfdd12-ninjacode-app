@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
@@ -12,31 +12,21 @@ import mockData from "./mockData.json";
 const NoMatch = () => <p>404</p>;
 
 class Root extends React.Component {
-  state = {
-    data: mockData,
-    balance: {
-      saldo: (
-        this.incomesValue(mockData) - this.expensesValue(mockData)
-      ).toFixed(2),
-      incomes: this.incomesValue(mockData),
-      expenses: this.expensesValue(mockData)
-    }
-  }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     data: mockData,
-  //     balance: {
-  //       saldo: (
-  //         this.incomesValue(mockData) - this.expensesValue(mockData)
-  //       ).toFixed(2),
-  //       incomes: this.incomesValue(mockData),
-  //       expenses: this.expensesValue(mockData)
-  //     }
-  //   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: mockData,
+      balance: {
+        saldo: (
+          this.incomesValue(mockData) - this.expensesValue(mockData)
+        ).toFixed(2),
+        incomes: this.incomesValue(mockData),
+        expenses: this.expensesValue(mockData)
+      }
+    };
 
-  //   this.onFormInput = this.onFormInput.bind(this);
-  // }
+    this.onFormInput = this.onFormInput.bind(this);
+  }
 
   componentDidMount() {
     this.setState(state => {
@@ -53,6 +43,7 @@ class Root extends React.Component {
   }
 
   expensesValue(entries) {
+    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const expenses = entries
       .filter(row => row.type === "wydatki")
       .reduce((acc, curr) => {
@@ -63,7 +54,7 @@ class Root extends React.Component {
   }
 
   incomesValue(entries) {
-    console.log(entries)
+    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const incomes = entries
       .filter(row => row.type === "wpływy")
       .reduce((acc, curr) => {
@@ -71,21 +62,13 @@ class Root extends React.Component {
       }, 0);
     return incomes;
   }
-
   onFormInput(ItemExpense) {
-    console.log(this)
-    this.setState((state, props) => {
+    this.setState(function (state, props) {
       const data = state.data.concat(ItemExpense);
-      console.log(this)
-      const val1 = this.incomesValue(data)
-      const val2 = this.expensesValue(data).toFixed(2)
-
-      const val4 = this.expensesValue(data)
-
       const balance = {
-        saldo: (val1 - val2),
-        incomes: val1,
-        expenses: val4
+        saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
+        incomes: this.incomesValue(data),
+        expenses: this.expensesValue(data)
       };
       return {
         data,
@@ -94,8 +77,9 @@ class Root extends React.Component {
     });
   }
   render() {
+    console.log(this.state);
     return (
-      <Router>
+      <BrowserRouter>
         <Switch>
           <Route
             exact
@@ -114,8 +98,8 @@ class Root extends React.Component {
         </Switch>
         <h1 />
         <h1 />
-        <BottomAppBar onFormInput={() => this.onFormInput()} />
-      </Router>
+        <BottomAppBar onFormInput={this.onFormInput} />
+      </BrowserRouter>
     );
   }
 }
