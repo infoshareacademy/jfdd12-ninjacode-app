@@ -68,6 +68,7 @@ const getColumns = data => {
       Header: "Kwota",
       accessor: "amount",
       style: { textAlign: "center" },
+      Footer: <strong>{filteredTableSum(data)}</strong>
     }
   ];
 };
@@ -112,6 +113,17 @@ export class HistoryTable extends React.Component {
           columns={getColumns(transactions)}
           showPagination={false}
           minRows={1}
+          getTrProps={(state, rowInfo, column) => {
+            if (!rowInfo) {
+              return
+            }
+
+            return {
+              style: {
+                background: rowInfo.original.type == 'wydatki' ? 'rgba(255, 0, 0, 0.2)' : 'rgba(0, 255, 0, 0.2)'
+              }
+            }
+          }}
           noDataText={"Nie znaleziono transakcji"}
         />
       </div>
