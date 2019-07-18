@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexDirection: 'column',
+
   },
   formControl: {
     margin: theme.spacing(2),
@@ -50,71 +52,71 @@ export function ExpensesForm(props) {
     onFormInput(itemExpense);
   }
   return (
-    <div className={classes.root}>
-      <ul>
-        <h2 style={{ marginLeft: 30 }}>Wydatki</h2>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
-          <Select
-            native
-            value={category}
-            onChange={event => {
-              setCategory(event.target.value);
-            }}
-            inputProps={{
-              name: "category",
-              id: "category-native-simple"
-            }}
-          >
-            <option value="" />
-            <option value={"Koszty stałe"}>Koszty stałe</option>
-            <option value={"Jedzenie"}>Jedzenie</option>
-            <option value={"Rozrywka"}>Rozrywka</option>
-            <option value={"Inne"}>Inne</option>
-          </Select>
-        </FormControl>
-        <div>
-          <div className={classes.container}>
-            <Input
-              placeholder="Wpisz nazwę"
-              className={classes.formControl}
-              inputProps={{
-                "aria-label": "Description"
-              }}
-              value={expenseName}
-              onChange={event => {
-                setExpenseName(event.target.value);
-              }}
-            />
-          </div>
-          <div className={classes.container}>
-            <TextField
-              id="standard-number"
-              placeholder="Wpisz kwotę"
-              value={expense}
-              onChange={event => {
-                setExpense(event.target.value);
-              }}
-              type="number"
-              required
-              className={classes.formControl}
-              InputLabelProps={{
-                shrink: true
-              }}
-              margin="normal"
-            />
-          </div>
-          <MaterialUIPickers onDateSelected={setExpenseDate} />
-        </div>
-        <Button
-          style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}
-          color="secondary"
-          variant="contained"
-          onClick={onExpensesAddItem}
+    <div className={classes.root} >
+
+      <h2 style={{ textAlign: 'center' }}>Wydatek</h2>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
+        <Select
+          native
+          value={category}
+          onChange={event => {
+            setCategory(event.target.value);
+          }}
+          inputProps={{
+            name: "category",
+            id: "category-native-simple"
+          }}
         >
-          Dodaj wydatki
+          <option value="" />
+          <option value={"Koszty stałe"}>Koszty stałe</option>
+          <option value={"Jedzenie"}>Jedzenie</option>
+          <option value={"Rozrywka"}>Rozrywka</option>
+          <option value={"Inne"}>Inne</option>
+        </Select>
+      </FormControl>
+      <div>
+        <div className={classes.container}>
+          <Input
+            placeholder="Wpisz nazwę"
+            className={classes.formControl}
+            inputProps={{
+              "aria-label": "Description"
+            }}
+            value={expenseName}
+            onChange={event => {
+              setExpenseName(event.target.value);
+            }}
+          />
+        </div>
+        <div className={classes.container}>
+          <TextField
+            id="standard-number"
+            placeholder="Wpisz kwotę"
+            value={expense}
+            onChange={event => {
+              setExpense(event.target.value);
+            }}
+            type="number"
+            required
+            className={classes.formControl}
+            InputLabelProps={{
+              shrink: true
+            }}
+            margin="normal"
+          />
+        </div>
+        <MaterialUIPickers onDateSelected={setExpenseDate} />
+      </div>
+      <Button
+        style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
+        color="secondary"
+        variant="contained"
+        onClick={onExpensesAddItem}
+      >
+        Dodaj wydatek
         </Button>
-      </ul>
+
     </div>
   );
 }
