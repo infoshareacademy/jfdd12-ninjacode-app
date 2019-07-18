@@ -9,8 +9,7 @@ export function Header() {
         display: "flex",
         flexDirection: "column",
         justifyConent: "center",
-        textAlign: "center",
-        borderBottom: "1px solid black"
+        textAlign: "center"
       }}
     >
       <img src={logo} alt="Logo" />

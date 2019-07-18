@@ -13,7 +13,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "center"
+    justifyContent: "center",
+    flexDirection: "column"
   },
   formControl: {
     margin: theme.spacing(2),
@@ -50,8 +51,8 @@ export function IncomesForm(props) {
 
   return (
     <div className={classes.root}>
-      <ul>
-        <h2 style={{ marginLeft: 30 }}>Przychody</h2>
+      
+        <h2 style={{ textAlign: 'center' }}>Przychody</h2>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
           <Select
@@ -106,14 +107,14 @@ export function IncomesForm(props) {
           <MaterialUIPickers />
         </div>
         <Button
-          style={{ fontSize: 15, marginLeft: 20, marginTop: 10 }}
-          color="primary"
+          style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
+
           variant="contained"
           onClick={onIncomesAddItem}
         >
-          Dodaj przychody
+          Dodaj przychód
         </Button>
-      </ul>
+      
     </div>
   );
 }

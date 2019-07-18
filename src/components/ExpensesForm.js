@@ -7,7 +7,6 @@ import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
 import moment from "moment";
-import useData from "../hooks/useData";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles(theme => ({
@@ -15,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
-    flexDirection: 'column',
+    flexDirection: "column"
 
   },
   formControl: {
@@ -110,7 +109,6 @@ export function ExpensesForm(props) {
       </div>
       <Button
         style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
-        color="secondary"
         variant="contained"
         onClick={onExpensesAddItem}
       >
