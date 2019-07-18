@@ -7,6 +7,7 @@ import Input from "@material-ui/core/Input";
 import { MaterialUIPickers } from "./DatePickerExpenses";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,25 +24,34 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function IncomesForm() {
+export function IncomesForm(props) {
   const [income, setIncome] = useState("");
   const [category, setCategory] = useState("");
+  const [incomeName, setIncomeName] = useState("");
+  const [incomeDate, setincomeDate] = useState(
+    moment(new Date()).format("DD-MM-YYYY")
+  );
+  const classes = useStyles();
+
+  const { onFormInput } = props;
 
   function onIncomesAddItem() {
     const itemExpense = {
-      name: "odseteeeki od lokaty",
-      category: "inwestycje",
-      transactionDate: "06-04-2019",
-      type: "przychody",
-      amount: 3304.57
+      name: incomeName,
+      category: category,
+      transactionDate: moment(incomeDate ? new Date() : incomeDate).format(
+        "DD-MM-YYYY"
+      ),
+      type: "wpływy",
+      amount: parseFloat(income)
     };
+    onFormInput(itemExpense);
   }
 
-  const classes = useStyles();
   return (
     <div className={classes.root}>
       <ul>
-        <h2 style={{marginLeft: 30}}>Przychody</h2>
+        <h2 style={{ marginLeft: 30 }}>Przychody</h2>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
           <Select
@@ -67,6 +77,10 @@ export function IncomesForm() {
             <Input
               placeholder="Wpisz nazwę"
               className={classes.formControl}
+              value={incomeName}
+              onChange={event => {
+                setIncomeName(event.target.value);
+              }}
               inputProps={{
                 "aria-label": "Description"
               }}

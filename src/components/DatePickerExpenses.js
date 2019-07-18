@@ -21,17 +21,17 @@ const useStyles = makeStyles({
   }
 });
 
-export function MaterialUIPickers() {
+export function MaterialUIPickers(props) {
   // The first commit of Material-UI
   const [locale, setLocale] = React.useState("pl");
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date().toDateString()
-  );
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const classes = useStyles();
 
-  function handleDateChange(date) {
+  function handleDateChange(date, onDateSelected) {
+    console.log("handleDateChange " + date + " " + onDateSelected);
     setSelectedDate(date);
+    onDateSelected(date);
   }
 
   return (
@@ -45,8 +45,7 @@ export function MaterialUIPickers() {
             "aria-label": "change date"
           }}
           clearable
-          onChange={date => handleDateChange(date)}
-          minDate={new Date()}
+          onChange={date => handleDateChange(date, props.onDateSelected)}
           format="dd/MM/yyyy"
         />
       </Grid>

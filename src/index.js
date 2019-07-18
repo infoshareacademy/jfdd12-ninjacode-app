@@ -4,102 +4,49 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
-import { HistoryTable } from "./historyTable/HistoryTable";
+import { HistoryTable } from "./components/HistoryTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
-import { Wykresy } from "./components/Wykresy";
-import { Login } from './components/Login'
-import { SignUp } from './components/SignUp'
-import mockData from "./mockData.json";
-import firebaseApp from "./firebase";
-import firebase from "firebase";
+import { Charts } from "./components/Charts";
+import { BalanceProvider, BalanceConsumer } from "./contexts/BalanceContext";
+import { Login } from "./components/Login";
+import { SignUp } from "./components/SignUp";
 
-const NoMatch = () => <p>404</p>;
+const NoMatch = () => <h1>404</h1>;
 
 class Root extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: mockData,
-      balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
-      },
-      user:null
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      balance: {
-        saldo: (this.incomesValue() - this.expensesValue()).toFixed(2),
-        incomes: this.incomesValue(),
-        expenses: this.expensesValue()
-      }
-    });
-
-  }
-
-
- signIn() {
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebaseApp.auth().signInWithPopup(provider);
-}
-
- signOut() {
-  firebase.auth().signOut();
-}
-
-
-
-
-
-
-  expensesValue() {
-    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const expenses = mockData
-      .filter(row => row.type === "wydatki")
-      .reduce((acc, curr) => {
-        return (acc = acc + curr.amount);
-      }, 0);
-
-    return expenses;
-  }
-
-  incomesValue() {
-    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
-    const incomes = mockData
-      .filter(row => row.type === "wpływy")
-      .reduce((acc, curr) => {
-        return (acc = acc + curr.amount);
-      }, 0);
-    return incomes;
-  }
-  onFormInput(ItemExpense) {
-    this.setState({ data: ItemExpense });
-    // metoda do rekalkulacji;
-  }
   render() {
     console.log(this.state);
-    
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => <Dashboard balance={this.state.balance} />}
-          />
-          <Route path="/history" component={HistoryTable} />
-          <Route path="/login" component={Login} />
-          <Route path="/sign-up" component={SignUp} />
-          <Route path="/wykresy" component={Wykresy} />
-          <Route component={NoMatch} />
-        </Switch>
-        <h1 />
-        <h1 />
-        <BottomAppBar onFormInput={this.onFormInput} />
-      </BrowserRouter>
+      <BalanceProvider>
+        <BalanceConsumer>
+          {value => (
+            <BrowserRouter>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Dashboard balance={value.balance} />}
+                />
+                <Route
+                  path="/History"
+                  render={() => <HistoryTable data={value.data} />}
+                />
+                <Route
+                  path="/Charts"
+                  render={() => <Charts data={value.data} />}
+                />
+                <Route path="/login" component={Login} />
+                <Route path="/sign-up" component={SignUp} />
+
+                <Route component={NoMatch} />
+              </Switch>
+              <h1 />
+              <h1 />
+              <BottomAppBar onFormInput={value.onFormInput} />
+            </BrowserRouter>
+          )}
+        </BalanceConsumer>
+      </BalanceProvider>
     );
   }
 }

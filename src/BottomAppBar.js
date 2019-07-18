@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
     outline: "none",
-    top: "40%",
+    top: "20%",
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -75,7 +75,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 4),
     outline: "none",
-    top: "70%",
+    top: "60%",
     left: 0,
     right: 0,
     margin: "0 auto",
@@ -114,6 +114,13 @@ export default function BottomAppBar(props) {
     setOpenIncomes(false);
   };
 
+  const onFormInputted = data => {
+    onFormInput(data);
+    setOpenExpenses(false);
+    setOpenIncomes(false);
+    setOpen(false);
+  };
+
   return (
     <React.Fragment>
       <SimpleModal />
@@ -123,7 +130,7 @@ export default function BottomAppBar(props) {
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
           <NavLink exact to="/">
-            <IconButton edge="start" color="inherit" aria-label="Wykresy">
+            <IconButton edge="start" color="inherit" aria-label="Charts">
               <Icon fontSize="large">dashboard</Icon>
               {/* <Typography variant="button">Dashboard</Typography> */}
             </IconButton>
@@ -160,8 +167,8 @@ export default function BottomAppBar(props) {
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
-          <NavLink to="/wykresy">
-            <IconButton color="inherit" aria-label="Wykresy">
+          <NavLink to="/Charts">
+            <IconButton color="inherit" aria-label="Charts">
               <Icon fontSize="large">assessment</Icon>
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
@@ -207,7 +214,7 @@ export default function BottomAppBar(props) {
           onClose={handleCloseExpenses}
         >
           <div className={classes.paper}>
-            <ExpensesForm onFormInput={onFormInput} />
+            <ExpensesForm onFormInput={onFormInputted} />
           </div>
         </Modal>
         <Modal
@@ -217,7 +224,7 @@ export default function BottomAppBar(props) {
           onClose={handleCloseIncomes}
         >
           <div className={classes.paper}>
-            <IncomesForm />
+            <IncomesForm onFormInput={onFormInputted} />
           </div>
         </Modal>
       </React.Fragment>
