@@ -63,9 +63,10 @@ const useStyles = makeStyles(theme => ({
     position: "absolute",
     height: "auto",
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
+    // border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 4),
+    // padding: theme.spacing(2, 4, 4),
+    padding: "30px 20px",
     outline: "none",
     top: "60%",
     left: 0,
@@ -166,8 +167,7 @@ export default function BottomAppBar(props) {
         >
           <div className={classes.paperButton}>
             <Button
-              style={{ fontSize: 20, marginLeft: 10 }}
-              color="secondary"
+              style={{ fontSize: 20, marginRight: 12, backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
               variant="contained"
               onClick={handleOpenExpenses}
             >
@@ -175,7 +175,7 @@ export default function BottomAppBar(props) {
               <img src={costs} alt="costs" />
             </Button>
             <Button
-              style={{ fontSize: 20, marginLeft: 10 }}
+              style={{ fontSize: 20, marginLeft: 12, backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
               color="primary"
               variant="contained"
               onClick={handleOpenIncomes}
