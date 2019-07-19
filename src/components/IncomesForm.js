@@ -51,70 +51,70 @@ export function IncomesForm(props) {
 
   return (
     <div className={classes.root}>
-      
-        <h2 style={{ textAlign: 'center' }}>Przychody</h2>
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
-          <Select
-            native
-            value={category}
+
+      <h2 style={{ textAlign: 'center' }}>Przychody</h2>
+      <FormControl className={classes.formControl}>
+        <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
+        <Select
+          native
+          value={category}
+          onChange={event => {
+            setCategory(event.target.value);
+          }}
+          inputProps={{
+            name: "category",
+            id: "category-native-simple"
+          }}
+        >
+          <option value="" />
+          <option value={"Faktura"}>Faktura</option>
+          <option value={"Przelew"}>Przelew</option>
+          <option value={"Lokata"}>Lokata</option>
+          <option value={"Inne"}>Inne</option>
+        </Select>
+      </FormControl>
+      <div>
+        <div className={classes.container}>
+          <Input
+            placeholder="Wpisz nazwę"
+            className={classes.formControl}
+            value={incomeName}
             onChange={event => {
-              setCategory(event.target.value);
+              setIncomeName(event.target.value);
             }}
             inputProps={{
-              name: "category",
-              id: "category-native-simple"
+              "aria-label": "Description"
             }}
-          >
-            <option value="" />
-            <option value={"Faktura"}>Faktura</option>
-            <option value={"Przelew"}>Przelew</option>
-            <option value={"Lokata"}>Lokata</option>
-            <option value={"Inne"}>Inne</option>
-          </Select>
-        </FormControl>
-        <div>
-          <div className={classes.container}>
-            <Input
-              placeholder="Wpisz nazwę"
-              className={classes.formControl}
-              value={incomeName}
-              onChange={event => {
-                setIncomeName(event.target.value);
-              }}
-              inputProps={{
-                "aria-label": "Description"
-              }}
-            />
-          </div>
-          <div className={classes.container}>
-            <TextField
-              id="standard-number"
-              placeholder="Wpisz kwotę"
-              value={income}
-              onChange={event => {
-                setIncome(event.target.value);
-              }}
-              type="number"
-              className={classes.formControl}
-              InputLabelProps={{
-                shrink: true
-              }}
-              margin="normal"
-            />
-          </div>
-
-          <MaterialUIPickers />
+          />
         </div>
-        <Button
-          style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
+        <div className={classes.container}>
+          <TextField
+            id="standard-number"
+            placeholder="Wpisz kwotę"
+            value={income}
+            onChange={event => {
+              setIncome(event.target.value);
+            }}
+            type="number"
+            className={classes.formControl}
+            InputLabelProps={{
+              shrink: true
+            }}
+            margin="normal"
+          />
+        </div>
 
-          variant="contained"
-          onClick={onIncomesAddItem}
-        >
-          Dodaj przychód
+        <MaterialUIPickers />
+      </div>
+      <Button
+        style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
+
+        variant="contained"
+        onClick={onIncomesAddItem}
+      >
+        Dodaj przychód
         </Button>
-      
+
     </div>
   );
 }
