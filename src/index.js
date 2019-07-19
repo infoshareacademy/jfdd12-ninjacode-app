@@ -31,7 +31,7 @@ class Root extends React.Component {
                 />
                 <Route
                   path="/History"
-                  render={() => <HistoryTable data={value.data} />}
+                  render={() => <HistoryTable />}
                 />
                 <Route
                   path="/Charts"
