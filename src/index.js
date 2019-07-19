@@ -7,11 +7,11 @@ import * as serviceWorker from "./serviceWorker";
 import { HistoryTable } from "./components/HistoryTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Charts } from "./components/Charts";
+import { AuthProvider } from "./contexts/AuthContext";
 import { BalanceProvider, BalanceConsumer } from "./contexts/BalanceContext";
 import { Login } from "./components/Login";
 import { SignUp } from "./components/SignUp";
-import firebaseApp from "./firebase";
-import firebase from "firebase";
+import "./firebase";
 
 const NoMatch = () => <h1>404</h1>;
 
@@ -24,11 +24,7 @@ class Root extends React.Component {
           {value => (
             <BrowserRouter>
               <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => <Dashboard />}
-                />
+                <Route exact path="/" render={() => <Dashboard />} />
                 <Route
                   path="/History"
                   render={() => <HistoryTable data={value.data} />}
@@ -53,7 +49,12 @@ class Root extends React.Component {
   }
 }
 
-ReactDOM.render(<Root />, document.getElementById("root"));
+ReactDOM.render(
+  <AuthProvider>
+    <Root />
+  </AuthProvider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
