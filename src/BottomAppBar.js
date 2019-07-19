@@ -4,9 +4,20 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
+import Paper from "@material-ui/core/Paper";
 import Fab from "@material-ui/core/Fab";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import Avatar from "@material-ui/core/Avatar";
+import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from "@material-ui/icons/Add";
+import SearchIcon from "@material-ui/icons/Search";
+import MoreIcon from "@material-ui/icons/MoreVert";
 import Icon from "@material-ui/core/Icon";
 import { Button, Modal } from "@material-ui/core";
 import { ExpensesForm } from "./components/ExpensesForm";
@@ -146,9 +157,22 @@ export default function BottomAppBar(props) {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
+          <NavLink to="/login">
+            <IconButton color="inherit" aria-label="login">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
+          <NavLink to="/sign-up">
+            <IconButton color="inherit" aria-label="sign-up">
+              <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
           <NavLink to="/Charts">
             <IconButton color="inherit" aria-label="Charts">
               <Icon fontSize="large">assessment</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
         </Toolbar>

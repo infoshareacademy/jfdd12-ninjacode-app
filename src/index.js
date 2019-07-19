@@ -7,9 +7,13 @@ import * as serviceWorker from "./serviceWorker";
 import { HistoryTable } from "./components/HistoryTable/HistoryTable";
 import { Dashboard } from "./components/Dashboard";
 import { Charts } from "./components/Charts";
-import { BalanceProvider, BalanceConsumer } from './contexts/BalanceContext'
+import { BalanceProvider, BalanceConsumer } from "./contexts/BalanceContext";
+import { Login } from "./components/Login";
+import { SignUp } from "./components/SignUp";
+import firebaseApp from "./firebase";
+import firebase from "firebase";
 
-const NoMatch = () => <p>404</p>;
+const NoMatch = () => <h1>404</h1>;
 
 class Root extends React.Component {
   render() {
@@ -17,27 +21,32 @@ class Root extends React.Component {
     return (
       <BalanceProvider>
         <BalanceConsumer>
-          {value => <BrowserRouter>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Dashboard balance={value.balance} />}
-              />
-              <Route
-                path="/History"
-                render={() => <HistoryTable data={value.data} />}
-              />
-              <Route
-                path="/Charts"
-                render={() => <Charts data={value.data} />}
-              />
-              <Route component={NoMatch} />
-            </Switch>
-            <h1 />
-            <h1 />
-            <BottomAppBar onFormInput={value.onFormInput} />
-          </BrowserRouter>}
+          {value => (
+            <BrowserRouter>
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Dashboard balance={value.balance} />}
+                />
+                <Route
+                  path="/History"
+                  render={() => <HistoryTable data={value.data} />}
+                />
+                <Route
+                  path="/Charts"
+                  render={() => <Charts data={value.data} />}
+                />
+                <Route path="/login" render={() => <Login />} />
+                <Route path="/sign-up" render={() => <SignUp />} />
+
+                <Route component={NoMatch} />
+              </Switch>
+              <h1 />
+              <h1 />
+              <BottomAppBar onFormInput={value.onFormInput} />
+            </BrowserRouter>
+          )}
         </BalanceConsumer>
       </BalanceProvider>
     );

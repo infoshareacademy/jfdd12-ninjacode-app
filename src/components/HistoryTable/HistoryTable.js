@@ -106,7 +106,8 @@ export class HistoryTable extends React.Component {
     return (
       <div className={styles.historyContainer}>
         <h1 className={styles.historyTitle}>Historia transakcji</h1>
-        <div className={styles.historyFind}>Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
+        <div className={styles.historyFind}>
+          Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
         </div>
         <ReactTable
           data={transactions}
@@ -115,14 +116,17 @@ export class HistoryTable extends React.Component {
           minRows={1}
           getTrProps={(state, rowInfo, column) => {
             if (!rowInfo) {
-              return
+              return;
             }
 
             return {
               style: {
-                background: rowInfo.original.type == 'wydatki' ? 'rgba(255, 0, 0, 0.2)' : 'rgba(0, 255, 0, 0.2)'
+                background:
+                  rowInfo.original.type == "wydatki"
+                    ? "rgba(255, 0, 0, 0.2)"
+                    : "rgba(0, 255, 0, 0.2)"
               }
-            }
+            };
           }}
           noDataText={"Nie znaleziono transakcji"}
         />

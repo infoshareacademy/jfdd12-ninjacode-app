@@ -1,12 +1,12 @@
-.historyContainer{
-  margin-top:20px;
-  display:block;
+.historyContainer {
+  margin-top: 20px;
+  display: block;
 }
 
-.historyTitle{
-  text-align:center;
+.historyTitle {
+  text-align: center;
 }
-.historyFind{
-  text-align:center;
-  padding-bottom:20px
+.historyFind {
+  text-align: center;
+  padding-bottom: 20px;
 }

@@ -29,7 +29,7 @@ export function IncomesForm(props) {
   const [income, setIncome] = useState("");
   const [category, setCategory] = useState("");
   const [incomeName, setIncomeName] = useState("");
-  const [incomeDate, setincomeDate] = useState(
+  const [incomeDate, setIncomeDate] = useState(
     moment(new Date()).format("DD-MM-YYYY")
   );
   const classes = useStyles();
@@ -104,7 +104,7 @@ export function IncomesForm(props) {
           />
         </div>
 
-        <MaterialUIPickers />
+        <MaterialUIPickers onDateSelected={setIncomeDate} />
       </div>
       <Button
         style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
