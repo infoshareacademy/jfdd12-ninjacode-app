@@ -27,7 +27,7 @@ class Root extends React.Component {
                 <Route
                   exact
                   path="/"
-                  render={() => <Dashboard balance={value.balance} />}
+                  render={() => <Dashboard />}
                 />
                 <Route
                   path="/History"
