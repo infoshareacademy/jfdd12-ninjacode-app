@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { PieChartBalance } from "./PieChartBalance";
 import { Header } from "./Header";
 import costs from "../icons/costs.svg";
@@ -21,13 +21,13 @@ export function Dashboard() {
                 display: "flex",
                 flexDirection: "column",
                 justifyConent: "center",
-                textAlign: "center"
+                textAlign: "center",
+                height: "140vh"
               }}
             >
               <h2>
                 <img src={pig} alt="pig" /> Saldo : {balance.saldo} zł{" "}
               </h2>
-
               <h2>
                 {" "}
                 <img src={revenues} alt="revenues" /> Przychody :{" "}
@@ -38,11 +38,10 @@ export function Dashboard() {
                 {" "}
                 <img src={costs} alt="costs" /> Wydatki :{" "}
                 {balance.expenses.toFixed(2)} zł
-        </h2>
-            </div>
-
-            <div style={{ marginTop: 30 }}>
-              <PieChartBalance balance={balance} />
+              </h2>
+              <div style={{ marginTop: 30 }}>
+                <PieChartBalance balance={balance} />
+              </div>
             </div>
           </Container>
         </div >)
