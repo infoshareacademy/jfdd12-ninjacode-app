@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -38,70 +38,73 @@ const useStyles = makeStyles(theme => ({
 
 export function Login() {
   const classes = useStyles();
-  const [email,setEmail] = useState("test@test.com")
-  
-  const [password,setPassword] = useState("test123")
+  const [email, setEmail] = useState("test@test.com")
+
+  const [password, setPassword] = useState("test123")
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Logowanie
+    < div style={{ backgroundColor: 'lightgray' }}>
+
+      <Container component="main" maxWidth="sm" style={{ backgroundColor: 'white' }} >
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Logowanie
         </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            value={email}
-            onChange={(event)=>{setEmail(event.target.value)}}
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            value={password}
-            onChange={(event)=>{setPassword(event.target.value)}}
-            id="password"
-            autoComplete="current-password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick= {(event)=>{
-              event.preventDefault()
-              signIn(email,password)}}
-          >
-            Zaloguj
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              onChange={(event) => { setEmail(event.target.value) }}
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(event) => { setPassword(event.target.value) }}
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={(event) => {
+                event.preventDefault()
+                signIn(email, password)
+              }}
+            >
+              Zaloguj
           </Button>
-          <Grid container>
-           
-            <Grid item>
-              <Link href="/sign-up" variant="body2">
-                {"Nie masz konta? Zarejestruj się."}
-              </Link>
+            <Grid container>
+
+              <Grid item>
+                <Link href="/sign-up" variant="body2">
+                  {"Nie masz konta? Zarejestruj się."}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    
-    </Container>
+          </form>
+        </div>
+      </ Container>
+    </div>
   );
 }

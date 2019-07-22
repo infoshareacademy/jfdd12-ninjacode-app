@@ -3,7 +3,7 @@ import "react-table/react-table.css";
 import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
-
+import Container from '@material-ui/core/Container';
 
 function filteredTableSum(data) {
   let tableSum = 0;
@@ -19,7 +19,6 @@ function filteredTableSum(data) {
 }
 
 function filterData(data, search) {
-  // debugger
   return data.filter(row => {
     if (search) {
       return (
@@ -64,7 +63,6 @@ const getColumns = data => {
     }
   ];
 };
-
 export class HistoryTable extends React.Component {
   constructor(props) {
     super(props);
@@ -77,50 +75,49 @@ export class HistoryTable extends React.Component {
 
   onSearch = e => {
     this.setState({ search: e.target.value });
-    // console.log(this.state.search);
   };
 
-  // Re-run the filter whenever the list array or filter text changes:
-  // filter = memoize(
-  //     (data, search) => filterData(data, search)
-  // );
 
   render() {
-
-
     return (
-      <BalanceConsumer>
-        {({ data }) => {
-          const transactions = filterData(data, this.state.search);
-          return (
-            <div className={styles.historyContainer}>
-              <h1 className={styles.historyTitle}>Historia transakcji</h1>
-              <div className={styles.historyFind}>
-                Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
-              </div>
-              <ReactTable
-                data={transactions}
-                columns={getColumns(transactions)}
-                showPagination={false}
-                minRows={1}
-                getTrProps={(state, rowInfo, column) => {
-                  if (!rowInfo) {
-                    return {}
-                  }
-                  return {
-                    style: {
-                      background:
-                        rowInfo.original.type == "wydatki"
-                          ? "rgba(255, 0, 0, 0.2)"
-                          : "rgba(0, 255, 0, 0.2)"
-                    }
-                  };
-                }}
-                noDataText={"Nie znaleziono transakcji"}
-              />
-            </div>)
-        }}
-      </BalanceConsumer>
+      < div style={{ backgroundColor: 'lightgray' }}>
+
+        <Container maxWidth="sm" style={{ backgroundColor: 'white' }}>
+          <BalanceConsumer>
+
+            {({ data }) => {
+              const transactions = filterData(data, this.state.search);
+              return (
+                <div className={styles.historyContainer}>
+                  <h1 className={styles.historyTitle}>Historia transakcji</h1>
+                  <div className={styles.historyFind}>
+                    Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
+                  </div>
+                  <ReactTable
+                    data={transactions}
+                    columns={getColumns(transactions)}
+                    showPagination={false}
+                    minRows={1}
+                    getTrProps={(state, rowInfo, column) => {
+                      if (!rowInfo) {
+                        return {}
+                      }
+                      return {
+                        style: {
+                          background:
+                            rowInfo.original.type == "wydatki"
+                              ? "rgba(255, 0, 0, 0.2)"
+                              : "rgba(0, 255, 0, 0.2)"
+                        }
+                      };
+                    }}
+                    noDataText={"Nie znaleziono transakcji"}
+                  />
+                </div>)
+            }}
+          </BalanceConsumer>
+        </Container>
+      </div>
     );
   }
 }
