@@ -3,15 +3,19 @@ import { BarChartBalance } from "./BarChartBalance";
 import Container from '@material-ui/core/Container';
 import { Header } from "./Header";
 import styles from './Charts.module.css'
+import { BalanceConsumer } from "./../contexts/BalanceContext";
 
-export function Charts(props) {
-  const { data } = props;
+
+export function Charts() {
   return (
     < div style={{ backgroundColor: 'lightgray' }}>
-      <Container className={styles.chartContainer} maxWidth="sm" style={{ backgroundColor: 'white' }}>
-        <Header />
-        <BarChartBalance data={data} />
-      </Container>
+      <BalanceConsumer>
+        {({ data }) => (
+          <Container className={styles.chartContainer} maxWidth="sm" style={{ backgroundColor: 'white' }}>
+            <Header />
+            <BarChartBalance data={data} />
+          </Container>)}
+      </BalanceConsumer>
     </div>
   );
 }
