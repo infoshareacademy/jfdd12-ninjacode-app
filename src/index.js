@@ -34,7 +34,7 @@ class Root extends React.Component {
                 />
                 <Route
                   path="/Charts"
-                  render={() => <Charts data={value.data} />}
+                  render={() => <Charts />}
                 />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/sign-up" render={() => <SignUp />} />
