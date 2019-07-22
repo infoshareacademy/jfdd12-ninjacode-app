@@ -1,0 +1,8 @@
+.main
+{
+display: flex;
+flexDirection: column;
+justifyConent: center;
+textAlign: center;
+height: 140vh;
+}

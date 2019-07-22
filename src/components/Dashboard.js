@@ -6,25 +6,17 @@ import revenues from "../icons/revenues.svg";
 import pig from "../icons/pig.svg";
 import Container from '@material-ui/core/Container';
 import { BalanceConsumer } from "../contexts/BalanceContext";
+import styles from "./Dashboard.module.css";
+
 
 export function Dashboard() {
   return (
     <BalanceConsumer>
       {({ balance }) => (
         < div style={{ backgroundColor: 'lightgray' }}>
-          <Container maxWidth="sm" style={{ backgroundColor: 'white' }}>
+          <Container maxWidth="sm" style={{ backgroundColor: 'white', paddingTop: '20px' }}>
             <Header />
-
-            <div
-              style={{
-                padding: 15,
-                display: "flex",
-                flexDirection: "column",
-                justifyConent: "center",
-                textAlign: "center",
-                height: "140vh"
-              }}
-            >
+            <div className={styles.main} >
               <h2>
                 <img src={pig} alt="pig" /> Saldo : {balance.saldo} zł{" "}
               </h2>
@@ -40,8 +32,8 @@ export function Dashboard() {
                 {balance.expenses.toFixed(2)} zł
               </h2>
               <div style={{ marginTop: 30 }}>
-                <PieChartBalance balance={balance} />
               </div>
+                <PieChartBalance balance={balance} />
             </div>
           </Container>
         </div >)

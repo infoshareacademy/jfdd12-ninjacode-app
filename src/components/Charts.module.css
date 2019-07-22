@@ -1,4 +1,6 @@
 .chartContainer{
+    top:0px;
+    margin-top:0px;
     height:100%;
-    padding:100px;
+    padding:20px;
 }
