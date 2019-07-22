@@ -17,9 +17,11 @@ export class AuthProvider extends React.Component {
         isLoggedIn
       });
     });
-    userInfo();
   }
 
+  componentWillUpdate() {
+    userInfo();
+  }
   render() {
     return (
       <AuthContext.Provider value={this.state.isLoggedIn} {...this.props} />
