@@ -25,7 +25,7 @@ import { IncomesForm } from "./components/IncomesForm";
 import { positions } from "@material-ui/system";
 import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
-
+import { signOut } from "./services/AuthService";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -175,6 +175,10 @@ export default function BottomAppBar(props) {
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
+          <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
+            <Icon fontSize="large">assessment</Icon>
+            {/* <Typography variant="button">Wykresy</Typography> */}
+          </IconButton>
         </Toolbar>
       </AppBar>
     </React.Fragment>
@@ -191,7 +195,12 @@ export default function BottomAppBar(props) {
         >
           <div className={classes.paperButton}>
             <Button
-              style={{ fontSize: 20, marginRight: 12, backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
+              style={{
+                fontSize: 20,
+                marginRight: 12,
+                backgroundColor: "rgba(195, 50, 50, 1)",
+                color: "white"
+              }}
               variant="contained"
               onClick={handleOpenExpenses}
             >
@@ -199,7 +208,12 @@ export default function BottomAppBar(props) {
               <img src={costs} alt="costs" />
             </Button>
             <Button
-              style={{ fontSize: 20, marginLeft: 12, backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
+              style={{
+                fontSize: 20,
+                marginLeft: 12,
+                backgroundColor: "rgba(68, 105, 132, 1)",
+                color: "white"
+              }}
               color="primary"
               variant="contained"
               onClick={handleOpenIncomes}
