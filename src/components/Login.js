@@ -1,52 +1,55 @@
-import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { signIn } from '../services/AuthService';
+import React, { useState } from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { signIn } from "../services/AuthService";
 
 const useStyles = makeStyles(theme => ({
-  '@global': {
+  "@global": {
     body: {
-      backgroundColor: theme.palette.common.white,
-    },
+      backgroundColor: theme.palette.common.white
+    }
   },
   paper: {
-    paddingTop: '20px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    height: '100vh'
+    paddingTop: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    height: "100vh"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(1)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
 export function Login() {
   const classes = useStyles();
-  const [email, setEmail] = useState("test@test.com")
+  const [email, setEmail] = useState("test@test.com");
 
-  const [password, setPassword] = useState("test123")
+  const [password, setPassword] = useState("test123");
 
   return (
-    < div style={{ backgroundColor: 'lightgray' }}>
-
-      <Container component="main" maxWidth="sm" style={{ backgroundColor: 'white' }} >
+    <div style={{ backgroundColor: "lightgray" }}>
+      <Container
+        component="main"
+        maxWidth="sm"
+        style={{ backgroundColor: "white" }}
+      >
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
@@ -54,7 +57,7 @@ export function Login() {
           </Avatar>
           <Typography component="h1" variant="h5">
             Logowanie
-        </Typography>
+          </Typography>
           <form className={classes.form} noValidate>
             <TextField
               variant="outlined"
@@ -65,7 +68,9 @@ export function Login() {
               label="Email Address"
               name="email"
               value={email}
-              onChange={(event) => { setEmail(event.target.value) }}
+              onChange={event => {
+                setEmail(event.target.value);
+              }}
               autoComplete="email"
               autoFocus
             />
@@ -78,7 +83,9 @@ export function Login() {
               label="Password"
               type="password"
               value={password}
-              onChange={(event) => { setPassword(event.target.value) }}
+              onChange={event => {
+                setPassword(event.target.value);
+              }}
               id="password"
               autoComplete="current-password"
             />
@@ -88,15 +95,14 @@ export function Login() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={(event) => {
-                event.preventDefault()
-                signIn(email, password)
+              onClick={event => {
+                event.preventDefault();
+                signIn(email, password);
               }}
             >
               Zaloguj
-          </Button>
+            </Button>
             <Grid container>
-
               <Grid item>
                 <Link href="/sign-up" variant="body2">
                   {"Nie masz konta? Zarejestruj się."}
@@ -105,7 +111,7 @@ export function Login() {
             </Grid>
           </form>
         </div>
-      </ Container>
+      </Container>
     </div>
   );
 }

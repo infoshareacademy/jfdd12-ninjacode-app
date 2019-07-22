@@ -26,7 +26,6 @@ import { positions } from "@material-ui/system";
 import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
 
-
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(2, 2, 0)
@@ -191,7 +190,12 @@ export default function BottomAppBar(props) {
         >
           <div className={classes.paperButton}>
             <Button
-              style={{ fontSize: 20, marginRight: 12, backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
+              style={{
+                fontSize: 20,
+                marginRight: 12,
+                backgroundColor: "rgba(195, 50, 50, 1)",
+                color: "white"
+              }}
               variant="contained"
               onClick={handleOpenExpenses}
             >
@@ -199,7 +203,12 @@ export default function BottomAppBar(props) {
               <img src={costs} alt="costs" />
             </Button>
             <Button
-              style={{ fontSize: 20, marginLeft: 12, backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
+              style={{
+                fontSize: 20,
+                marginLeft: 12,
+                backgroundColor: "rgba(68, 105, 132, 1)",
+                color: "white"
+              }}
               color="primary"
               variant="contained"
               onClick={handleOpenIncomes}

@@ -4,15 +4,15 @@ import { Header } from "./Header";
 import costs from "../icons/costs.svg";
 import revenues from "../icons/revenues.svg";
 import pig from "../icons/pig.svg";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import { BalanceConsumer } from "../contexts/BalanceContext";
 
 export function Dashboard() {
   return (
     <BalanceConsumer>
       {({ balance }) => (
-        < div style={{ backgroundColor: 'lightgray' }}>
-          <Container maxWidth="sm" style={{ backgroundColor: 'white' }}>
+        <div style={{ backgroundColor: "lightgray" }}>
+          <Container maxWidth="sm" style={{ backgroundColor: "white" }}>
             <Header />
 
             <div
@@ -44,8 +44,8 @@ export function Dashboard() {
               </div>
             </div>
           </Container>
-        </div >)
-      }
-    </BalanceConsumer >
+        </div>
+      )}
+    </BalanceConsumer>
   );
 }

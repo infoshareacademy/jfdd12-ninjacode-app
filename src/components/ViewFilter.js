@@ -40,7 +40,7 @@ export function NativeSelects() {
           <Select
             native
             value={state.transaction}
-            onChange={() => { }}
+            onChange={() => {}}
             inputProps={{
               name: "age",
               id: "age-native-simple"
