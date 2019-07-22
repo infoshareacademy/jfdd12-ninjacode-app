@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import firebase from "firebase";
+import { userInfo } from "../services/AuthService";
 
 export const AuthContext = createContext();
 
@@ -16,6 +17,7 @@ export class AuthProvider extends React.Component {
         isLoggedIn
       });
     });
+    userInfo();
   }
 
   render() {
