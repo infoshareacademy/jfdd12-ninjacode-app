@@ -4,15 +4,15 @@ import { Header } from "./Header";
 import costs from "../icons/costs.svg";
 import revenues from "../icons/revenues.svg";
 import pig from "../icons/pig.svg";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import { BalanceConsumer } from "../contexts/BalanceContext";
 
 export function Dashboard() {
   return (
     <BalanceConsumer>
       {({ balance }) => (
-        < div style={{ backgroundColor: 'lightgray' }}>
-          <Container maxWidth="sm" style={{ backgroundColor: 'white' }}>
+        <div style={{ backgroundColor: "lightgray" }}>
+          <Container maxWidth="sm" style={{ backgroundColor: "white" }}>
             <Header />
 
             <div
@@ -38,15 +38,15 @@ export function Dashboard() {
                 {" "}
                 <img src={costs} alt="costs" /> Wydatki :{" "}
                 {balance.expenses.toFixed(2)} zł
-        </h2>
+              </h2>
             </div>
 
             <div style={{ marginTop: 30 }}>
               <PieChartBalance balance={balance} />
             </div>
           </Container>
-        </div >)
-      }
-    </BalanceConsumer >
+        </div>
+      )}
+    </BalanceConsumer>
   );
 }
