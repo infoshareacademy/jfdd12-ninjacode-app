@@ -3,8 +3,8 @@ import "react-table/react-table.css";
 import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
-import Container from '@material-ui/core/Container';
-import { Header } from '../Header'
+import Container from "@material-ui/core/Container";
+import { Header } from "../Header";
 
 function filteredTableSum(data) {
   let tableSum = 0;
@@ -78,22 +78,26 @@ export class HistoryTable extends React.Component {
     this.setState({ search: e.target.value });
   };
 
-
   render() {
     return (
-      < div style={{
-        backgroundColor: 'lightgray'
-      }} >
-        <Container maxWidth="sm" style={{ backgroundColor: 'white', paddingTop: '20px' }}>
-          <Header title={'Historia transakcji'} />
+      <div
+        style={{
+          backgroundColor: "lightgray"
+        }}
+      >
+        <Container
+          maxWidth="sm"
+          style={{ backgroundColor: "white", paddingTop: "20px" }}
+        >
+          <Header title={"Historia transakcji"} />
           <BalanceConsumer>
-
             {({ data }) => {
               const transactions = filterData(data, this.state.search);
               return (
                 <div className={styles.historyContainer}>
                   <div className={styles.historyFind}>
-                    Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
+                    Wyszukaj:{" "}
+                    <input value={this.state.search} onChange={this.onSearch} />
                   </div>
                   <ReactTable
                     data={transactions}
@@ -102,7 +106,7 @@ export class HistoryTable extends React.Component {
                     minRows={1}
                     getTrProps={(state, rowInfo, column) => {
                       if (!rowInfo) {
-                        return {}
+                        return {};
                       }
                       return {
                         style: {
@@ -115,11 +119,12 @@ export class HistoryTable extends React.Component {
                     }}
                     noDataText={"Nie znaleziono transakcji"}
                   />
-                </div>)
+                </div>
+              );
             }}
           </BalanceConsumer>
         </Container>
-      </ div>
+      </div>
     );
   }
 }

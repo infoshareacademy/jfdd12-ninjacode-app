@@ -23,19 +23,9 @@ class Root extends React.Component {
           {value => (
             <BrowserRouter>
               <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => <Dashboard />}
-                />
-                <Route
-                  path="/History"
-                  render={() => <HistoryTable />}
-                />
-                <Route
-                  path="/Charts"
-                  render={() => <Charts />}
-                />
+                <Route exact path="/" render={() => <Dashboard />} />
+                <Route path="/History" render={() => <HistoryTable />} />
+                <Route path="/Charts" render={() => <Charts />} />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/sign-up" render={() => <SignUp />} />
 

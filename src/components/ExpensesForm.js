@@ -15,7 +15,6 @@ const useStyles = makeStyles(theme => ({
     flexWrap: "wrap",
     justifyContent: "center",
     flexDirection: "column"
-
   },
   formControl: {
     margin: theme.spacing(2),
@@ -51,9 +50,8 @@ export function ExpensesForm(props) {
     onFormInput(itemExpense);
   }
   return (
-    <div className={classes.root} >
-
-      <h2 style={{ textAlign: 'center' }}>Wydatek</h2>
+    <div className={classes.root}>
+      <h2 style={{ textAlign: "center" }}>Wydatek</h2>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
         <Select
@@ -108,13 +106,18 @@ export function ExpensesForm(props) {
         <MaterialUIPickers onDateSelected={setExpenseDate} />
       </div>
       <Button
-        style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(195, 50, 50, 1)', color: 'white' }}
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          padding: "15px 10px",
+          backgroundColor: "rgba(195, 50, 50, 1)",
+          color: "white"
+        }}
         variant="contained"
         onClick={onExpensesAddItem}
       >
         Dodaj wydatek
-        </Button>
-
+      </Button>
     </div>
   );
 }
