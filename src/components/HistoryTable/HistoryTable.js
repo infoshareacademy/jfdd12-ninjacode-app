@@ -4,6 +4,7 @@ import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import Container from '@material-ui/core/Container';
+import { Header } from '../Header'
 
 function filteredTableSum(data) {
   let tableSum = 0;
@@ -80,16 +81,17 @@ export class HistoryTable extends React.Component {
 
   render() {
     return (
-      < div style={{ backgroundColor: 'lightgray' }}>
-
-        <Container maxWidth="sm" style={{ backgroundColor: 'white' }}>
+      < div style={{
+        backgroundColor: 'lightgray'
+      }} >
+        <Container maxWidth="sm" style={{ backgroundColor: 'white', paddingTop: '20px' }}>
+          <Header title={'Historia transakcji'} />
           <BalanceConsumer>
 
             {({ data }) => {
               const transactions = filterData(data, this.state.search);
               return (
                 <div className={styles.historyContainer}>
-                  <h1 className={styles.historyTitle}>Historia transakcji</h1>
                   <div className={styles.historyFind}>
                     Wyszukaj: <input value={this.state.search} onChange={this.onSearch} />
                   </div>
@@ -117,7 +119,7 @@ export class HistoryTable extends React.Component {
             }}
           </BalanceConsumer>
         </Container>
-      </div>
+      </ div>
     );
   }
 }

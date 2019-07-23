@@ -15,7 +15,7 @@ export function Dashboard() {
       {({ balance }) => (
         < div style={{ backgroundColor: 'lightgray' }}>
           <Container maxWidth="sm" style={{ backgroundColor: 'white', paddingTop: '20px' }}>
-            <Header />
+            <Header title={'Podsumowanie budżetu'} />
             <div className={styles.main} >
               <h2>
                 <img src={pig} alt="pig" /> Saldo : {balance.saldo} zł{" "}
@@ -33,7 +33,7 @@ export function Dashboard() {
               </h2>
               <div style={{ marginTop: 30 }}>
               </div>
-                <PieChartBalance balance={balance} />
+              <PieChartBalance balance={balance} />
             </div>
           </Container>
         </div >)

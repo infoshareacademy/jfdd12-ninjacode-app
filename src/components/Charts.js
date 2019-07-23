@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BarChartBalance } from "./BarChartBalance";
 import Container from '@material-ui/core/Container';
 import { Header } from "./Header";
@@ -12,7 +12,7 @@ export function Charts() {
       <BalanceConsumer>
         {({ data }) => (
           <Container className={styles.chartContainer} maxWidth="sm" style={{ backgroundColor: 'white' }}>
-            <Header />
+            <Header title={'Wykresy'} />
             <BarChartBalance data={data} />
           </Container>)}
       </BalanceConsumer>

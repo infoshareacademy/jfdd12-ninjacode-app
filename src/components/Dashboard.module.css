@@ -1,8 +1,9 @@
 .main
 {
 display: flex;
-flexDirection: column;
-justifyConent: center;
-textAlign: center;
-height: 140vh;
+flex-direction: column;
+justify-content: center;
+text-align: center;
+padding-bottom:100px;
+padding-top:20px;
 }

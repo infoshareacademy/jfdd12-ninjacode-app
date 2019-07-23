@@ -1,0 +1,23 @@
+.divA{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items:center;
+    background-color: #eeeeff;
+    margin:-24px;
+    padding:20px;
+    margin-bottom:5px;
+}
+
+.classA{
+padding-right:20px;
+}
+
+.classB{
+    text-align:center;
+}
+
+.icon{
+    height:50px;
+
+}
