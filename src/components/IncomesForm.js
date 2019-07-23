@@ -51,8 +51,7 @@ export function IncomesForm(props) {
 
   return (
     <div className={classes.root}>
-
-      <h2 style={{ textAlign: 'center' }}>Przychody</h2>
+      <h2 style={{ textAlign: "center" }}>Przychody</h2>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="category-native-simple">Kategoria</InputLabel>
         <Select
@@ -107,14 +106,18 @@ export function IncomesForm(props) {
         <MaterialUIPickers onDateSelected={setIncomeDate} />
       </div>
       <Button
-        style={{ fontSize: 20, marginTop: 10, padding: '15px 10px', backgroundColor: 'rgba(68, 105, 132, 1)', color: 'white' }}
-
+        style={{
+          fontSize: 20,
+          marginTop: 10,
+          padding: "15px 10px",
+          backgroundColor: "rgba(68, 105, 132, 1)",
+          color: "white"
+        }}
         variant="contained"
         onClick={onIncomesAddItem}
       >
         Dodaj przychód
-        </Button>
-
+      </Button>
     </div>
   );
 }
