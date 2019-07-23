@@ -20,10 +20,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   paper: {
-    marginTop: theme.spacing(8),
+    paddingTop: "20px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    height: "100vh"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -56,68 +57,74 @@ export function Login(props) {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Logowanie
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            value={email}
-            onChange={event => {
-              setEmail(event.target.value);
-            }}
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            value={password}
-            onChange={event => {
-              setPassword(event.target.value);
-            }}
-            id="password"
-            autoComplete="current-password"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={event => {
-              event.preventDefault();
-              signIn(email, password);
-            }}
-          >
-            Zaloguj
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/sign-up" variant="body2">
-                {"Nie masz konta? Zarejestruj się."}
-              </Link>
+    <div style={{ backgroundColor: "lightgray" }}>
+      <Container
+        component="main"
+        maxWidth="sm"
+        style={{ backgroundColor: "white" }}
+      >
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Logowanie
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              value={email}
+              onChange={event => {
+                setEmail(event.target.value);
+              }}
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={event => {
+                setPassword(event.target.value);
+              }}
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={event => {
+                event.preventDefault();
+                signIn(email, password);
+              }}
+            >
+              Zaloguj
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="/sign-up" variant="body2">
+                  {"Nie masz konta? Zarejestruj się."}
+                </Link>
+              </Grid>
             </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </div>
   );
 }
