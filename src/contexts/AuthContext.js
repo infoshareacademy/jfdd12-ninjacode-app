@@ -20,7 +20,7 @@ export class AuthProvider extends React.Component {
   }
 
   componentWillUpdate() {
-    userInfo();
+    // userInfo();
   }
   render() {
     return (
