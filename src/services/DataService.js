@@ -1,9 +1,14 @@
 import firebase from "firebase";
 
 export const fetchData = callback => {
-  const userId = firebase.auth().currentUser.uid || "notlogin";
-  const dataRef = firebase.database().ref("data");
+  if (!firebase.auth().currentUser) {
+    return null;
+  }
 
+  const userId =
+    (firebase.auth().currentUser && firebase.auth().currentUser.uid) ||
+    "notlogin";
+  const dataRef = firebase.database().ref("data");
   dataRef.child(userId).on("value", snapshot => {
     const dataObj = snapshot.val();
     debugger;

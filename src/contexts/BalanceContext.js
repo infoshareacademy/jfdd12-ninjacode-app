@@ -8,7 +8,7 @@ export class BalanceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: fetchData || [],
+      data: [""],
       balance: {
         saldo: 0,
         incomes: 0,
@@ -29,6 +29,7 @@ export class BalanceProvider extends React.Component {
     //   })
     // );
     fetchData(dataArray => {
+      debugger;
       return {
         data: dataArray,
         balance: {
