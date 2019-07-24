@@ -1,25 +1,14 @@
 import React from "react";
 import { BarChartBalance } from "./BarChartBalance";
-import Container from "@material-ui/core/Container";
-import { Header } from "./Header";
-import styles from "./Charts.module.css";
 import { BalanceConsumer } from "./../contexts/BalanceContext";
+import { Layout } from "./Layout";
 
 export function Charts() {
   return (
-    <div style={{ backgroundColor: "lightgray" }}>
+    <Layout title={"Wykresy"}>
       <BalanceConsumer>
-        {({ data }) => (
-          <Container
-            className={styles.chartContainer}
-            maxWidth="sm"
-            style={{ backgroundColor: "white" }}
-          >
-            <Header title={"Wykresy"} />
-            <BarChartBalance data={data} />
-          </Container>
-        )}
+        {({ data }) => <BarChartBalance data={data} />}
       </BalanceConsumer>
-    </div>
+    </Layout>
   );
 }
