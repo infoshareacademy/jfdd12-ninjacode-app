@@ -26,6 +26,7 @@ import { positions } from "@material-ui/system";
 import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
 import { signOut } from "./services/AuthService";
+import { useAuth } from "./hooks/useAuth";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -91,13 +92,14 @@ const useStyles = makeStyles(theme => ({
 export default function BottomAppBar(props) {
   const { onFormInput } = props;
   const classes = useStyles();
+  const isLoggedIn = useAuth();
 
   const [open, setOpen] = React.useState(false);
   const [openExpenses, setOpenExpenses] = React.useState(false);
   const [openIncomes, setOpenIncomes] = React.useState(false);
 
   const handleOpen = () => {
-    setOpen(true);
+    isLoggedIn && setOpen(true);
   };
 
   const handleClose = () => {
@@ -149,6 +151,7 @@ export default function BottomAppBar(props) {
             </IconButton>
           </NavLink>
           <Fab
+            disabled={!isLoggedIn}
             color="secondary"
             aria-label="Add"
             className={classes.fabButton}
