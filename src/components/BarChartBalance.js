@@ -27,6 +27,7 @@ export class BarChartBalance extends PureComponent {
     super(props);
   }
 
+
   render() {
     return (
       <div style={{ width: "100%", height: 400, marginTop: 50 }}>
@@ -34,7 +35,7 @@ export class BarChartBalance extends PureComponent {
           <BarChart
             width={500}
             height={300}
-            data={this.props.data.map(entry => {
+            data={this.props.data.reduce((accu,entry) => {
               const day = {
                 date: moment(entry.transactionDate, "DD-MM-YYYY"),
                 dateFormatted: moment(
@@ -44,8 +45,17 @@ export class BarChartBalance extends PureComponent {
                 expenditure: entry.type === "wydatki" ? entry.amount : 0,
                 income: entry.type === "wpływy" ? entry.amount : 0
               };
-              return day;
-            })}
+              const transaction = accu.find(({ dateFormatted }) => dateFormatted === day.dateFormatted) || {}
+
+              const accuWithoutTransaction = accu.filter(x => x && (x.dateFormatted !== transaction.dateFormatted))
+
+              return transaction.dateFormatted ? [...accuWithoutTransaction,{
+                ...transaction,
+                expenditure: (transaction.expenditure || 0) + day.expenditure,
+                income: (transaction.income || 0) + day.income
+              }]
+              : [...accu,day]
+            }, [])}
             margin={{
               top: 5,
               right: 30,
