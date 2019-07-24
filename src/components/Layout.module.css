@@ -1,5 +1,6 @@
 .background {
   background-color: lightsteelblue;
+  /* height: calc(100vh + 20px); */
 }
 
 .chartContainer {

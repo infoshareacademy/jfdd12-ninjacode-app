@@ -5,11 +5,13 @@ import styles from "./Layout.module.css";
 
 export function Layout(props) {
   return (
-    <div className={styles.background}>
+    <>
       <Header title={props.title} />
-      <Container className={styles.chartContainer} maxWidth="sm">
-        {props.children}
-      </Container>
-    </div>
+      <div className={styles.background}>
+        <Container className={styles.chartContainer} maxWidth="sm">
+          {props.children}
+        </Container>
+      </div>
+    </>
   );
 }
