@@ -12,6 +12,7 @@ import Container from "@material-ui/core/Container";
 import { signIn } from "../services/AuthService";
 import { useAuth } from "../hooks/useAuth";
 import { Redirect } from "react-router-dom";
+import { Layout } from "./Layout";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -57,74 +58,62 @@ export function Login(props) {
   }
 
   return (
-    <div style={{ backgroundColor: "lightgray" }}>
-      <Container
-        component="main"
-        maxWidth="sm"
-        style={{ backgroundColor: "white" }}
-      >
-        <CssBaseline />
-        <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Logowanie
-          </Typography>
-          <form className={classes.form} noValidate>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-              onChange={event => {
-                setEmail(event.target.value);
-              }}
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              value={password}
-              onChange={event => {
-                setPassword(event.target.value);
-              }}
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={event => {
-                event.preventDefault();
-                signIn(email, password);
-              }}
-            >
-              Zaloguj
-            </Button>
-            <Grid container>
-              <Grid item>
-                <Link href="/sign-up" variant="body2">
-                  {"Nie masz konta? Zarejestruj się."}
-                </Link>
-              </Grid>
+    <Layout title={"Logowanie"}>
+      <CssBaseline />
+      <div className={classes.paper}>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={email}
+            onChange={event => {
+              setEmail(event.target.value);
+            }}
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            value={password}
+            onChange={event => {
+              setPassword(event.target.value);
+            }}
+            id="password"
+            autoComplete="current-password"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={event => {
+              event.preventDefault();
+              signIn(email, password);
+            }}
+          >
+            Zaloguj
+          </Button>
+          <Grid container>
+            <Grid item>
+              <Link href="/sign-up" variant="body2">
+                {"Nie masz konta? Zarejestruj się."}
+              </Link>
             </Grid>
-          </form>
-        </div>
-      </Container>
-    </div>
+          </Grid>
+        </form>
+      </div>
+    </Layout>
   );
 }
