@@ -7,6 +7,7 @@ import pig from "../icons/pig.svg";
 import Container from "@material-ui/core/Container";
 import { BalanceConsumer } from "../contexts/BalanceContext";
 import styles from "./Dashboard.module.css";
+import { Layout } from "./Layout";
 
 export function Dashboard() {
   return (

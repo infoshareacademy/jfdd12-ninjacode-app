@@ -3,8 +3,6 @@ import "react-table/react-table.css";
 import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
-import Container from "@material-ui/core/Container";
-import { Header } from "../Header";
 import { Layout } from "../Layout";
 
 function filteredTableSum(data) {
