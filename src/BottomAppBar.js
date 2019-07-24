@@ -26,6 +26,7 @@ import { positions } from "@material-ui/system";
 import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
 import { signOut } from "./services/AuthService";
+import { BrowserRouter } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   text: {
@@ -128,57 +129,57 @@ export default function BottomAppBar(props) {
   return (
     <React.Fragment>
       <SimpleModal />
-
       <CssBaseline />
-
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <NavLink exact to="/">
-            <IconButton edge="start" color="inherit" aria-label="Charts">
-              <Icon fontSize="large">dashboard</Icon>
-            </IconButton>
-          </NavLink>
-          <NavLink to="/history">
-            <IconButton
-              edge="start"
-              color="inherit"
-              label="History"
-              aria-label="History"
+          <BrowserRouter>
+            <NavLink exact to="/">
+              <IconButton edge="start" color="inherit" aria-label="Charts">
+                <Icon fontSize="large">dashboard</Icon>
+              </IconButton>
+            </NavLink>
+            <NavLink to="/history">
+              <IconButton
+                edge="start"
+                color="inherit"
+                label="History"
+                aria-label="History"
+              >
+                <Icon fontSize="large">list_alt</Icon>
+              </IconButton>
+            </NavLink>
+            <Fab
+              color="secondary"
+              aria-label="Add"
+              className={classes.fabButton}
+              onClick={handleOpen}
             >
-              <Icon fontSize="large">list_alt</Icon>
-            </IconButton>
-          </NavLink>
-          <Fab
-            color="secondary"
-            aria-label="Add"
-            className={classes.fabButton}
-            onClick={handleOpen}
-          >
-            <AddIcon />
-          </Fab>
-          <div className={classes.grow} />
-          <NavLink to="/login">
-            <IconButton color="inherit" aria-label="login">
+              <AddIcon />
+            </Fab>
+            <div className={classes.grow} />
+            <NavLink to="/login">
+              <IconButton color="inherit" aria-label="charts">
+                <Icon fontSize="large">assessment</Icon>
+                {/* <Typography variant="button">Wykresy</Typography> */}
+              </IconButton>
+            </NavLink>
+            <NavLink to="/sign-up">
+              <IconButton color="inherit" aria-label="sign-up">
+                <Icon fontSize="large">assessment</Icon>
+                {/* <Typography variant="button">Wykresy</Typography> */}
+              </IconButton>
+            </NavLink>
+            <NavLink to="/Charts">
+              <IconButton color="inherit" aria-label="Charts">
+                <Icon fontSize="large">assessment</Icon>
+                {/* <Typography variant="button">Wykresy</Typography> */}
+              </IconButton>
+            </NavLink>
+            <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
               <Icon fontSize="large">assessment</Icon>
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
-          </NavLink>
-          <NavLink to="/sign-up">
-            <IconButton color="inherit" aria-label="sign-up">
-              <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
-          <NavLink to="/Charts">
-            <IconButton color="inherit" aria-label="Charts">
-              <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
-          <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
-            <Icon fontSize="large">assessment</Icon>
-            {/* <Typography variant="button">Wykresy</Typography> */}
-          </IconButton>
+          </BrowserRouter>
         </Toolbar>
       </AppBar>
     </React.Fragment>
