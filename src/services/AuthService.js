@@ -36,7 +36,6 @@ export const signUp = formData => {
           lastName: formData.lastName
         });
     });
-  debugger;
 };
 export const signOut = () => {
   firebase.auth().signOut();
