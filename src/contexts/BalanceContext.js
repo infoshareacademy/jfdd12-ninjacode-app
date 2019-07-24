@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
-import mockData from "../mockData.json";
+// import mockData from "../mockData.json";
+import { fetchData } from "../services/DataService.js";
 
 const BalanceContext = createContext();
 
@@ -7,13 +8,11 @@ export class BalanceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: mockData,
+      data: fetchData || [],
       balance: {
-        saldo: (
-          this.incomesValue(mockData) - this.expensesValue(mockData)
-        ).toFixed(2),
-        incomes: this.incomesValue(mockData),
-        expenses: this.expensesValue(mockData)
+        saldo: 0,
+        incomes: 0,
+        expenses: 0
       }
     };
 
@@ -21,14 +20,23 @@ export class BalanceProvider extends React.Component {
   }
 
   componentDidMount() {
-    this.setState(state => {
+    // const dataRef = fetchData(
+    //   this.setState(dataArray => {
+    //     return {
+    //       ...this.state,
+    //       data: dataArray
+    //     };
+    //   })
+    // );
+    fetchData(dataArray => {
       return {
+        data: dataArray,
         balance: {
           saldo: (
-            this.incomesValue(state.data) - this.expensesValue(state.data)
+            this.incomesValue(dataArray) - this.expensesValue(dataArray)
           ).toFixed(2),
-          incomes: this.incomesValue(state.data),
-          expenses: this.expensesValue(state.data)
+          incomes: this.incomesValue(dataArray),
+          expenses: this.expensesValue(dataArray)
         }
       };
     });
