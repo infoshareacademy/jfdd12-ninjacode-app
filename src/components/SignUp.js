@@ -84,7 +84,7 @@ export function SignUp(props) {
                 required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label="Imię"
                 autoFocus
               />
             </Grid>
@@ -94,7 +94,7 @@ export function SignUp(props) {
                 required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label="Nazwisko"
                 name="lastName"
                 value={state.lastName}
                 onChange={handleChange}
@@ -107,7 +107,7 @@ export function SignUp(props) {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Adres email"
                 name="email"
                 autoComplete="email"
                 value={state.email}
@@ -120,18 +120,12 @@ export function SignUp(props) {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Hasło"
                 type="password"
                 id="password"
                 value={state.password}
                 onChange={handleChange}
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
@@ -146,12 +140,12 @@ export function SignUp(props) {
               signUp(state);
             }}
           >
-            Sign Up
+            Zarejestruj się
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
-                Already have an account? Sign in
+                Masz konto? Zaloguj się
               </Link>
             </Grid>
           </Grid>

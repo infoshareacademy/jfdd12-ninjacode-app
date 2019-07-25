@@ -160,26 +160,20 @@ export default function BottomAppBar(props) {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
-          <NavLink to="/login">
-            <IconButton color="inherit" aria-label="login">
-              <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
-          <NavLink to="/sign-up">
-            <IconButton color="inherit" aria-label="sign-up">
-              <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
           <NavLink to="/Charts">
             <IconButton color="inherit" aria-label="Charts">
               <Icon fontSize="large">assessment</Icon>
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
+          <NavLink to="/login">
+            <IconButton color="inherit" aria-label="login">
+              <Icon fontSize="large">person</Icon>
+              {/* <Typography variant="button">Wykresy</Typography> */}
+            </IconButton>
+          </NavLink>
           <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
-            <Icon fontSize="large">assessment</Icon>
+            <Icon fontSize="large">arrow_forward</Icon>
             {/* <Typography variant="button">Wykresy</Typography> */}
           </IconButton>
         </Toolbar>
