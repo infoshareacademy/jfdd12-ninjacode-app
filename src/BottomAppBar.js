@@ -43,10 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     top: "auto",
-    bottom: 0,
-    "&:disabled": {
-      display: "none"
-    }
+    bottom: 0
   },
   grow: {
     flexGrow: 1
@@ -140,12 +137,7 @@ export default function BottomAppBar(props) {
 
       <CssBaseline />
 
-      <AppBar
-        disabled={!isLoggedIn}
-        position="fixed"
-        color="primary"
-        className={classes.appBar}
-      >
+      <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
           <NavLink exact to="/">
             <IconButton edge="start" color="inherit" aria-label="Charts">
