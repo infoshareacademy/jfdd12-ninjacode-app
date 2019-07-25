@@ -18,16 +18,24 @@ function filteredTableSum(data) {
   return tableSum.toFixed(2);
 }
 
-function filterData(data, search) {
-  return data.filter(row => {
-    if (search) {
-      return (
-        row.name.toLowerCase().includes(search.toLowerCase()) ||
-        row.category.toLowerCase().includes(search.toLowerCase()) ||
-        String(row.amount).includes(search)
-      );
-    } else return true;
-  });
+function filterData(data, search, type) {
+  return data
+    .filter(row => {
+      if (row.type === type) {
+        return true;
+      } else if (type === "wszystkie") {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (search) {
+        return (
+          row.name.toLowerCase().includes(search.toLowerCase()) ||
+          row.category.toLowerCase().includes(search.toLowerCase()) ||
+          String(row.amount).includes(search)
+        );
+      } else return true;
+    });
 }
 
 const getColumns = data => {
@@ -35,12 +43,12 @@ const getColumns = data => {
     {
       Header: "Nazwa",
       accessor: "name",
-      style: { textAlign: "center" }
+      style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Kategoria",
       accessor: "category",
-      style: { textAlign: "center" }
+      style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Data",
@@ -58,7 +66,7 @@ const getColumns = data => {
       id: "amountID",
       Header: "Kwota",
       accessor: "amount",
-      style: { textAlign: "center" },
+      style: { textAlign: "right", paddingRight: "10px" },
       Footer: <strong>{filteredTableSum(data)}</strong>
     }
   ];
@@ -69,7 +77,8 @@ export class HistoryTable extends React.Component {
     this.state = {
       data: props.data,
       filteredData: props.data,
-      search: ""
+      search: "",
+      selectedFilter: "wszystkie"
     };
   }
 
@@ -77,21 +86,40 @@ export class HistoryTable extends React.Component {
     this.setState({ search: e.target.value });
   };
 
+  onTypeChange = e => {
+    this.setState({ selectedFilter: e.target.value });
+    console.log(e.target.value);
+  };
+
   render() {
     return (
       <Layout title={"Historia transakcji"}>
         <BalanceConsumer>
           {({ data }) => {
-            const transactions = filterData(data, this.state.search);
+            const filteredData = filterData(
+              data,
+              this.state.search,
+              this.state.selectedFilter
+            );
             return (
               <div className={styles.historyContainer}>
                 <div className={styles.historyFind}>
                   Wyszukaj:{" "}
-                  <input value={this.state.search} onChange={this.onSearch} />
+                  <input value={this.state.search} onChange={this.onSearch} />{" "}
+                  Typ:{" "}
+                  <select
+                    name="type"
+                    value={this.state.value}
+                    onChange={this.onTypeChange}
+                  >
+                    <option value="wszystkie">Wszystkie</option>
+                    <option value="wydatki">Wydatki</option>
+                    <option value="wpływy">wpływy</option>
+                  </select>
                 </div>
                 <ReactTable
-                  data={transactions}
-                  columns={getColumns(transactions)}
+                  data={filteredData}
+                  columns={getColumns(filteredData)}
                   showPagination={false}
                   minRows={1}
                   getTrProps={(state, rowInfo, column) => {
@@ -102,8 +130,8 @@ export class HistoryTable extends React.Component {
                       style: {
                         background:
                           rowInfo.original.type == "wydatki"
-                            ? "rgba(255, 0, 0, 0.2)"
-                            : "rgba(0, 255, 0, 0.2)"
+                            ? "rgba(255, 200, 200, 0.8)"
+                            : "rgba(0, 100, 200, 0.2)"
                       }
                     };
                   }}
