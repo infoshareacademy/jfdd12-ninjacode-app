@@ -29,11 +29,9 @@ export class BalanceProvider extends React.Component {
     //     };
     //   })
     // );
-    debugger;
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         fetchData(dataArray => {
-          debugger;
           return this.setState({
             data: dataArray,
             balance: {
