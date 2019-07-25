@@ -35,12 +35,12 @@ const getColumns = data => {
     {
       Header: "Nazwa",
       accessor: "name",
-      style: { textAlign: "center" }
+      style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Kategoria",
       accessor: "category",
-      style: { textAlign: "center" }
+      style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Data",
@@ -58,7 +58,7 @@ const getColumns = data => {
       id: "amountID",
       Header: "Kwota",
       accessor: "amount",
-      style: { textAlign: "center" },
+      style: { textAlign: "right", paddingRight: "10px" },
       Footer: <strong>{filteredTableSum(data)}</strong>
     }
   ];
@@ -82,7 +82,7 @@ export class HistoryTable extends React.Component {
       <Layout title={"Historia transakcji"}>
         <BalanceConsumer>
           {({ data }) => {
-            const transactions = filterData(data, this.state.search);
+            const filteredData = filterData(data, this.state.search);
             return (
               <div className={styles.historyContainer}>
                 <div className={styles.historyFind}>
@@ -90,8 +90,8 @@ export class HistoryTable extends React.Component {
                   <input value={this.state.search} onChange={this.onSearch} />
                 </div>
                 <ReactTable
-                  data={transactions}
-                  columns={getColumns(transactions)}
+                  data={filteredData}
+                  columns={getColumns(filteredData)}
                   showPagination={false}
                   minRows={1}
                   getTrProps={(state, rowInfo, column) => {
@@ -102,8 +102,8 @@ export class HistoryTable extends React.Component {
                       style: {
                         background:
                           rowInfo.original.type == "wydatki"
-                            ? "rgba(255, 0, 0, 0.2)"
-                            : "rgba(0, 255, 0, 0.2)"
+                            ? "rgba(255, 200, 200, 0.8)"
+                            : "rgba(0, 100, 200, 0.2)"
                       }
                     };
                   }}
