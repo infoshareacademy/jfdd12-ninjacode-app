@@ -15,6 +15,17 @@ export const fetchData = callback => {
 
   return dataRef;
 };
+export const sendData = dataInputForm => {
+  const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
+  console.log(dataInputForm);
+  const dataArray = [];
+  firebase
+    .database()
+    .ref("data")
+    .child(userId)
+    .push(dataInputForm);
+};
+
 function mapObjectToArray(obj) {
   const entries = Object.entries(obj);
   const arr = entries.map(entry => {

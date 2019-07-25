@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 // import mockData from "../mockData.json";
-import { fetchData } from "../services/DataService.js";
+import { fetchData, sendData } from "../services/DataService.js";
 import firebase from "firebase";
 
 const BalanceContext = createContext();
@@ -83,18 +83,19 @@ export class BalanceProvider extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState(function(state, props) {
-      const data = state.data.concat(ItemExpense);
-      const balance = {
-        saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
-        incomes: this.incomesValue(data),
-        expenses: this.expensesValue(data)
-      };
-      return {
-        data,
-        balance
-      };
-    });
+    // this.setState(function(state, props) {
+    //   const data = state.data.concat(ItemExpense);
+    //   const balance = {
+    //     saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
+    //     incomes: this.incomesValue(data),
+    //     expenses: this.expensesValue(data)
+    //   };
+    //   return {
+    //     data,
+    //     balance
+    //   };
+    // });
+    sendData(ItemExpense);
   }
 
   render() {
