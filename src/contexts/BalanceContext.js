@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 // import mockData from "../mockData.json";
-import { fetchData } from "../services/DataService.js";
+import { fetchData, sendData } from "../services/DataService.js";
 import firebase from "firebase";
 
 const BalanceContext = createContext();
@@ -21,14 +21,6 @@ export class BalanceProvider extends React.Component {
   }
 
   componentDidMount() {
-    // const dataRef = fetchData(
-    //   this.setState(dataArray => {
-    //     return {
-    //       ...this.state,
-    //       data: dataArray
-    //     };
-    //   })
-    // );
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         fetchData(dataArray => {
@@ -73,7 +65,6 @@ export class BalanceProvider extends React.Component {
   }
 
   incomesValue(entries) {
-    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const incomes = entries
       .filter(row => row.type === "wpływy")
       .reduce((acc, curr) => {
@@ -82,18 +73,7 @@ export class BalanceProvider extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    this.setState(function(state, props) {
-      const data = state.data.concat(ItemExpense);
-      const balance = {
-        saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
-        incomes: this.incomesValue(data),
-        expenses: this.expensesValue(data)
-      };
-      return {
-        data,
-        balance
-      };
-    });
+    sendData(ItemExpense);
   }
 
   render() {
