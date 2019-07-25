@@ -1,0 +1,74 @@
+{
+  "tEKycG398FP7hoQ1Ot2IG7LIheC2" : {
+    "0" : {
+      "amount" : 32334,
+      "category" : "dom i ogród",
+      "name" : "Zakup mebli",
+      "transactionDate" : "23-03-2019",
+      "type" : "wydatki"
+    },
+    "1" : {
+      "amount" : 251,
+      "category" : "żywność i chemia",
+      "name" : "Spożywcze",
+      "transactionDate" : "25-03-2019",
+      "type" : "wydatki"
+    },
+    "2" : {
+      "amount" : 1500,
+      "category" : "opłaty i odsetki",
+      "name" : "opłata czynszu",
+      "transactionDate" : "01-04-2019",
+      "type" : "wydatki"
+    },
+    "3" : {
+      "amount" : 2210,
+      "category" : "zajęcia dodatkowe",
+      "name" : "Aerobik-kwiecień",
+      "transactionDate" : "02-04-2019",
+      "type" : "wydatki"
+    },
+    "4" : {
+      "amount" : 65000,
+      "category" : "pensja",
+      "name" : "pensja",
+      "transactionDate" : "04-04-2019",
+      "type" : "wpływy"
+    },
+    "5" : {
+      "amount" : 3004.57,
+      "category" : "inwestycje",
+      "name" : "odsetki od lokaty",
+      "transactionDate" : "06-04-2019",
+      "type" : "wpływy"
+    },
+    "-LkdLaCJpRyr7Lb7wuRB" : {
+      "amount" : 2222,
+      "category" : "Jedzenie",
+      "name" : "fefe",
+      "transactionDate" : "25-07-2019",
+      "type" : "wydatki"
+    },
+    "-LkdLiDJRQ0OPle0LK3w" : {
+      "amount" : 333,
+      "category" : "Lokata",
+      "name" : "fawef",
+      "transactionDate" : "25-07-2019",
+      "type" : "wpływy"
+    },
+    "-LkdLywScflXlZtwRcim" : {
+      "amount" : 33433,
+      "category" : "Rozrywka",
+      "name" : "dedfefe",
+      "transactionDate" : "25-07-2019",
+      "type" : "wydatki"
+    },
+    "-LkdNLB6C2s1kqCrj_5B" : {
+      "amount" : 1000,
+      "category" : "Lokata",
+      "name" : "fawefawef",
+      "transactionDate" : "25-07-2019",
+      "type" : "wpływy"
+    }
+  }
+}

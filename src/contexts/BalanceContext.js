@@ -21,14 +21,6 @@ export class BalanceProvider extends React.Component {
   }
 
   componentDidMount() {
-    // const dataRef = fetchData(
-    //   this.setState(dataArray => {
-    //     return {
-    //       ...this.state,
-    //       data: dataArray
-    //     };
-    //   })
-    // );
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         fetchData(dataArray => {
@@ -46,21 +38,6 @@ export class BalanceProvider extends React.Component {
       }
     });
   }
-  componentWillUpdate() {
-    fetchData(dataArray => {
-      debugger;
-      return {
-        data: dataArray,
-        balance: {
-          saldo: (
-            this.incomesValue(dataArray) - this.expensesValue(dataArray)
-          ).toFixed(2),
-          incomes: this.incomesValue(dataArray),
-          expenses: this.expensesValue(dataArray)
-        }
-      };
-    });
-  }
 
   expensesValue(entries) {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
@@ -74,7 +51,6 @@ export class BalanceProvider extends React.Component {
   }
 
   incomesValue(entries) {
-    // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));
     const incomes = entries
       .filter(row => row.type === "wpływy")
       .reduce((acc, curr) => {
@@ -83,18 +59,6 @@ export class BalanceProvider extends React.Component {
     return incomes;
   }
   onFormInput(ItemExpense) {
-    // this.setState(function(state, props) {
-    //   const data = state.data.concat(ItemExpense);
-    //   const balance = {
-    //     saldo: (this.incomesValue(data) - this.expensesValue(data)).toFixed(2),
-    //     incomes: this.incomesValue(data),
-    //     expenses: this.expensesValue(data)
-    //   };
-    //   return {
-    //     data,
-    //     balance
-    //   };
-    // });
     sendData(ItemExpense);
   }
 
