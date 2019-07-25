@@ -5,13 +5,10 @@ export const fetchData = callback => {
     return null;
   }
 
-  const userId =
-    (firebase.auth().currentUser && firebase.auth().currentUser.uid) ||
-    "notlogin";
+  const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
   const dataRef = firebase.database().ref("data");
   dataRef.child(userId).on("value", snapshot => {
     const dataObj = snapshot.val();
-    debugger;
     const dataArray = mapObjectToArray(dataObj);
     callback(dataArray);
   });

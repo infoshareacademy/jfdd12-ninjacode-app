@@ -1,6 +1,7 @@
 import React, { createContext } from "react";
 // import mockData from "../mockData.json";
 import { fetchData } from "../services/DataService.js";
+import firebase from "firebase";
 
 const BalanceContext = createContext();
 
@@ -28,6 +29,24 @@ export class BalanceProvider extends React.Component {
     //     };
     //   })
     // );
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        fetchData(dataArray => {
+          return this.setState({
+            data: dataArray,
+            balance: {
+              saldo: (
+                this.incomesValue(dataArray) - this.expensesValue(dataArray)
+              ).toFixed(2),
+              incomes: this.incomesValue(dataArray),
+              expenses: this.expensesValue(dataArray)
+            }
+          });
+        });
+      }
+    });
+  }
+  componentWillUpdate() {
     fetchData(dataArray => {
       debugger;
       return {
