@@ -8,7 +8,7 @@ export const fetchData = callback => {
   const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
   const dataRef = firebase.database().ref("data");
   dataRef.child(userId).on("value", snapshot => {
-    const dataObj = snapshot.val();
+    const dataObj = snapshot.val() || {};
     const dataArray = mapObjectToArray(dataObj);
     callback(dataArray);
   });
