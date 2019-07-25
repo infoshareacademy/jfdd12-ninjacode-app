@@ -43,7 +43,10 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     top: "auto",
-    bottom: 0
+    bottom: 0,
+    "&:disabled": {
+      display: "none"
+    }
   },
   grow: {
     flexGrow: 1
@@ -54,7 +57,11 @@ const useStyles = makeStyles(theme => ({
     top: -30,
     left: 0,
     right: 0,
-    margin: "0 auto"
+    margin: "0 auto",
+    fontSize: 15,
+    "&:disabled": {
+      display: "none"
+    }
   },
   paper: {
     position: "absolute",
@@ -133,7 +140,12 @@ export default function BottomAppBar(props) {
 
       <CssBaseline />
 
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <AppBar
+        disabled={!isLoggedIn}
+        position="fixed"
+        color="primary"
+        className={classes.appBar}
+      >
         <Toolbar>
           <NavLink exact to="/">
             <IconButton edge="start" color="inherit" aria-label="Charts">
@@ -172,6 +184,7 @@ export default function BottomAppBar(props) {
               {/* <Typography variant="button">Wykresy</Typography> */}
             </IconButton>
           </NavLink>
+
           <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
             <Icon fontSize="large">arrow_forward</Icon>
             {/* <Typography variant="button">Wykresy</Typography> */}
@@ -188,6 +201,7 @@ export default function BottomAppBar(props) {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={open}
+          style={{ minWidth: 100 }}
           onClose={handleClose}
         >
           <div className={classes.paperButton}>
@@ -226,6 +240,7 @@ export default function BottomAppBar(props) {
           aria-describedby="simple-modal-description"
           open={openExpenses}
           onClose={handleCloseExpenses}
+          style={{ minWidth: 100 }}
         >
           <div className={classes.paper}>
             <ExpensesForm onFormInput={onFormInputted} />
@@ -236,6 +251,7 @@ export default function BottomAppBar(props) {
           aria-describedby="simple-modal-description"
           open={openIncomes}
           onClose={handleCloseIncomes}
+          style={{ minWidth: 100 }}
         >
           <div className={classes.paper}>
             <IncomesForm onFormInput={onFormInputted} />

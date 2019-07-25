@@ -48,7 +48,6 @@ export class BalanceProvider extends React.Component {
   }
   componentWillUpdate() {
     fetchData(dataArray => {
-      debugger;
       return {
         data: dataArray,
         balance: {
