@@ -38,6 +38,20 @@ export class BalanceProvider extends React.Component {
       }
     });
   }
+  componentWillUpdate() {
+    fetchData(dataArray => {
+      return {
+        data: dataArray,
+        balance: {
+          saldo: (
+            this.incomesValue(dataArray) - this.expensesValue(dataArray)
+          ).toFixed(2),
+          incomes: this.incomesValue(dataArray),
+          expenses: this.expensesValue(dataArray)
+        }
+      };
+    });
+  }
 
   expensesValue(entries) {
     // mockData.filter(row => row.type === "wydatki").reduce((a, b) => ({amount: a.amount + b.amount}));

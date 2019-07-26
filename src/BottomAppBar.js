@@ -55,7 +55,11 @@ const useStyles = makeStyles(theme => ({
     top: -30,
     left: 0,
     right: 0,
-    margin: "0 auto"
+    margin: "0 auto",
+    fontSize: 15,
+    "&:disabled": {
+      display: "none"
+    }
   },
   paper: {
     position: "absolute",
@@ -199,6 +203,7 @@ export default function BottomAppBar(props) {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={open}
+          style={{ minWidth: 100 }}
           onClose={handleClose}
         >
           <div className={classes.paperButton}>
@@ -237,6 +242,7 @@ export default function BottomAppBar(props) {
           aria-describedby="simple-modal-description"
           open={openExpenses}
           onClose={handleCloseExpenses}
+          style={{ minWidth: 100 }}
         >
           <div className={classes.paper}>
             <ExpensesForm onFormInput={onFormInputted} />
@@ -247,6 +253,7 @@ export default function BottomAppBar(props) {
           aria-describedby="simple-modal-description"
           open={openIncomes}
           onClose={handleCloseIncomes}
+          style={{ minWidth: 100 }}
         >
           <div className={classes.paper}>
             <IncomesForm onFormInput={onFormInputted} />
