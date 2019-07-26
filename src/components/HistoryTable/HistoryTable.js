@@ -52,8 +52,22 @@ function filteredTableSum(data) {
   return tableSum.toFixed(2);
 }
 
-function filterData(data, search, type) {
+function filterData(data, search, type, amountFrom, amountTo) {
   return data
+    .filter(row => {
+      if (amountFrom !== "" && amountFrom >= 0) {
+        return row.amount >= amountFrom;
+      } else {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (amountTo !== "" && amountTo >= 0) {
+        return row.amount <= amountTo;
+      } else {
+        return true;
+      }
+    })
     .filter(row => {
       if (row.type === type) {
         return true;
@@ -80,8 +94,8 @@ export class HistoryTable extends React.Component {
       filteredData: props.data,
       search: "",
       selectedFilter: "wszystkie",
-      amountFrom: null,
-      amountTo: null
+      amountFrom: "",
+      amountTo: ""
     };
   }
 
@@ -103,6 +117,17 @@ export class HistoryTable extends React.Component {
     console.log(this.state.amountTo);
   };
 
+  onReset = () => {
+    this.setState({
+      data: this.data,
+      filteredData: this.data,
+      search: "",
+      selectedFilter: "wszystkie",
+      amountFrom: "",
+      amountTo: ""
+    });
+  };
+
   render() {
     return (
       <Layout title={"Historia transakcji"}>
@@ -111,7 +136,9 @@ export class HistoryTable extends React.Component {
             const filteredData = filterData(
               data,
               this.state.search,
-              this.state.selectedFilter
+              this.state.selectedFilter,
+              this.state.amountFrom,
+              this.state.amountTo
             );
             return (
               <div className={styles.historyContainer}>
@@ -121,7 +148,7 @@ export class HistoryTable extends React.Component {
                   Typ:{" "}
                   <select
                     name="type"
-                    value={this.state.value}
+                    value={this.state.selectedFilter}
                     onChange={this.onTypeChange}
                   >
                     <option value="wszystkie">Wszystkie</option>
@@ -139,6 +166,9 @@ export class HistoryTable extends React.Component {
                       value={this.state.amountTo}
                       onChange={this.onAmountToChange}
                     />{" "}
+                  </div>
+                  <div>
+                    <button onClick={this.onReset}>Usuń filtry</button>
                   </div>
                 </div>
                 <ReactTable
