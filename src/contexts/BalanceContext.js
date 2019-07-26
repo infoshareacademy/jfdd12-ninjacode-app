@@ -9,15 +9,19 @@ export class BalanceProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [""],
+      data: [],
       balance: {
         saldo: 0,
         incomes: 0,
         expenses: 0
+      },
+      incomesCategories: {
+
       }
     };
 
     this.onFormInput = this.onFormInput.bind(this);
+    this.incomesCategories = this.incomesCategories.bind(this)
   }
 
   componentDidMount() {
@@ -32,24 +36,11 @@ export class BalanceProvider extends React.Component {
               ).toFixed(2),
               incomes: this.incomesValue(dataArray),
               expenses: this.expensesValue(dataArray)
-            }
+            },
+            incomesCategories: this.incomesCategories(dataArray)
           });
         });
       }
-    });
-  }
-  componentWillUpdate() {
-    fetchData(dataArray => {
-      return {
-        data: dataArray,
-        balance: {
-          saldo: (
-            this.incomesValue(dataArray) - this.expensesValue(dataArray)
-          ).toFixed(2),
-          incomes: this.incomesValue(dataArray),
-          expenses: this.expensesValue(dataArray)
-        }
-      };
     });
   }
 
@@ -72,6 +63,18 @@ export class BalanceProvider extends React.Component {
       }, 0);
     return incomes;
   }
+  
+  incomesCategories(entries) {
+    const data = entries
+    .filter(row => row.type === "wpływy")
+    .reduce((acc, row) => {
+      const oldAmount = row.value || 0;
+      return {...acc, [row.category]: oldAmount + row.amount}
+    }, {})
+    
+    return data 
+  }
+
   onFormInput(ItemExpense) {
     sendData(ItemExpense);
   }
@@ -82,7 +85,8 @@ export class BalanceProvider extends React.Component {
         value={{
           onFormInput: this.onFormInput,
           data: this.state.data,
-          balance: this.state.balance
+          balance: this.state.balance,
+          incomesCategories: this.state.incomesCategories
         }}
         {...this.props}
       />
