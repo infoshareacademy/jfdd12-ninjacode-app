@@ -4,6 +4,7 @@ import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
+import moment from "moment";
 
 const getColumns = data => {
   return [
@@ -48,16 +49,62 @@ function filteredTableSum(data) {
       tableSum += data[i].amount;
     }
   }
-  console.log("tableSum = ", tableSum);
+  // console.log("tableSum = ", tableSum);
   return tableSum.toFixed(2);
 }
 
-function filterData(data, search, type) {
+function filterData(
+  data,
+  search,
+  type,
+  amountFrom,
+  amountTo,
+  dateFrom,
+  dateTo
+) {
   return data
+    .filter(row => {
+      if (amountFrom !== "" && amountFrom >= 0) {
+        return row.amount >= amountFrom;
+      } else {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (amountTo !== "" && amountTo >= 0) {
+        return row.amount <= amountTo;
+      } else {
+        return true;
+      }
+    })
     .filter(row => {
       if (row.type === type) {
         return true;
       } else if (type === "wszystkie") {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (dateFrom !== "") {
+        return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
+          moment(dateFrom),
+          undefined,
+          "day",
+          "[]"
+        );
+      } else {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (dateTo !== "") {
+        return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
+          "1970-10-19",
+          moment(dateTo),
+          "day",
+          "[]"
+        );
+      } else {
         return true;
       }
     })
@@ -80,8 +127,10 @@ export class HistoryTable extends React.Component {
       filteredData: props.data,
       search: "",
       selectedFilter: "wszystkie",
-      amountFrom: null,
-      amountTo: null
+      amountFrom: "",
+      amountTo: "",
+      dateFrom: "",
+      dateTo: ""
     };
   }
 
@@ -95,12 +144,31 @@ export class HistoryTable extends React.Component {
 
   onAmountFromChange = e => {
     this.setState({ amountFrom: e.target.value });
-    console.log(this.state.amountFrom);
   };
 
   onAmountToChange = e => {
     this.setState({ amountTo: e.target.value });
-    console.log(this.state.amountTo);
+  };
+
+  onDateFromChange = e => {
+    this.setState({ dateFrom: e.target.value });
+  };
+
+  onDateToChange = e => {
+    this.setState({ dateTo: e.target.value });
+  };
+
+  onReset = () => {
+    this.setState({
+      data: this.data,
+      filteredData: this.data,
+      search: "",
+      selectedFilter: "wszystkie",
+      amountFrom: "",
+      amountTo: "",
+      dateFrom: "",
+      dateTo: ""
+    });
   };
 
   render() {
@@ -111,7 +179,11 @@ export class HistoryTable extends React.Component {
             const filteredData = filterData(
               data,
               this.state.search,
-              this.state.selectedFilter
+              this.state.selectedFilter,
+              this.state.amountFrom,
+              this.state.amountTo,
+              this.state.dateFrom,
+              this.state.dateTo
             );
             return (
               <div className={styles.historyContainer}>
@@ -121,7 +193,7 @@ export class HistoryTable extends React.Component {
                   Typ:{" "}
                   <select
                     name="type"
-                    value={this.state.value}
+                    value={this.state.selectedFilter}
                     onChange={this.onTypeChange}
                   >
                     <option value="wszystkie">Wszystkie</option>
@@ -139,6 +211,23 @@ export class HistoryTable extends React.Component {
                       value={this.state.amountTo}
                       onChange={this.onAmountToChange}
                     />{" "}
+                  </div>
+                  <div>
+                    Data od:{" "}
+                    <input
+                      type="date"
+                      value={this.state.dateFrom}
+                      onChange={this.onDateFromChange}
+                    />{" "}
+                    Data do:{" "}
+                    <input
+                      type="date"
+                      value={this.state.dateTo}
+                      onChange={this.onDateToChange}
+                    />{" "}
+                  </div>
+                  <div>
+                    <button onClick={this.onReset}>Usuń filtry</button>
                   </div>
                 </div>
                 <ReactTable
