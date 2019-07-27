@@ -1,7 +1,7 @@
 {
   "tEKycG398FP7hoQ1Ot2IG7LIheC2" : {
     "0" : {
-      "amount" : 32334,
+      "amount" : 3000,
       "category" : "Inne",
       "name" : "Zakup mebli",
       "transactionDate" : "23-03-2019",
@@ -29,7 +29,7 @@
       "type" : "wydatki"
     },
     "4" : {
-      "amount" : 65000,
+      "amount" : 3000,
       "category" : "Przelew",
       "name" : "pensja",
       "transactionDate" : "04-04-2019",
@@ -57,7 +57,7 @@
       "type" : "wpływy"
     },
     "-LkdLywScflXlZtwRcim" : {
-      "amount" : 33433,
+      "amount" : 3000,
       "category" : "Rozrywka",
       "name" : "dedfefe",
       "transactionDate" : "25-07-2019",
