@@ -87,8 +87,10 @@ function filterData(
     .filter(row => {
       if (dateFrom !== "") {
         return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
-          moment(dateFrom).subtract(1, "day"),
-          undefined
+          moment(dateFrom),
+          undefined,
+          "day",
+          "[]"
         );
       } else {
         return true;
@@ -98,7 +100,9 @@ function filterData(
       if (dateTo !== "") {
         return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
           "1970-10-19",
-          moment(dateTo).add(1, "day")
+          moment(dateTo),
+          "day",
+          "[]"
         );
       } else {
         return true;
