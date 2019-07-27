@@ -4,6 +4,7 @@ import styles from "./HistoryTable.module.css";
 import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
+import moment from "moment";
 
 const getColumns = data => {
   return [
@@ -48,11 +49,19 @@ function filteredTableSum(data) {
       tableSum += data[i].amount;
     }
   }
-  console.log("tableSum = ", tableSum);
+  // console.log("tableSum = ", tableSum);
   return tableSum.toFixed(2);
 }
 
-function filterData(data, search, type, amountFrom, amountTo) {
+function filterData(
+  data,
+  search,
+  type,
+  amountFrom,
+  amountTo,
+  dateFrom,
+  dateTo
+) {
   return data
     .filter(row => {
       if (amountFrom !== "" && amountFrom >= 0) {
@@ -76,6 +85,16 @@ function filterData(data, search, type, amountFrom, amountTo) {
       }
     })
     .filter(row => {
+      if (dateFrom !== "") {
+        return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
+          dateFrom,
+          undefined
+        );
+      } else {
+        return true;
+      }
+    })
+    .filter(row => {
       if (search) {
         return (
           row.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -95,7 +114,9 @@ export class HistoryTable extends React.Component {
       search: "",
       selectedFilter: "wszystkie",
       amountFrom: "",
-      amountTo: ""
+      amountTo: "",
+      dateFrom: "",
+      dateTo: ""
     };
   }
 
@@ -109,12 +130,18 @@ export class HistoryTable extends React.Component {
 
   onAmountFromChange = e => {
     this.setState({ amountFrom: e.target.value });
-    console.log(this.state.amountFrom);
   };
 
   onAmountToChange = e => {
     this.setState({ amountTo: e.target.value });
-    console.log(this.state.amountTo);
+  };
+
+  onDateFromChange = e => {
+    this.setState({ dateFrom: e.target.value });
+  };
+
+  onDateToChange = e => {
+    this.setState({ dateTo: e.target.value });
   };
 
   onReset = () => {
@@ -124,8 +151,15 @@ export class HistoryTable extends React.Component {
       search: "",
       selectedFilter: "wszystkie",
       amountFrom: "",
-      amountTo: ""
+      amountTo: "",
+      dateFrom: "",
+      dateTo: ""
     });
+  };
+
+  checkDate = data => {
+    let sampleDate = data;
+    console.log("pierwsza data z jsona:" + sampleDate);
   };
 
   render() {
@@ -138,7 +172,9 @@ export class HistoryTable extends React.Component {
               this.state.search,
               this.state.selectedFilter,
               this.state.amountFrom,
-              this.state.amountTo
+              this.state.amountTo,
+              this.state.dateFrom,
+              this.state.dateTo
             );
             return (
               <div className={styles.historyContainer}>
@@ -168,7 +204,26 @@ export class HistoryTable extends React.Component {
                     />{" "}
                   </div>
                   <div>
+                    Data od:{" "}
+                    <input
+                      type="date"
+                      value={this.state.dateFrom}
+                      onChange={this.onDateFromChange}
+                    />{" "}
+                    Data do:{" "}
+                    <input
+                      type="date"
+                      value={this.state.dateTo}
+                      onChange={this.onDateToChange}
+                    />{" "}
+                  </div>
+                  <div>
                     <button onClick={this.onReset}>Usuń filtry</button>
+                  </div>
+                  <div>
+                    <button onClick={this.checkDate(this.state.data)}>
+                      Zobacz datę
+                    </button>
                   </div>
                 </div>
                 <ReactTable
