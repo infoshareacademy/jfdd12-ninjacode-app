@@ -95,6 +95,16 @@ function filterData(
       }
     })
     .filter(row => {
+      if (dateTo !== "") {
+        return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
+          "1970-10-19",
+          moment(dateTo).add(1, "day")
+        );
+      } else {
+        return true;
+      }
+    })
+    .filter(row => {
       if (search) {
         return (
           row.name.toLowerCase().includes(search.toLowerCase()) ||
