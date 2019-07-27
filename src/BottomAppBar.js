@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -27,7 +26,9 @@ import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
 import { signOut } from "./services/AuthService";
 import { useAuth } from "./hooks/useAuth";
-
+import { Link, withRouter } from "react-router-dom";
+// import Link from "@material-ui/core/Link";
+import { Dashboard } from "./components/Dashboard";
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(2, 2, 0)
@@ -93,6 +94,39 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// const LinkDashboard = React.forwardRef((props, ref) => (
+//   <RouterLink innerRef={ref} {...props} />
+// ));
+
+const useIconStyles = makeStyles(theme => ({
+  active: {
+    color: "white"
+  },
+  inactive: {
+    color: "grey"
+  }
+}));
+
+const NavIconButton = withRouter(props => {
+  const { location, to } = props;
+  const isIconActive = location.pathname === to;
+  const classes = useIconStyles();
+
+  return (
+    <Link to={props.to}>
+      <IconButton edge={props.edge || "start"} aria-label="Charts">
+        <Icon
+          className={isIconActive ? classes.active : classes.inactive}
+          fontSize="large"
+          color={"primary"}
+        >
+          {props.icon}
+        </Icon>
+      </IconButton>
+    </Link>
+  );
+});
+
 export default function BottomAppBar(props) {
   const { onFormInput } = props;
   const classes = useStyles();
@@ -139,21 +173,8 @@ export default function BottomAppBar(props) {
 
       <AppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <NavLink exact to="/">
-            <IconButton edge="start" color="inherit" aria-label="Charts">
-              <Icon fontSize="large">dashboard</Icon>
-            </IconButton>
-          </NavLink>
-          <NavLink to="/history">
-            <IconButton
-              edge="start"
-              color="inherit"
-              label="History"
-              aria-label="History"
-            >
-              <Icon fontSize="large">list_alt</Icon>
-            </IconButton>
-          </NavLink>
+          <NavIconButton to="/" icon="dashboard" />
+          <NavIconButton to="/history" icon="list_alt" />
           <Fab
             disabled={!isLoggedIn}
             color="secondary"
@@ -164,19 +185,8 @@ export default function BottomAppBar(props) {
             <AddIcon />
           </Fab>
           <div className={classes.grow} />
-          <NavLink to="/Charts">
-            <IconButton color="inherit" aria-label="Charts">
-              <Icon fontSize="large">assessment</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
-          <NavLink to="/login">
-            <IconButton color="inherit" aria-label="login">
-              <Icon fontSize="large">person</Icon>
-              {/* <Typography variant="button">Wykresy</Typography> */}
-            </IconButton>
-          </NavLink>
-
+          <NavIconButton to="/Charts" icon="assessment" />
+          <NavIconButton to="/login" icon="person" />
           <IconButton color="inherit" aria-label="Charts" onClick={signOut}>
             <Icon fontSize="large">arrow_forward</Icon>
             {/* <Typography variant="button">Wykresy</Typography> */}

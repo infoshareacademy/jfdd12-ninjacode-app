@@ -5,39 +5,6 @@ import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
 
-function filteredTableSum(data) {
-  let tableSum = 0;
-  for (let i = 0; i <= data.length - 1; i++) {
-    if (data[i].type === "wydatki") {
-      tableSum -= data[i].amount;
-    } else if (data[i].type === "wpływy") {
-      tableSum += data[i].amount;
-    }
-  }
-  console.log("tableSum = ", tableSum);
-  return tableSum.toFixed(2);
-}
-
-function filterData(data, search, type) {
-  return data
-    .filter(row => {
-      if (row.type === type) {
-        return true;
-      } else if (type === "wszystkie") {
-        return true;
-      }
-    })
-    .filter(row => {
-      if (search) {
-        return (
-          row.name.toLowerCase().includes(search.toLowerCase()) ||
-          row.category.toLowerCase().includes(search.toLowerCase()) ||
-          String(row.amount).includes(search)
-        );
-      } else return true;
-    });
-}
-
 const getColumns = data => {
   return [
     {
@@ -71,6 +38,40 @@ const getColumns = data => {
     }
   ];
 };
+
+function filteredTableSum(data) {
+  let tableSum = 0;
+  for (let i = 0; i <= data.length - 1; i++) {
+    if (data[i].type === "wydatki") {
+      tableSum -= data[i].amount;
+    } else if (data[i].type === "wpływy") {
+      tableSum += data[i].amount;
+    }
+  }
+  console.log("tableSum = ", tableSum);
+  return tableSum.toFixed(2);
+}
+
+function filterData(data, search, type) {
+  return data
+    .filter(row => {
+      if (row.type === type) {
+        return true;
+      } else if (type === "wszystkie") {
+        return true;
+      }
+    })
+    .filter(row => {
+      if (search) {
+        return (
+          row.name.toLowerCase().includes(search.toLowerCase()) ||
+          row.category.toLowerCase().includes(search.toLowerCase()) ||
+          String(row.amount).includes(search)
+        );
+      } else return true;
+    });
+}
+
 export class HistoryTable extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +79,9 @@ export class HistoryTable extends React.Component {
       data: props.data,
       filteredData: props.data,
       search: "",
-      selectedFilter: "wszystkie"
+      selectedFilter: "wszystkie",
+      amountFrom: null,
+      amountTo: null
     };
   }
 
@@ -88,7 +91,16 @@ export class HistoryTable extends React.Component {
 
   onTypeChange = e => {
     this.setState({ selectedFilter: e.target.value });
-    console.log(e.target.value);
+  };
+
+  onAmountFromChange = e => {
+    this.setState({ amountFrom: e.target.value });
+    console.log(this.state.amountFrom);
+  };
+
+  onAmountToChange = e => {
+    this.setState({ amountTo: e.target.value });
+    console.log(this.state.amountTo);
   };
 
   render() {
@@ -116,6 +128,18 @@ export class HistoryTable extends React.Component {
                     <option value="wydatki">Wydatki</option>
                     <option value="wpływy">wpływy</option>
                   </select>
+                  <div>
+                    Kwota od:{" "}
+                    <input
+                      value={this.state.amountFrom}
+                      onChange={this.onAmountFromChange}
+                    />{" "}
+                    Kwota do:{" "}
+                    <input
+                      value={this.state.amountTo}
+                      onChange={this.onAmountToChange}
+                    />{" "}
+                  </div>
                 </div>
                 <ReactTable
                   data={filteredData}
