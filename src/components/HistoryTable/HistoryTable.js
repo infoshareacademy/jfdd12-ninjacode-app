@@ -87,7 +87,7 @@ function filterData(
     .filter(row => {
       if (dateFrom !== "") {
         return moment(row.transactionDate, "DD-MM-YYYY").isBetween(
-          dateFrom,
+          moment(dateFrom).subtract(1, "day"),
           undefined
         );
       } else {
@@ -157,11 +157,6 @@ export class HistoryTable extends React.Component {
     });
   };
 
-  checkDate = data => {
-    let sampleDate = data;
-    console.log("pierwsza data z jsona:" + sampleDate);
-  };
-
   render() {
     return (
       <Layout title={"Historia transakcji"}>
@@ -219,11 +214,6 @@ export class HistoryTable extends React.Component {
                   </div>
                   <div>
                     <button onClick={this.onReset}>Usuń filtry</button>
-                  </div>
-                  <div>
-                    <button onClick={this.checkDate(this.state.data)}>
-                      Zobacz datę
-                    </button>
                   </div>
                 </div>
                 <ReactTable
