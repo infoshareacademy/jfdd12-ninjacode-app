@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from "recharts";
 
-const colors = ["#8884d8", "#82ca9d"];
+const colors = ["#82ca9d","#8884d8"];
 
 export class PieChartBalance extends PureComponent {
   constructor() {

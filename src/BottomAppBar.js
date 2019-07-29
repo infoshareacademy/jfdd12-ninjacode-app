@@ -176,8 +176,9 @@ export default function BottomAppBar(props) {
           <NavIconButton to="/" icon="dashboard" />
           <NavIconButton to="/history" icon="list_alt" />
           <Fab
+          style={{backgroundColor:"rgb(195, 50, 50)", color: "white"}}
             disabled={!isLoggedIn}
-            color="secondary"
+            //color="rgb(195, 50, 50)"
             aria-label="Add"
             className={classes.fabButton}
             onClick={handleOpen}
