@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.css";
 import BottomAppBar from "./BottomAppBar";
 import * as serviceWorker from "./serviceWorker";
@@ -13,9 +13,6 @@ import { Login } from "./components/Login";
 import { SignUp } from "./components/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
 import "./firebase";
-import { signIn } from "./services/AuthService";
-
-const NoMatch = () => <h1>404</h1>;
 
 class Root extends React.Component {
   render() {
