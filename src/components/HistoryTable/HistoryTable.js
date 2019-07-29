@@ -7,6 +7,7 @@ import { Layout } from "../Layout";
 import moment from "moment";
 import Select from "@material-ui/core/Select";
 import { MaterialUIPickers } from "../DatePickerExpenses";
+import Input from "@material-ui/core/Input";
 
 const getColumns = data => {
   let thisWidth = window.innerWidth;
@@ -224,16 +225,26 @@ export class HistoryTable extends React.Component {
                     <option value={"wpływy"}>wpływy</option>
                   </Select>
                   <div>
-                    Kwota od:{" "}
-                    <input
+                    <Input
+                      placeholder="Kwota od"
                       value={this.state.amountFrom}
-                      onChange={this.onAmountFromChange}
-                    />{" "}
-                    Kwota do:{" "}
-                    <input
+                      onChange={event => {
+                        this.onAmountFromChange(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
+                    <Input
+                      placeholder="Kwota do"
                       value={this.state.amountTo}
-                      onChange={this.onAmountToChange}
-                    />{" "}
+                      onChange={event => {
+                        this.onAmountToChange(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
                   </div>
                   Data od:{" "}
                   <MaterialUIPickers
@@ -271,8 +282,8 @@ export class HistoryTable extends React.Component {
                       style: {
                         background:
                           rowInfo.original.type == "wydatki"
-                            ? "rgba(136, 132, 216, 0.5)"
-                            : "rgba(130, 202, 157, 0.5)"
+                            ? "rgba(136, 132, 216, 0.3)"
+                            : "rgba(130, 202, 157, 0.3)"
                       }
                     };
                   }}
