@@ -272,8 +272,8 @@ export class HistoryTable extends React.Component {
                       style: {
                         background:
                           rowInfo.original.type == "wydatki"
-                            ? "rgba(255, 200, 200, 0.8)"
-                            : "rgba(0, 100, 200, 0.2)"
+                            ? "rgba(136, 132, 216, 0.5)"
+                            : "rgba(130, 202, 157, 0.5)"
                       }
                     };
                   }}
