@@ -11,5 +11,12 @@
 }
 .historyFind {
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  margin-bottom: 10px;
+  border: solid 1px #ddd;
+}
+.historyFind input {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
