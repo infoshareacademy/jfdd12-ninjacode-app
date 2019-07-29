@@ -1,6 +1,5 @@
 import React, { createContext } from "react";
 import firebase from "firebase/app";
-import { userInfo } from "../services/AuthService";
 
 export const AuthContext = createContext();
 

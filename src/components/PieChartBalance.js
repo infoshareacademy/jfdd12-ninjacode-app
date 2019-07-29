@@ -1,13 +1,9 @@
 import React, { PureComponent } from "react";
 import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from "recharts";
 
-const colors = ["#82ca9d","#8884d8"];
+const colors = ["#82ca9d", "#8884d8"];
 
 export class PieChartBalance extends PureComponent {
-  constructor() {
-    super();
-  }
-
   render() {
     const { balance } = this.props;
     let data = [
@@ -16,7 +12,7 @@ export class PieChartBalance extends PureComponent {
     ];
 
     return (
-      <div style={{ width: "100%", height: 350 , fontSize: "3ex"}}>
+      <div style={{ width: "100%", height: 350, fontSize: "3ex" }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} label>

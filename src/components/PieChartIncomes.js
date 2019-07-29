@@ -4,12 +4,8 @@ import { ResponsiveContainer, PieChart, Pie, Legend, Cell } from "recharts";
 const colors = ["#8884d8", "#82ca9d", "#d88884", "#84aad8"];
 
 export class PieChartIncomes extends PureComponent {
-  constructor() {
-    super();
-  }
-
   render() {
-    const { balance, incomesCategories } = this.props;
+    const { incomesCategories } = this.props;
     const mockdata = { ...incomesCategories };
     const data = Object.entries(mockdata).map(([key, value]) => ({
       name: key,
