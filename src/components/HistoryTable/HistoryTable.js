@@ -6,7 +6,7 @@ import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
 import moment from "moment";
 import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
+import { MaterialUIPickers } from "../DatePickerExpenses";
 
 const getColumns = data => {
   let thisWidth = window.innerWidth;
@@ -173,11 +173,11 @@ export class HistoryTable extends React.Component {
   };
 
   onDateFromChange = e => {
-    this.setState({ dateFrom: e.target.value });
+    this.setState({ dateFrom: e });
   };
 
   onDateToChange = e => {
-    this.setState({ dateTo: e.target.value });
+    this.setState({ dateTo: e });
   };
 
   onReset = () => {
@@ -235,20 +235,17 @@ export class HistoryTable extends React.Component {
                       onChange={this.onAmountToChange}
                     />{" "}
                   </div>
-                  <div>
-                    Data od:{" "}
-                    <input
-                      type="date"
-                      value={this.state.dateFrom}
-                      onChange={this.onDateFromChange}
-                    />{" "}
-                    Data do:{" "}
-                    <input
-                      type="date"
-                      value={this.state.dateTo}
-                      onChange={this.onDateToChange}
-                    />{" "}
-                  </div>
+                  Data od:{" "}
+                  <MaterialUIPickers
+                    value={this.state.dateTo}
+                    onDateSelected={this.onDateFromChange}
+                  />
+                  Data do:{" "}
+                  <MaterialUIPickers
+                    label="Date picker"
+                    value={this.state.dateTo}
+                    onDateSelected={this.onDateToChange}
+                  />
                   <div>
                     <button onClick={this.onReset}>Usuń filtry</button>
                   </div>
