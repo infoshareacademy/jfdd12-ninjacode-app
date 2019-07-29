@@ -1,6 +1,7 @@
 .historyContainer {
   display: block;
   padding-top: 20px;
+  margin-bottom: 80px;
   height: 100vh;
 }
 

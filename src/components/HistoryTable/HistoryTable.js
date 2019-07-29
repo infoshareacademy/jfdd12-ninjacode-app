@@ -8,7 +8,6 @@ import moment from "moment";
 
 const getColumns = data => {
   let thisWidth = window.innerWidth;
-  console.log("width: " + thisWidth);
   return [
     {
       Header: "Nazwa",
@@ -44,7 +43,10 @@ const getColumns = data => {
       accessor: "amount",
       minWidth: 60,
       style: { textAlign: "right", paddingRight: "10px" },
-      Footer: <strong>{filteredTableSum(data)}</strong>
+      Footer: <strong>{filteredTableSum(data)}</strong>,
+      Cell: row => {
+        return `${parseFloat(row.value).toFixed(2)} zł`;
+      }
     }
   ];
 };
@@ -59,7 +61,7 @@ function filteredTableSum(data) {
     }
   }
   // console.log("tableSum = ", tableSum);
-  return tableSum.toFixed(2);
+  return `${tableSum.toFixed(2)} zł`;
 }
 
 function filterData(
@@ -243,7 +245,7 @@ export class HistoryTable extends React.Component {
                   data={filteredData}
                   columns={getColumns(filteredData)}
                   minRows={0}
-                  defaultPageSize={20}
+                  defaultPageSize={10}
                   pageJumpText={"następna strona"}
                   rowsSelectorText={"ilość transakcji na stronie"}
                   previousText={"Poprzednia strona"}
