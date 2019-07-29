@@ -1,8 +1,9 @@
 .historyContainer {
   display: block;
   padding-top: 10px;
-  margin-bottom: 140px;
-  height: 100vh;
+  margin-bottom: 30px;
+  height: 100%;
+  min-height: 80vh;
   min-width: 300px;
 }
 
