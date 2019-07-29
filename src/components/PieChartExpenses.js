@@ -18,7 +18,7 @@ const data =     Object.entries(mockdata).map(([key,value])=> ({name:key, value}
    
 
     return (
-      <div style={{ width: "100%", height: 350 }}>
+      <div style={{ width: "100%", height: 350, fontSize: "3ex" }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} label>
