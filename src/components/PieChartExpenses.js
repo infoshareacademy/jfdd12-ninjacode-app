@@ -16,7 +16,7 @@ export class PieChartExpenses extends PureComponent {
     // let data =  [{name:"cos", value: 123}]
 
     return (
-      <div style={{ width: "100%", height: 350 }}>
+      <div style={{ width: "100%", height: 350, fontSize: "3ex" }}>
         <ResponsiveContainer>
           <PieChart>
             <Pie dataKey="value" data={data} label>

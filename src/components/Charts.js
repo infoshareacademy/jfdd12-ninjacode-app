@@ -9,19 +9,19 @@ export function Charts() {
 
   return (
     <Layout title={"Wykresy"}>
-      <h2> Ogólne zestawienie przychodów i wydatków</h2>
+      <h2 style={{textAlign: "center", margin: 10}}> Ogólne zestawienie przychodów i wydatków</h2>
       <BalanceConsumer>
 
         {({ data }) => <BarChartBalance data={data} />}
       </BalanceConsumer>
-      <h2> Przychody</h2>  
+      <h2 style={{textAlign: "center", margin: 50}}> Przychody</h2>  
       <BalanceConsumer>
         {({ balance, incomesCategories }) => {
           
           return(<PieChartIncomes balance={balance} incomesCategories={incomesCategories} />
         )}}
       </BalanceConsumer>
-      <h2> Wydatki</h2>
+      <h2 style={{textAlign: "center", margin: 50}}> Wydatki</h2>
       <BalanceConsumer>
         {({ balance, expensesCategories }) => {
           
