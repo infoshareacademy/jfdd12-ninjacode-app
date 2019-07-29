@@ -17,7 +17,6 @@ export const fetchData = callback => {
 };
 export const sendData = dataInputForm => {
   const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
-  const dataArray = [];
   firebase
     .database()
     .ref("data")

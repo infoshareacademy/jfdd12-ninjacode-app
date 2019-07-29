@@ -23,11 +23,6 @@ function tooltipCurrencyFormatter(value) {
 }
 
 export class BarChartBalance extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-
   render() {
     return (
       <div style={{ width: "100%", height: 400, marginTop: 50 }}>
@@ -35,7 +30,7 @@ export class BarChartBalance extends PureComponent {
           <BarChart
             width={500}
             height={300}
-            data={this.props.data.reduce((accu,entry) => {
+            data={this.props.data.reduce((accu, entry) => {
               const day = {
                 date: moment(entry.transactionDate, "DD-MM-YYYY"),
                 dateFormatted: moment(
@@ -45,16 +40,26 @@ export class BarChartBalance extends PureComponent {
                 expenditure: entry.type === "wydatki" ? entry.amount : 0,
                 income: entry.type === "wpływy" ? entry.amount : 0
               };
-              const transaction = accu.find(({ dateFormatted }) => dateFormatted === day.dateFormatted) || {}
+              const transaction =
+                accu.find(
+                  ({ dateFormatted }) => dateFormatted === day.dateFormatted
+                ) || {};
 
-              const accuWithoutTransaction = accu.filter(x => x && (x.dateFormatted !== transaction.dateFormatted))
+              const accuWithoutTransaction = accu.filter(
+                x => x && x.dateFormatted !== transaction.dateFormatted
+              );
 
-              return transaction.dateFormatted ? [...accuWithoutTransaction,{
-                ...transaction,
-                expenditure: (transaction.expenditure || 0) + day.expenditure,
-                income: (transaction.income || 0) + day.income
-              }]
-              : [...accu,day]
+              return transaction.dateFormatted
+                ? [
+                    ...accuWithoutTransaction,
+                    {
+                      ...transaction,
+                      expenditure:
+                        (transaction.expenditure || 0) + day.expenditure,
+                      income: (transaction.income || 0) + day.income
+                    }
+                  ]
+                : [...accu, day];
             }, [])}
             margin={{
               top: 5,
@@ -96,7 +101,7 @@ export class BarChartBalance extends PureComponent {
 
 class CustomizedAxisTick extends PureComponent {
   render() {
-    const { x, y, stroke, payload } = this.props;
+    const { x, y, payload } = this.props;
 
     var date = moment(payload.value, "DD-MM-YYYY").format("DD-MM");
     return (
