@@ -135,6 +135,7 @@ function filterData(
 export class HistoryTable extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       data: props.data,
       filteredData: props.data,
@@ -146,7 +147,6 @@ export class HistoryTable extends React.Component {
       dateTo: ""
     };
   }
-
   resize = () => this.forceUpdate();
 
   componentDidMount() {
@@ -211,20 +211,30 @@ export class HistoryTable extends React.Component {
             return (
               <div className={styles.historyContainer}>
                 <div className={styles.historyFind}>
-                  Wyszukaj:{" "}
-                  <input value={this.state.search} onChange={this.onSearch} />{" "}
-                  Typ:{" "}
-                  <Select
-                    native
-                    name="type"
-                    value={this.state.selectedFilter}
-                    onChange={this.onTypeChange}
-                  >
-                    <option value={"wszystkie"}>wszystkie</option>
-                    <option value={"wydatki"}>wydatki</option>
-                    <option value={"wpływy"}>wpływy</option>
-                  </Select>
-                  <div>
+                  <div className={styles.historyFilterFirstRow}>
+                    <Input
+                      fullWidth={true}
+                      placeholder="Szukaj po nazwie, kategorii lub kwocie"
+                      value={this.state.search}
+                      onChange={event => {
+                        this.onSearch(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
+                    <Select
+                      native
+                      name="type"
+                      value={this.state.selectedFilter}
+                      onChange={this.onTypeChange}
+                    >
+                      <option value={"wszystkie"}>wszystkie</option>
+                      <option value={"wydatki"}>wydatki</option>
+                      <option value={"wpływy"}>wpływy</option>
+                    </Select>
+                  </div>
+                  <div className={styles.historyFilterSecondRow}>
                     <Input
                       placeholder="Kwota od"
                       value={this.state.amountFrom}
@@ -246,19 +256,24 @@ export class HistoryTable extends React.Component {
                       }}
                     />
                   </div>
-                  Data od:{" "}
-                  <MaterialUIPickers
-                    value={this.state.dateTo}
-                    onDateSelected={this.onDateFromChange}
-                  />
-                  Data do:{" "}
-                  <MaterialUIPickers
-                    label="Date picker"
-                    value={this.state.dateTo}
-                    onDateSelected={this.onDateToChange}
-                  />
+                  <div className={styles.historyFilterThirdRow}>
+                    <MaterialUIPickers
+                      value={this.state.dateFrom}
+                      onDateSelected={this.onDateFromChange}
+                    />
+                    <MaterialUIPickers
+                      label="Date picker"
+                      value={this.state.dateTo}
+                      onDateSelected={this.onDateToChange}
+                    />
+                  </div>
                   <div>
-                    <button onClick={this.onReset}>Usuń filtry</button>
+                    <button
+                      className={styles.buttonClear}
+                      onClick={this.onReset}
+                    >
+                      Usuń filtry
+                    </button>
                   </div>
                 </div>
                 <ReactTable

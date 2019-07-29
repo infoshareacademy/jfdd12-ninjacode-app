@@ -11,9 +11,10 @@
   text-align: center;
 }
 .historyFind {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding-bottom: 10px;
-  padding-top: 10px;
   margin-bottom: 10px;
   border: solid 1px #ddd;
 }
@@ -21,4 +22,71 @@
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 5px 10px;
+}
+
+.historyFind input {
+  margin: 5px 10px;
+  display: block-inline;
+}
+
+.historyFind select {
+  margin: 3px 10px;
+}
+
+.historyFilterFirstRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 440px;
+}
+
+.historyFilterFirstRow input {
+}
+
+.historyFilterFirstRow select {
+  margin-left: 10px;
+  min-width: 80px;
+}
+
+.historyFilterSecondRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.historyFilterThirdRow {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.historyFilterThirdRow * {
+  max-width: 220px;
+}
+
+.buttonClear {
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  width: 100%;
+  min-width: 280px;
+  padding: 10px;
+  background-color: rgb(195, 50, 50);
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  border: none;
+  line-height: 1;
+  outline: none;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14);
+}
+
+.buttonClear:active {
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0);
+  width: 99%;
+  min-width: 278px;
+  margin-top: 1px;
+  margin-bottom: -1px;
 }
