@@ -8,8 +8,6 @@ export default function useData() {
 
   useEffect(() => {
     const dataRef = fetchData(dataArray => setData(dataArray));
-    console.log(data);
-
     return () => {
       dataRef.off("value");
     };
@@ -39,7 +37,6 @@ export default function useData() {
     incomes: incomesValue(),
     expenses: expensesValue(),
     addExpense: props => {
-      console.log(props);
       setData([...data, props]);
     }
   };

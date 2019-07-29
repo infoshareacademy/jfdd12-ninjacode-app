@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 export const fetchData = callback => {
   if (!firebase.auth().currentUser) {
@@ -17,7 +17,6 @@ export const fetchData = callback => {
 };
 export const sendData = dataInputForm => {
   const userId = firebase.auth().currentUser && firebase.auth().currentUser.uid;
-  console.log(dataInputForm);
   const dataArray = [];
   firebase
     .database()

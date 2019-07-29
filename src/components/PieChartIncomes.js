@@ -10,12 +10,11 @@ export class PieChartIncomes extends PureComponent {
 
   render() {
     const { balance, incomesCategories } = this.props;
-    console.log(this.props)
-    // let data = [{...incomesCategories}]
-    const mockdata = { ...incomesCategories }
-const data =     Object.entries(mockdata).map(([key,value])=> ({name:key, value}))
-    // let data =  [{name:"cos", value: 123}]
-   
+    const mockdata = { ...incomesCategories };
+    const data = Object.entries(mockdata).map(([key, value]) => ({
+      name: key,
+      value
+    }));
 
     return (
       <div style={{ width: "100%", height: 350, fontSize: "3ex" }}>

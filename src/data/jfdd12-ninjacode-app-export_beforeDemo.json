@@ -1,0 +1,164 @@
+{
+  "data" : {
+    "6JkU93KDPQYHF08W0wqXe0N5e9g1" : {
+      "-LkncjrXf_ENJzqIPMEZ" : {
+        "amount" : 1212,
+        "category" : "Jedzenie",
+        "name" : "dgggggggd",
+        "transactionDate" : "27-07-2019",
+        "type" : "wydatki"
+      },
+      "-Lkncm1ABg84wyNguDLd" : {
+        "amount" : 34343,
+        "category" : "Przelew",
+        "name" : "wdd",
+        "transactionDate" : "27-07-2019",
+        "type" : "wpływy"
+      }
+    },
+    "tEKycG398FP7hoQ1Ot2IG7LIheC2" : {
+      "0" : {
+        "amount" : 3000,
+        "category" : "Inne",
+        "name" : "Zakup mebli",
+        "transactionDate" : "23-03-2019",
+        "type" : "wydatki"
+      },
+      "1" : {
+        "amount" : 251,
+        "category" : "Jedzenie",
+        "name" : "Spożywcze",
+        "transactionDate" : "25-03-2019",
+        "type" : "wydatki"
+      },
+      "2" : {
+        "amount" : 1500,
+        "category" : "Koszty stałe",
+        "name" : "opłata czynszu",
+        "transactionDate" : "01-04-2019",
+        "type" : "wydatki"
+      },
+      "3" : {
+        "amount" : 2210,
+        "category" : "Rozrywka",
+        "name" : "Aerobik-kwiecień",
+        "transactionDate" : "02-04-2019",
+        "type" : "wydatki"
+      },
+      "4" : {
+        "amount" : 3000,
+        "category" : "Przelew",
+        "name" : "pensja",
+        "transactionDate" : "04-04-2019",
+        "type" : "wpływy"
+      },
+      "5" : {
+        "amount" : 3004.57,
+        "category" : "Lokata",
+        "name" : "odsetki od lokaty",
+        "transactionDate" : "06-04-2019",
+        "type" : "wpływy"
+      },
+      "-LkdLaCJpRyr7Lb7wuRB" : {
+        "amount" : 2222,
+        "category" : "Jedzenie",
+        "name" : "fefe",
+        "transactionDate" : "25-07-2019",
+        "type" : "wydatki"
+      },
+      "-LkdLiDJRQ0OPle0LK3w" : {
+        "amount" : 333,
+        "category" : "Lokata",
+        "name" : "fawef",
+        "transactionDate" : "25-07-2019",
+        "type" : "wpływy"
+      },
+      "-LkdLywScflXlZtwRcim" : {
+        "amount" : 3000,
+        "category" : "Rozrywka",
+        "name" : "dedfefe",
+        "transactionDate" : "25-07-2019",
+        "type" : "wydatki"
+      },
+      "-LkdNLB6C2s1kqCrj_5B" : {
+        "amount" : 1000,
+        "category" : "Lokata",
+        "name" : "fawefawef",
+        "transactionDate" : "25-07-2019",
+        "type" : "wpływy"
+      },
+      "-Lkn_PUc7LYzHKFwKy9X" : {
+        "amount" : 656,
+        "category" : "Faktura",
+        "name" : "dsd",
+        "transactionDate" : "27-07-2019",
+        "type" : "wpływy"
+      },
+      "-Lkomn-YTG2LwMUis-BY" : {
+        "amount" : 464,
+        "category" : "Przelew",
+        "name" : "dvv",
+        "transactionDate" : "27-07-2019",
+        "type" : "wpływy"
+      },
+      "-LkomqFwidP49LRuHJrp" : {
+        "amount" : 7577,
+        "category" : "Inne",
+        "name" : "fdh",
+        "transactionDate" : "27-07-2019",
+        "type" : "wpływy"
+      },
+      "-Lkp-kd2LvGgB61v8F0T" : {
+        "amount" : 2636,
+        "category" : "Jedzenie",
+        "name" : "Bcc",
+        "transactionDate" : "27-07-2019",
+        "type" : "wydatki"
+      },
+      "-LkxnIr3z2WfKmhVS2Sq" : {
+        "amount" : 750,
+        "category" : "Koszty stałe",
+        "name" : "paliwo",
+        "transactionDate" : "29-07-2019",
+        "type" : "wydatki"
+      },
+      "-LkxsUkD3cIZ8r4Y0ViN" : {
+        "amount" : 1500,
+        "category" : "Lokata",
+        "name" : "Faktura dla infoShare.pl",
+        "transactionDate" : "29-07-2019",
+        "type" : "wpływy"
+      }
+    }
+  },
+  "users" : {
+    "6JkU93KDPQYHF08W0wqXe0N5e9g1" : {
+      "firstName" : "Jim",
+      "lastName" : "Doe"
+    },
+    "7yEhYxBVhRYMka7AbWu64qqWDSH2" : {
+      "firstName" : "Jim",
+      "lastName" : "Doe"
+    },
+    "9ZOTR4NzttcpoKQacqBATlBYZ0B3" : {
+      "firstName" : "Jim",
+      "lastName" : "Doe"
+    },
+    "dSNYTbyIGQQhrj9LAjcEqbiml5q2" : {
+      "firstName" : "Jimmy",
+      "lastName" : "Doe"
+    },
+    "dVSW7oOaB3YhBKHo29ebJ7FP6dC3" : {
+      "firstName" : "Jim",
+      "lastName" : "Doe"
+    },
+    "oLoiGPdUUaR5JJd6aD594NIquqp1" : {
+      "firstName" : "Jim",
+      "lastName" : "Doe"
+    },
+    "tEKycG398FP7hoQ1Ot2IG7LIheC2" : {
+      "firstName" : "Gabrysia",
+      "lastName" : "Kołakowska"
+    }
+  }
+}

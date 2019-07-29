@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
 // import mockData from "../mockData.json";
 import { fetchData, sendData } from "../services/DataService.js";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 const BalanceContext = createContext();
 
@@ -15,17 +15,13 @@ export class BalanceProvider extends React.Component {
         incomes: 0,
         expenses: 0
       },
-      incomesCategories: {
-
-      },
-      expensesCategories: {
-
-      }
+      incomesCategories: {},
+      expensesCategories: {}
     };
 
     this.onFormInput = this.onFormInput.bind(this);
-    this.incomesCategories = this.incomesCategories.bind(this)
-    this.expensesCategories = this.expensesCategories.bind(this)
+    this.incomesCategories = this.incomesCategories.bind(this);
+    this.expensesCategories = this.expensesCategories.bind(this);
   }
 
   componentDidMount() {
@@ -68,26 +64,26 @@ export class BalanceProvider extends React.Component {
       }, 0);
     return incomes;
   }
-  
+
   incomesCategories(entries) {
     const data = entries
-    .filter(row => row.type === "wpływy")
-    .reduce((acc, row) => {
-      const oldAmount = row.value || 0;
-      return {...acc, [row.category]: oldAmount + row.amount}
-    }, {})
-    
-    return data 
+      .filter(row => row.type === "wpływy")
+      .reduce((acc, row) => {
+        const oldAmount = row.value || 0;
+        return { ...acc, [row.category]: oldAmount + row.amount };
+      }, {});
+
+    return data;
   }
   expensesCategories(entries) {
     const data = entries
-    .filter(row => row.type === "wydatki")
-    .reduce((acc, row) => {
-      const oldAmount = row.value || 0;
-      return {...acc, [row.category]: oldAmount + row.amount}
-    }, {})
-    
-    return data 
+      .filter(row => row.type === "wydatki")
+      .reduce((acc, row) => {
+        const oldAmount = row.value || 0;
+        return { ...acc, [row.category]: oldAmount + row.amount };
+      }, {});
+
+    return data;
   }
 
   onFormInput(ItemExpense) {
