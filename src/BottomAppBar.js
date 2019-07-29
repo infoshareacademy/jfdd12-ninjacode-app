@@ -3,32 +3,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import Paper from "@material-ui/core/Paper";
 import Fab from "@material-ui/core/Fab";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import Avatar from "@material-ui/core/Avatar";
-import MenuIcon from "@material-ui/icons/Menu";
 import AddIcon from "@material-ui/icons/Add";
-import SearchIcon from "@material-ui/icons/Search";
-import MoreIcon from "@material-ui/icons/MoreVert";
 import Icon from "@material-ui/core/Icon";
 import { Button, Modal } from "@material-ui/core";
 import { ExpensesForm } from "./components/ExpensesForm";
 import { IncomesForm } from "./components/IncomesForm";
-import { positions } from "@material-ui/system";
 import costs from "./icons/costs.svg";
 import revenues from "./icons/revenues.svg";
 import { signOut } from "./services/AuthService";
 import { useAuth } from "./hooks/useAuth";
 import { Link, withRouter } from "react-router-dom";
 // import Link from "@material-ui/core/Link";
-import { Dashboard } from "./components/Dashboard";
 const useStyles = makeStyles(theme => ({
   text: {
     padding: theme.spacing(2, 2, 0)
@@ -176,7 +163,7 @@ export default function BottomAppBar(props) {
           <NavIconButton to="/" icon="dashboard" />
           <NavIconButton to="/history" icon="list_alt" />
           <Fab
-          style={{backgroundColor:"rgb(195, 50, 50)", color: "white"}}
+            style={{ backgroundColor: "rgb(195, 50, 50)", color: "white" }}
             disabled={!isLoggedIn}
             //color="rgb(195, 50, 50)"
             aria-label="Add"
