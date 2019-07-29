@@ -7,33 +7,42 @@ import { Layout } from "../Layout";
 import moment from "moment";
 
 const getColumns = data => {
+  let thisWidth = window.innerWidth;
+  console.log("width: " + thisWidth);
   return [
     {
       Header: "Nazwa",
       accessor: "name",
+      minWidth: 85,
       style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Kategoria",
       accessor: "category",
-      style: { textAlign: "left", paddingLeft: "10px" }
-    },
-    {
-      Header: "Data",
-      accessor: "transactionDate",
-      style: { textAlign: "center" }
+      minWidth: 80,
+      style: { textAlign: "left", paddingLeft: "10px" },
+      show: thisWidth > 400 ? true : false
     },
     {
       id: "typeID",
       Header: "Typ",
       accessor: "type",
+      minWidth: 60,
       style: { textAlign: "center" },
+      show: thisWidth > 450 ? true : false
+    },
+    {
+      Header: "Data",
+      accessor: "transactionDate",
+      style: { textAlign: "center" },
+      minWidth: 60,
       Footer: <strong>SUMA:</strong>
     },
     {
       id: "amountID",
       Header: "Kwota",
       accessor: "amount",
+      minWidth: 60,
       style: { textAlign: "right", paddingRight: "10px" },
       Footer: <strong>{filteredTableSum(data)}</strong>
     }
@@ -233,8 +242,15 @@ export class HistoryTable extends React.Component {
                 <ReactTable
                   data={filteredData}
                   columns={getColumns(filteredData)}
-                  showPagination={false}
-                  minRows={1}
+                  minRows={0}
+                  defaultPageSize={20}
+                  pageJumpText={"następna strona"}
+                  rowsSelectorText={"ilość transakcji na stronie"}
+                  previousText={"Poprzednia strona"}
+                  nextText={"Następna strona"}
+                  pageText={"Strona"}
+                  ofText={"z"}
+                  rowsText={"transakcji"}
                   getTrProps={(state, rowInfo, column) => {
                     if (!rowInfo) {
                       return {};
