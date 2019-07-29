@@ -14,14 +14,14 @@ export function Charts() {
 
         {({ data }) => <BarChartBalance data={data} />}
       </BalanceConsumer>
-      <h2 style={{textAlign: "center", margin: 50}}> Przychody</h2>  
+      <h2 style={{textAlign: "center", margin: 30}}> Przychody</h2>  
       <BalanceConsumer>
         {({ balance, incomesCategories }) => {
           
           return(<PieChartIncomes balance={balance} incomesCategories={incomesCategories} />
         )}}
       </BalanceConsumer>
-      <h2 style={{textAlign: "center", margin: 50}}> Wydatki</h2>
+      <h2 style={{textAlign: "center", marginBottom: 20, marginTop: 40}}> Wydatki</h2>
       <BalanceConsumer>
         {({ balance, expensesCategories }) => {
           
