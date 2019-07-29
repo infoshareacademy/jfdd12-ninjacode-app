@@ -6,8 +6,7 @@ export const signIn = (email, password) => {
     .signInWithEmailAndPassword(email, password)
     .catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      alert("Nie znaleziono uzytkownika lub błędne hasło.");
     });
 };
 
