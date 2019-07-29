@@ -12,13 +12,13 @@ const getColumns = data => {
     {
       Header: "Nazwa",
       accessor: "name",
-      minWidth: 85,
+      minWidth: 90,
       style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Kategoria",
       accessor: "category",
-      minWidth: 80,
+      minWidth: 70,
       style: { textAlign: "left", paddingLeft: "10px" },
       show: thisWidth > 400 ? true : false
     },
@@ -245,7 +245,8 @@ export class HistoryTable extends React.Component {
                   data={filteredData}
                   columns={getColumns(filteredData)}
                   minRows={0}
-                  defaultPageSize={10}
+                  defaultPageSize={20}
+                  pageSizeOptions={[10, 20]}
                   pageJumpText={"następna strona"}
                   rowsSelectorText={"ilość transakcji na stronie"}
                   previousText={"Poprzednia strona"}
