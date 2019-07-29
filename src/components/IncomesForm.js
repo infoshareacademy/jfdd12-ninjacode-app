@@ -46,7 +46,10 @@ export function IncomesForm(props) {
       type: "wpływy",
       amount: parseFloat(income)
     };
-    onFormInput(itemExpense);
+
+    if (income !== "") {
+      onFormInput(itemExpense);
+    }
   }
 
   return (

@@ -47,7 +47,10 @@ export function ExpensesForm(props) {
       type: "wydatki",
       amount: parseFloat(expense)
     };
-    onFormInput(itemExpense);
+
+    if (expense !== "") {
+      onFormInput(itemExpense);
+    }
   }
   return (
     <div className={classes.root}>

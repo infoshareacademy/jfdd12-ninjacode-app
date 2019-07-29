@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
 
 export function MaterialUIPickers(props) {
   // The first commit of Material-UI
-  const [locale, setLocale] = React.useState("pl");
+  const [locale] = React.useState("pl");
   const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const classes = useStyles();
