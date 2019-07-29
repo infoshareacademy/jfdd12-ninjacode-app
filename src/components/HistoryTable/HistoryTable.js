@@ -5,6 +5,8 @@ import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
 import moment from "moment";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
 
 const getColumns = data => {
   let thisWidth = window.innerWidth;
@@ -60,7 +62,6 @@ function filteredTableSum(data) {
       tableSum += data[i].amount;
     }
   }
-  // console.log("tableSum = ", tableSum);
   return `${tableSum.toFixed(2)} zł`;
 }
 
@@ -212,15 +213,16 @@ export class HistoryTable extends React.Component {
                   Wyszukaj:{" "}
                   <input value={this.state.search} onChange={this.onSearch} />{" "}
                   Typ:{" "}
-                  <select
+                  <Select
+                    native
                     name="type"
                     value={this.state.selectedFilter}
                     onChange={this.onTypeChange}
                   >
-                    <option value="wszystkie">Wszystkie</option>
-                    <option value="wydatki">Wydatki</option>
-                    <option value="wpływy">wpływy</option>
-                  </select>
+                    <option value={"wszystkie"}>wszystkie</option>
+                    <option value={"wydatki"}>wydatki</option>
+                    <option value={"wpływy"}>wpływy</option>
+                  </Select>
                   <div>
                     Kwota od:{" "}
                     <input
