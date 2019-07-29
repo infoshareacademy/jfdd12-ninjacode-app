@@ -39,9 +39,9 @@ const useStyles = makeStyles(theme => ({
 export function Login(props) {
   const classes = useStyles();
   const isLoggedIn = useAuth();
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("test@test.com");
 
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("test123");
 
   if (isLoggedIn) {
     const redirectUrl =
@@ -64,7 +64,7 @@ export function Login(props) {
             required
             fullWidth
             id="email"
-            label="Podaj email"
+            label="Email Address"
             name="email"
             value={email}
             onChange={event => {
@@ -79,7 +79,7 @@ export function Login(props) {
             required
             fullWidth
             name="password"
-            label="Hasło"
+            label="Password"
             type="password"
             value={password}
             onChange={event => {
@@ -99,7 +99,7 @@ export function Login(props) {
               signIn(email, password);
             }}
           >
-            Zaloguj się
+            Zaloguj
           </Button>
           <Grid container>
             <Grid item>

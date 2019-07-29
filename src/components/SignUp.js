@@ -40,10 +40,10 @@ export function SignUp(props) {
   const classes = useStyles();
   const isLoggedIn = useAuth();
   const initalState = {
-    email: "",
-    password: "",
-    firstName: "",
-    lastName: ""
+    email: "test+1@example.com",
+    password: "test123",
+    firstName: "Jim",
+    lastName: "Doe"
   };
   const [state, setState] = useState(initalState);
   const handleChange = (event, props) => {
