@@ -145,6 +145,16 @@ export class HistoryTable extends React.Component {
     };
   }
 
+  resize = () => this.forceUpdate();
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize);
+  }
+
   onSearch = e => {
     this.setState({ search: e.target.value });
   };
