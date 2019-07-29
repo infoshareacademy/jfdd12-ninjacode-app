@@ -5,37 +5,51 @@ import ReactTable from "react-table";
 import { BalanceConsumer } from "../../contexts/BalanceContext";
 import { Layout } from "../Layout";
 import moment from "moment";
+import Select from "@material-ui/core/Select";
+import { MaterialUIPickers } from "../DatePickerExpenses";
+import Input from "@material-ui/core/Input";
 
 const getColumns = data => {
+  let thisWidth = window.innerWidth;
   return [
     {
       Header: "Nazwa",
       accessor: "name",
+      minWidth: 90,
       style: { textAlign: "left", paddingLeft: "10px" }
     },
     {
       Header: "Kategoria",
       accessor: "category",
-      style: { textAlign: "left", paddingLeft: "10px" }
-    },
-    {
-      Header: "Data",
-      accessor: "transactionDate",
-      style: { textAlign: "center" }
+      minWidth: 70,
+      style: { textAlign: "left", paddingLeft: "10px" },
+      show: thisWidth > 400 ? true : false
     },
     {
       id: "typeID",
       Header: "Typ",
       accessor: "type",
+      minWidth: 60,
       style: { textAlign: "center" },
+      show: thisWidth > 450 ? true : false
+    },
+    {
+      Header: "Data",
+      accessor: "transactionDate",
+      style: { textAlign: "center" },
+      minWidth: 60,
       Footer: <strong>SUMA:</strong>
     },
     {
       id: "amountID",
       Header: "Kwota",
       accessor: "amount",
+      minWidth: 60,
       style: { textAlign: "right", paddingRight: "10px" },
-      Footer: <strong>{filteredTableSum(data)}</strong>
+      Footer: <strong>{filteredTableSum(data)}</strong>,
+      Cell: row => {
+        return `${parseFloat(row.value).toFixed(2)} zł`;
+      }
     }
   ];
 };
@@ -49,8 +63,7 @@ function filteredTableSum(data) {
       tableSum += data[i].amount;
     }
   }
-  // console.log("tableSum = ", tableSum);
-  return tableSum.toFixed(2);
+  return `${tableSum.toFixed(2)} zł`;
 }
 
 function filterData(
@@ -122,6 +135,7 @@ function filterData(
 export class HistoryTable extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       data: props.data,
       filteredData: props.data,
@@ -132,6 +146,15 @@ export class HistoryTable extends React.Component {
       dateFrom: "",
       dateTo: ""
     };
+  }
+  resize = () => this.forceUpdate();
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resize);
   }
 
   onSearch = e => {
@@ -151,11 +174,11 @@ export class HistoryTable extends React.Component {
   };
 
   onDateFromChange = e => {
-    this.setState({ dateFrom: e.target.value });
+    this.setState({ dateFrom: e });
   };
 
   onDateToChange = e => {
-    this.setState({ dateTo: e.target.value });
+    this.setState({ dateTo: e });
   };
 
   onReset = () => {
@@ -188,53 +211,84 @@ export class HistoryTable extends React.Component {
             return (
               <div className={styles.historyContainer}>
                 <div className={styles.historyFind}>
-                  Wyszukaj:{" "}
-                  <input value={this.state.search} onChange={this.onSearch} />{" "}
-                  Typ:{" "}
-                  <select
-                    name="type"
-                    value={this.state.selectedFilter}
-                    onChange={this.onTypeChange}
-                  >
-                    <option value="wszystkie">Wszystkie</option>
-                    <option value="wydatki">Wydatki</option>
-                    <option value="wpływy">wpływy</option>
-                  </select>
-                  <div>
-                    Kwota od:{" "}
-                    <input
+                  <div className={styles.historyFilterFirstRow}>
+                    <Input
+                      fullWidth={true}
+                      placeholder="Szukaj po nazwie, kategorii lub kwocie"
+                      value={this.state.search}
+                      onChange={event => {
+                        this.onSearch(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
+                    <Select
+                      native
+                      name="type"
+                      value={this.state.selectedFilter}
+                      onChange={this.onTypeChange}
+                    >
+                      <option value={"wszystkie"}>wszystkie</option>
+                      <option value={"wydatki"}>wydatki</option>
+                      <option value={"wpływy"}>wpływy</option>
+                    </Select>
+                  </div>
+                  <div className={styles.historyFilterSecondRow}>
+                    <Input
+                      placeholder="Kwota od"
                       value={this.state.amountFrom}
-                      onChange={this.onAmountFromChange}
-                    />{" "}
-                    Kwota do:{" "}
-                    <input
+                      onChange={event => {
+                        this.onAmountFromChange(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
+                    <Input
+                      placeholder="Kwota do"
                       value={this.state.amountTo}
-                      onChange={this.onAmountToChange}
-                    />{" "}
+                      onChange={event => {
+                        this.onAmountToChange(event);
+                      }}
+                      inputProps={{
+                        "aria-label": "Description"
+                      }}
+                    />
                   </div>
-                  <div>
-                    Data od:{" "}
-                    <input
-                      type="date"
+                  <div className={styles.historyFilterThirdRow}>
+                    <MaterialUIPickers
                       value={this.state.dateFrom}
-                      onChange={this.onDateFromChange}
-                    />{" "}
-                    Data do:{" "}
-                    <input
-                      type="date"
+                      onDateSelected={this.onDateFromChange}
+                    />
+                    <MaterialUIPickers
+                      label="Date picker"
                       value={this.state.dateTo}
-                      onChange={this.onDateToChange}
-                    />{" "}
+                      onDateSelected={this.onDateToChange}
+                    />
                   </div>
                   <div>
-                    <button onClick={this.onReset}>Usuń filtry</button>
+                    <button
+                      className={styles.buttonClear}
+                      onClick={this.onReset}
+                    >
+                      Usuń filtry
+                    </button>
                   </div>
                 </div>
                 <ReactTable
                   data={filteredData}
                   columns={getColumns(filteredData)}
-                  showPagination={false}
-                  minRows={1}
+                  minRows={0}
+                  defaultPageSize={20}
+                  pageSizeOptions={[10, 20]}
+                  pageJumpText={"następna strona"}
+                  rowsSelectorText={"ilość transakcji na stronie"}
+                  previousText={"Poprzednia strona"}
+                  nextText={"Następna strona"}
+                  pageText={"Strona"}
+                  ofText={"z"}
+                  rowsText={"transakcji"}
                   getTrProps={(state, rowInfo, column) => {
                     if (!rowInfo) {
                       return {};
@@ -243,8 +297,8 @@ export class HistoryTable extends React.Component {
                       style: {
                         background:
                           rowInfo.original.type == "wydatki"
-                            ? "rgba(255, 200, 200, 0.8)"
-                            : "rgba(0, 100, 200, 0.2)"
+                            ? "rgba(136, 132, 216, 0.3)"
+                            : "rgba(130, 202, 157, 0.3)"
                       }
                     };
                   }}
